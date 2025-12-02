@@ -1,0 +1,497 @@
+\appendix
+
+\section{Gervais-Neveu gauge}
+\label{sec:gervais-neveu-gauge}
+
+Here, we present an alternative to the gauge fixing of Section \ref{subsec:gauge-fields}. The Yang-Mills Lagrangian can be written in matrix notation as
+\begin{equation}
+\label{eq:appendix:ym-lagrangian-matrix}
+    \mathcal{L_{\mathrm{YM}}} = -\frac{1}{2}\tr\Bigl(\del_{\mu}A_{\nu}(\del^{\mu}A^{\nu} - \del^{\nu}A^{\mu}) + \frac{ig}{\sqrt{2}}\del_{\mu}A_{\nu}[A^{\mu},A^{\nu}] - \frac{g^2}{4}[A_{\mu},A_{\nu}]^2\Bigr) \,.
+\end{equation}
+A tree amplitude-friendly choice of gauge is the complex matrix-valued Gervais-Neveu (GN) gauge \cite{Srednicki:2007qs}. This gauge affects not only the propagator, but also the terms in the Lagrangian proportional to the field at cubic- and quartic order. The gauge-fixing term is given by
+\begin{equation}
+\label{eq:sec3:gervais-neveu-gauge-fix}
+    \begin{aligned}
+          \mathcal{L}_{\mathrm{gf}}^{\mathrm{GN}} &= -\frac{1}{2}\tr\Bigl((\del{A})^2 - ig\,\del{A}\,A^2 + \frac{g^2}{4}(A^2)^2\Bigr) \\
+          &= -\frac{1}{2}\del^{\mu}A_{\mu}^{a\:}\del^{\nu}A_{\nu}^{a} + i\sqrt{2}g\,\del^{\mu}A_{\mu}^{a\:}A^{b\nu}A_{\nu}^{c}\tr\bigl(T^{a}T^{b}T^{c}\bigr) + \frac{g^2}{4}A_{\mu}^{a\:}A^{b\mu}A_{\nu}^{c\:}A^{d\nu}\tr\bigl(T^{a}T^{b}T^{c}T^{d}\bigr) \,.
+    \end{aligned}
+\end{equation}
+where we have chosen to express the gauge using matrix notation in the second line of \eqref{eq:sec3:gervais-neveu-gauge-fix} and using color indices in the last. Adding $\mathcal{L}_{\mathrm{gf}}^{GN}$ to \eqref{eq:appendix:ym-lagrangian-matrix} will simplify the Feynman rules even more than the colour-ordered rules of the Feynman-Lorentz gauge.
+\begin{equation}
+\label{eq:sec3:yang-mills-gervais-neveu-lagrangian}
+    \begin{aligned}
+        \mathcal{L}^{\mathrm{GN}} &= \mathcal{L} + \mathcal{L}_{\mathrm{gf}}^{\mathrm{GN}} \\
+        &= \tr\Bigl(-\frac{1}{2}(\del_{\mu}A_{\nu})^2 - i\sqrt{2}g\,\del_{\mu}A_{\nu}A^{\nu}A^{\mu} + \frac{g^2}{4}(A_{\mu}A_{\nu})^2\Bigr) \\
+        &= -\frac{1}{2}\del_{\mu}A_{\nu}^{a\:}\del^{\mu}A^{a\nu} - i\sqrt{2}g\,\del_{\mu}A_{\nu}^{a\:}A^{b\nu}A^{b\mu}\tr(T^{a}T^{b}T^{c}) + \frac{g^2}{4}A_{\mu}^{a\:}A_{\nu}^{b\:}A^{c\mu}A^{d\nu}\tr(T^{a}T^{b}T^{c}T^{d})
+    \end{aligned}
+\end{equation}
+\eqref{eq:sec3:yang-mills-gervais-neveu-lagrangian} provides the colour-ordered rules below:
+\begin{align}
+    % \begin{tikzpicture}[baseline=-0.106cm]
+    %     \filldraw[black] (0,0) circle (2pt);
+    %     \tikzset{line/.style={line width=0.8pt}};
+    %     \node at (240:1.25) {1};
+    %     \draw[line] (0,0) -- (240:1);
+    %     \node at (120:1.25) {2};
+    %     \draw[line] (0,0) -- (120:1);
+    %     \node at (0:1.25) {3};
+    %     \draw[line] (0,0) -- (0:1);
+    % \end{tikzpicture}
+    V_{ggg}^{\mu_1\mu_2\mu_3}(p_1,p_2,p_3)
+    &= i\sqrt{2}\bigl(\eta^{\mu_{1}\mu_{2}}p_{1}^{\mu_{3}}+\eta^{\mu_{2}\mu_{3}}p_{2}^{\mu_{1}}+\eta^{\mu_{3}\mu_{1}}p_{3}^{\mu_{2}}\bigr) \\[2ex]
+    % \begin{tikzpicture}[baseline=-0.106cm]
+    %     \node (c) at (0,0) {};
+    %     \filldraw[black] (0,0) circle (2pt);
+    %     \tikzset{line/.style={line width=0.8pt}};
+    %     \node at (225:1.25) {1};
+    %     \draw[line] (0,0) -- (225:1);
+    %     \node at (315:1.25) {4};
+    %     \draw[line] (0,0) -- (315:1);
+    %     \node at (135:1.25) {2};
+    %     \draw[line] (0,0) -- (135:1);
+    %     \node at (45:1.25) {3};
+    %     \draw[line] (0,0) -- (45:1);
+    % \end{tikzpicture}
+    V_{gggg}^{\mu_1\dots\mu_4}(p_1,\dots,p_4)
+    &= i\eta^{\mu_{1}\mu_{3}}\eta^{\mu_{2}\mu_{4}} \\[1ex]
+    % \begin{tikzpicture}[baseline=-0.106cm]
+    %     \tikzset{line/.style={line width=0.8pt}};
+    %     \draw[line] (-1,0) -- (1,0);
+    %     \node at (-1.25,0) {$\mu$};
+    %     \node at (1.25,0) {$\nu$};
+    %     \tikzset{shift={(0,0.25)}};
+    %     \draw[->,line width=0.8pt] (-0.5,0) -- (0.5,0);
+    %     \node at (0,0.3) {$P$};
+    % \end{tikzpicture}
+    \Delta_{\mu\nu}(p)
+    &= -\frac{i\eta_{\mu\nu}}{p^2}
+\end{align}
+
+
+
+
+
+
+
+
+
+%\section{Mandelstam invariants} \label{sec:appendix}
+%{\color{blue} Now unnecessary any more.}
+%
+%\subsection{Cyclical basis for Mandelstam invariants} \label{subsec:cyclical_basis}
+%
+%Cf. sec 2.1 of https://arxiv.org/pdf/1711.09102.pdf
+%
+%
+%\begin{center}
+%    \begin{tabular}[t]{cl|cl}
+%        \multirow{2}{*}{$n=5:$} & $s_{13} = s_{45} - s_{12} - s_{23}$ &
+%        \multirow{6}{*}{$n=9:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ \\
+%        & $s_{14} = s_{23} - s_{45} - s_{51}$ & & $s_{14} = s_{23} + t_{1234} - t_{123} - t_{234}$ \\
+%        \cline{1-2}
+%        \multirow{3}{*}{$n=6:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ & & $s_{15} = t_{234} + t_{6789} - t_{1234} - t_{2345}$ \\
+%        & $s_{14} = s_{23} + s_{56} - t_{123} - t_{234}$ & & $s_{16} = s_{789} + t_{2345} - t_{6789} - t_{7891}$ \\
+%        & $s_{15} = t_{234} - s_{56} - s_{61}$ & & $s_{17} = s_{89} + t_{7891} - t_{789} - t_{891}$ \\
+%        \cline{1-2}
+%        \multirow{4}{*}{$n=7:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ & & $s_{18} = t_{891} - s_{89} - s_{91}$ \\
+%        \cline{3-4}
+%        & $s_{14} = s_{23} + t_{567} - t_{123} - t_{234}$ &
+%        \multirow{7}{*}{$n=10:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ \\
+%        & $s_{15} = s_{67} + t_{234} - t_{567} - t_{671}$ & & $s_{14} = s_{23} + t_{1234} - t_{123} - t_{234}$ \\
+%        & $s_{16} = t_{671} - s_{67} - s_{71}$ & & $s_{15} = t_{234} + t_{12345} - t_{1234} - t_{2345}$ \\
+%        \cline{1-2}
+%        \multirow{5}{*}{$n=8:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ & & $s_{16} = t_{2345} + t_{789\,10} - t_{12345} - t_{23456}$ \\
+%        & $s_{14} = s_{23} + t_{1234} - t_{123} - t_{234}$ & & $s_{17} = t_{89(10)} + t_{23456} - t_{789(10)} - t_{89(10)1}$ \\
+%        & $s_{15} = t_{234} + t_{678} - t_{1234} - t_{2345}$ & & $s_{18} = s_{9(10)} + t_{89(10)1} - t_{89(10)} - t_{9(10)1}$ \\
+%        & $s_{16} = s_{78} + t_{2345} - t_{678} - t_{781}$ & & $s_{19} = t_{9(10)1} - s_{9(10)} - s_{(10)1}$ \\
+%        & $s_{17} = t_{781} - s_{78} - s_{81}$
+%    \end{tabular}
+%\end{center}
+%
+%\begin{center}
+%    \begin{tabular}[t]{cl|cl}
+%        \multirow{2}{*}{$n=5:$} & $s_{13} = s_4 - s_1 - s_2$ & \multirow{6}{*}{$n=9:$} & $s_{13} = t_1 - s_1 - s_2$ \\
+%        & $s_{14} = s_2 - s_4 - s_5$ & & $s_{14} = s_2 + u_1 - t_1 - t_2$ \\
+%        \cline{1-2}
+%        \multirow{3}{*}{$n=6:$} & $s_{13} = t_1 - s_1 - s_2$ & & $s_{15} = t_2 + u_6 - u_1 - u_2$ \\
+%        & $s_{14} = s_2 + s_5 - t_1 - t_2$ & & $s_{16} = t_7 + u_2 - u_6 - u_7$ \\
+%        & $s_{15} = t_2 - s_5 - s_6$ & & $s_{17} = s_8 + u_7 - t_7 - t_8$ \\
+%        \cline{1-2}
+%        \multirow{4}{*}{$n=7:$} & $s_{13} = t_1 - s_1 - s_2$ & & $s_{18} = t_8 - s_8 - s_9$ \\
+%        \cline{3-4}
+%        & $s_{14} = s_2 + t_5 - t_1 - t_2$ & \multirow{7}{*}{$n=10:$} & $s_{13} = t_1 - s_1 - s_2$ \\
+%        & $s_{15} = s_6 + t_2 - t_5 - t_6$ & & $s_{14} = s_2 + u_1 - t_1 - t_2$ \\
+%        & $s_{16} = t_6 - s_6 - s_7$ & & $s_{15} = t_2 + v_1 - u_1 - u_2$ \\
+%        \cline{1-2}
+%        \multirow{5}{*}{$n=8:$} & $s_{13} = t_1 - s_1 - s_2$ & & $s_{16} = u_2 + u_7 - v_1 - v_2$ \\
+%        & $s_{14} = s_2 + u_1 - t_1 - t_2$ & & $s_{17} = t_8 + v_2 - u_7 - u_8$ \\
+%        & $s_{15} = t_2 + t_6 - u_1 - u_2$ & & $s_{18} = s_9 + u_8 - t_8 - t_9$ \\
+%        & $s_{16} = s_7 + u_2 - t_6 - t_7$ & & $s_{19} = t_9 - s_9 - s_{10}$ \\
+%        & $s_{17} = t_7 - s_7 - s_8$
+%    \end{tabular}
+%\end{center}
+%
+%All remaining invariants are obtained by cyclic permutation. E.g. in the $n=5$ case, $s_{24}$ is equal to $s_{13}$ where we impose the substitutions $(1\rightarrow2,2\rightarrow3,3\rightarrow4,4\rightarrow5,5\rightarrow1)$, i.e.,
+%
+%\begin{equation}
+%    s_{24} = s_5 - s_2 - s_3
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        s_{ij} &= (p_i+p_j)^2 = 2p_i \cdot p_j \\
+%        s_i &= (p_i + p_{i+2})^2 = 2 p_i \cdot p_{i+1} \\
+%        t_i &= (p_i +p_{i+1} + p_{i+2})^2 = 2(p_i \cdot p_{i+1} + p_i \cdot p_{i+2} + p_{i+1} \cdot p_{i+2}) \\
+%        u_i &= (p_i +p_{i+1} + p_{i+2} + p_{i+3})^2 \\
+%        &= 2(p_i \cdot p_{i+1} + p_i \cdot p_{i+2} + p_i \cdot p_{i+3} + p_{i+1} \cdot p_{i+2} + p_{i+1} \cdot p_{i+3} + p_{i+2} \cdot p_{i+3}) \\
+%        v_i &= (p_i +p_{i+1} + p_{i+2} + p_{i+3} + p_{i+4})^2 \\
+%        &= 2(p_i \cdot p_{i+1} + p_i \cdot p_{i+2} + p_i \cdot p_{i+3} + p_i \cdot p_{i+4} + p_{i+1} \cdot p_{i+2} + p_{i+1} \cdot p_{i+3} + p_{i+1} \cdot p_{i+4} \\
+%        &\quad + p_{i+2} \cdot p_{i+3} + p_{i+2} \cdot p_{i+4} + p_{i+3} \cdot p_{i+4})
+%    \end{split}
+%\end{equation}
+%
+%\begin{alignat}{2}
+%    &n = 5: s_i && i=1,\ldots,5\,. \\
+%    &n = 6: s_i,t_j && i=1,\ldots,6 \comma j=1,2,3 \\
+%    &n = 7: s_i,t_j && i,j=1,\ldots,7 \\
+%    &n = 8: s_i,t_j,u_k && i,j=1,\ldots,8 \comma k=1,\ldots,4 \\
+%    &n = 9: s_i,t_j,u_k && i,j,k=1,\ldots,9 \\
+%    &n = 10: s_i,t_j,u_k,v_l \qquad && i,j,k=1,\ldots,10 \comma l=1,\ldots,5
+%\end{alignat}
+
+
+\newpage
+\section{Graviton terms}
+\label{sec:graviton-terms}
+
+Here, we provide the polynomials needed to compute the number of unsymmetrised graviton terms of the form $(\epsilon\cdot\epsilon)^m(\epsilon{\cdot}p)^{2(n-m)}$.
+\vskip 2ex
+\noindent$m=1$:
+\begin{equation}
+    f_{k_1}^{(1)}(1) = k_1
+\end{equation}
+$m=2$:
+\begin{equation}
+    f_{k_1}^{(1)}(2) = k_1(2k_1-1)
+\end{equation}
+\begin{equation}
+    f_{{k_1}{k_2}}^{(1)}(2) = k_1(k_2-1)
+\end{equation}
+$m=3$:
+\begin{equation}
+    \begin{split}
+        f_{{k_1}{k_2}}^{(1)}(3) &= k_1(k_2-1)(2k_2-3) \\
+        f_{{k_1}{k_2}}^{(2)}(3) &= k_1(k_2-2)(2k_1-1)
+    \end{split}
+\end{equation}
+\begin{equation}
+    f_{{k_1}{k_2}{k_3}}^{(1)}(3) = k_1(k_2-1)(k_3-2)
+\end{equation}
+$m=4$:
+\begin{equation}
+    f_{{k_1}{k_2}}^{(1)}(4) = k_1(k_2-2)(2k_1-1)(2k_2-5)
+\end{equation}
+\begin{equation}
+    \begin{split}
+        f_{{k_1}{k_2}{k_3}}^{(1)}(4) &= k_1(k_2-1)(k_3-2)(2k_3-5) \\
+        f_{{k_1}{k_2}{k_3}}^{(2)}(4) &= k_1(k_2-1)(k_3-3)(2k_2-3) \\
+        f_{{k_1}{k_2}{k_3}}^{(3)}(4) &= k_1(k_2-2)(k_3-3)(2k_1-1)
+    \end{split}
+\end{equation}
+\begin{equation}
+    f_{{k_1}\dots{k_4}}^{(1)}(4) = k_1(k_2-1)(k_3-2)(k_4-3)
+\end{equation}
+$m=5$:
+\begin{equation}
+    \begin{split}
+        f_{{k_1}{k_2}{k_3}}^{(1)}(5) &= k_1(k_2-1)(k_3-3)(2k_2-3)(2k_3-7) \\
+        f_{{k_1}{k_2}{k_3}}^{(2)}(5) &= k_1(k_2-2)(k_3-3)(2k_1-1)(2k_3-7) \\
+        f_{{k_1}{k_2}{k_3}}^{(3)}(5) &= k_1(k_2-2)(k_3-4)(2k_1-1)(2k_2-5)
+    \end{split}
+\end{equation}
+\begin{equation}
+    \begin{split}
+        f_{{k_1}\dots{k_4}}^{(1)}(5) &= k_1(k_2-1)(k_3-2)(k_4-3)(2k_4-7) \\
+        f_{{k_1}\dots{k_4}}^{(2)}(5) &= k_1(k_2-1)(k_3-2)(k_4-4)(2k_3-5) \\
+        f_{{k_1}\dots{k_4}}^{(3)}(5) &= k_1(k_2-1)(k_3-3)(k_4-4)(2k_2-3) \\
+        f_{{k_1}\dots{k_4}}^{(4)}(5) &= k_1(k_2-2)(k_3-3)(k_4-4)(2k_1-1)
+    \end{split}
+\end{equation}
+\begin{equation}
+    f_{{k_1}\dots{k_5}}^{(1)}(5) = k_1(k_2-1)(k_3-2)(k_4-3)(k_5-4)
+\end{equation}
+$m=6$:
+\begin{equation}
+    f_{{k_1}{k_2}{k_3}}^{(1)}(6) = k_1(k_2-2)(k_3-4)(2k_1-1)(2k_2-5)(2k_3-9)
+\end{equation}
+\begin{equation}
+    \begin{split}
+        f_{{k_1}\dots{k_4}}^{(1)}(6) &= k_1(k_2-1)(k_3-2)(k_4-4)(2k_3-5)(2k_4-9) \\
+        f_{{k_1}\dots{k_4}}^{(2)}(6) &= k_1(k_2-1)(k_3-3)(k_4-4)(2k_2-3)(2k_4-9) \\
+        f_{{k_1}\dots{k_4}}^{(3)}(6) &= k_1(k_2-2)(k_3-3)(k_4-4)(2k_1-1)(2k_4-9) \\
+        f_{{k_1}\dots{k_4}}^{(4)}(6) &= k_1(k_2-1)(k_3-3)(k_4-5)(2k_2-3)(2k_3-7) \\
+        f_{{k_1}\dots{k_4}}^{(5)}(6) &= k_1(k_2-2)(k_3-3)(k_4-5)(2k_1-1)(2k_3-7) \\
+        f_{{k_1}\dots{k_4}}^{(6)}(6) &= k_1(k_2-2)(k_3-4)(k_4-5)(2k_1-1)(2k_2-5)
+    \end{split}
+\end{equation}
+\begin{equation}
+    \begin{split}
+        f_{{k_1}\dots{k_5}}^{(1)}(6) &= k_1(k_2-1)(k_3-2)(k_4-3)(k_5-4)(2k_5-9) \\
+        f_{{k_1}\dots{k_5}}^{(2)}(6) &= k_1(k_2-1)(k_3-2)(k_4-3)(k_5-5)(2k_4-7) \\
+        f_{{k_1}\dots{k_5}}^{(3)}(6) &= k_1(k_2-1)(k_3-2)(k_4-4)(k_5-5)(2k_3-5) \\
+        f_{{k_1}\dots{k_5}}^{(4)}(6) &= k_1(k_2-1)(k_3-3)(k_4-4)(k_5-5)(2k_2-3) \\
+        f_{{k_1}\dots{k_5}}^{(5)}(6) &= k_1(k_2-2)(k_3-3)(k_4-4)(k_5-5)(2k_1-1)
+    \end{split}
+\end{equation}
+\begin{equation}
+    f_{{k_1}\dots{k_6}}^{(1)}(6) = k_1(k_2-1)(k_3-2)(k_4-3)(k_5-4)(k_6-5)
+\end{equation}
+
+
+
+
+
+
+%\newpage
+%\section{Building blocks}
+
+
+%\subsection{Tensor structures in ansatze}
+
+%In this subsection we list some of the tensor structures for lower point amplitudes including both scalar ($\phi$), gluon  
+
+%\[
+%	\bigl\{\pe{2}{1}\ee{1}{2},\pe{1}{2}\ee{1}{3},\pe{2}{3}\ee{1}{2},\pe{2}{1}\pe{1}{2}\pe{2}{3}\bigr\}
+%\]
+
+
+
+%\subsection{Tensor structures after imposing gauge invariance}
+%
+%Independent tensor structures after going on-shell.
+%
+%
+%
+%\begin{center}
+%    \begin{tabular}{l|l|l}
+%        $x_1 = \pe{1}{3}\ee{1}{2}$ & $x_{25} = \pe{1}{2}\pe{1}{3}\pe{1}{4}$ & $x_{49} = \pe{1}{3}\pe{2}{4}\pe{3}{2}$ \\
+%        $x_2 = \pe{1}{4}\ee{1}{2}$ & $x_{26} = \pe{1}{2}\pe{1}{3}\pe{2}{1}$ & $x_{50} = \pe{2}{1}\pe{2}{4}\pe{3}{2}$ \\
+%        $x_3 = \pe{2}{3}\ee{1}{2}$ & $x_{27} = \pe{1}{2}\pe{1}{4}\pe{2}{1}$ & $x_{51} = \pe{1}{3}\pe{3}{1}\pe{3}{2}$ \\
+%        $x_4 = \pe{2}{4}\ee{1}{2}$ & $x_{28} = \pe{1}{3}\pe{1}{4}\pe{2}{1}$ & $x_{52} = \pe{1}{4}\pe{3}{1}\pe{3}{2}$ \\
+%        $x_5 = \pe{1}{2}\ee{1}{3}$ & $x_{29} = \pe{1}{2}\pe{1}{4}\pe{2}{3}$ & $x_{53} = \pe{2}{3}\pe{3}{1}\pe{3}{2}$ \\
+%        $x_6 = \pe{1}{4}\ee{1}{3}$ & $x_{30} = \pe{1}{2}\pe{2}{1}\pe{2}{3}$ & $x_{54} = \pe{2}{4}\pe{3}{1}\pe{3}{2}$ \\
+%        $x_7 = \pe{2}{4}\ee{1}{3}$ & $x_{31} = \pe{1}{4}\pe{2}{1}\pe{2}{3}$ \\
+%        $x_8 = \pe{3}{2}\ee{1}{3}$ & $x_{32} = \pe{1}{2}\pe{1}{3}\pe{2}{4}$ \\
+%        $x_9 = \pe{1}{2}\ee{1}{4}$ & $x_{33} = \pe{1}{2}\pe{2}{1}\pe{2}{4}$ \\
+%        $x_{10} = \pe{1}{3}\ee{1}{4}$ & $x_{34} = \pe{1}{3}\pe{2}{1}\pe{2}{4}$ \\
+%        $x_{11} = \pe{2}{3}\ee{1}{4}$ & $x_{35} = \pe{1}{2}\pe{2}{3}\pe{2}{4}$ \\
+%        $x_{12} = \pe{3}{2}\ee{1}{4}$ & $x_{36} = \pe{2}{1}\pe{2}{3}\pe{2}{4}$ \\
+%        $x_{13} = \pe{1}{4}\ee{2}{3}$ & $x_{37} = \pe{1}{2}\pe{1}{3}\pe{3}{1}$ \\
+%        $x_{14} = \pe{2}{1}\ee{2}{3}$ & $x_{38} = \pe{1}{2}\pe{1}{4}\pe{3}{1}$ \\
+%        $x_{15} = \pe{2}{4}\ee{2}{3}$ & $x_{39} = \pe{1}{2}\pe{2}{3}\pe{3}{1}$ \\
+%        $x_{16} = \pe{3}{1}\ee{2}{3}$ & $x_{40} = \pe{1}{4}\pe{2}{3}\pe{3}{1}$ \\
+%        $x_{17} = \pe{1}{3}\ee{2}{4}$ & $x_{41} = \pe{1}{2}\pe{2}{4}\pe{3}{1}$ \\
+%        $x_{18} = \pe{2}{1}\ee{2}{4}$ & $x_{42} = \pe{1}{3}\pe{2}{4}\pe{3}{1}$ \\
+%        $x_{19} = \pe{2}{3}\ee{2}{4}$ & $x_{43} = \pe{2}{3}\pe{2}{4}\pe{3}{1}$ \\
+%        $x_{20} = \pe{3}{1}\ee{2}{4}$ & $x_{44} = \pe{1}{3}\pe{1}{4}\pe{3}{2}$ \\
+%        $x_{21} = \pe{1}{2}\ee{3}{4}$ & $x_{45} = \pe{1}{3}\pe{2}{1}\pe{3}{2}$ \\
+%        $x_{22} = \pe{2}{1}\ee{3}{4}$ & $x_{46} = \pe{1}{4}\pe{2}{1}\pe{3}{2}$ \\
+%        $x_{23} = \pe{3}{1}\ee{3}{4}$ & $x_{47} = \pe{1}{4}\pe{2}{3}\pe{3}{2}$ \\
+%        $x_{24} = \pe{3}{2}\ee{3}{4}$ & $x_{48} = \pe{2}{1}\pe{2}{3}\pe{3}{2}$ \\
+%    \end{tabular}
+%\end{center}
+
+
+
+%\subsection{Ansatz for 3 gluons}
+%\subsection{Ansatz for 4 gluons}
+
+
+
+
+%\subsection{Ansatz for 5 gluons}
+%
+%\subsection{Ansatz for 3 gravitons}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{T} = \Bigl\{
+%            & \EE{1}{L}{3}{R}\EE{1}{R}{2}{R}\EE{2}{L}{3}{L}+\EE{1}{L}{2}{R}\EE{1}{R}{3}{R}\EE{2}{L}{3}{L}+\EE{1}{L}{3}{L}\EE{1}{R}{2}{R}\EE{2}{L}{3}{R} \\
+%            & + \EE{1}{L}{2}{R}\EE{1}{R}{3}{L}\EE{2}{L}{3}{R}+\EE{1}{L}{3}{R}\EE{1}{R}{2}{L}\EE{2}{R}{3}{L}+\EE{1}{L}{2}{L}\EE{1}{R}{3}{R}\EE{2}{R}{3}{L} \\
+%            & + \EE{1}{L}{3}{L}\EE{1}{R}{2}{L}\EE{2}{R}{3}{R}+\EE{1}{L}{2}{L}\EE{1}{R}{3}{L}\EE{2}{R}{3}{R}, \\
+%            & \pE{1}{3}{L}\pE{1}{3}{R}\EE{1}{L}{2}{R}\EE{1}{R}{2}{L}+\pE{1}{3}{L}\pE{1}{3}{R}\EE{1}{L}{2}{L}\EE{1}{R}{2}{R}, \\
+%            & \pE{1}{2}{R}\pE{1}{3}{R}\EE{1}{L}{3}{L}\EE{1}{R}{2}{L}+\pE{1}{2}{R}\pE{1}{3}{L}\EE{1}{L}{3}{R}\EE{1}{R}{2}{L} \\
+%            & + \pE{1}{2}{L}\pE{1}{3}{R}\EE{1}{L}{3}{L}\EE{1}{R}{2}{R}+\pE{1}{2}{L}\pE{1}{3}{L}\EE{1}{L}{3}{R}\EE{1}{R}{2}{R} \\
+%            & + \pE{1}{2}{R}\pE{1}{3}{R}\EE{1}{L}{2}{L}\EE{1}{R}{3}{L}+\pE{1}{2}{L}\pE{1}{3}{R}\EE{1}{L}{2}{R}\EE{1}{R}{3}{L} \\
+%            & + \pE{1}{2}{R}\pE{1}{3}{L}\EE{1}{L}{2}{L}\EE{1}{R}{3}{R}+\pE{1}{2}{L}\pE{1}{3}{L}\EE{1}{L}{2}{R}\EE{1}{R}{3}{R}, \\
+%            & \pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{R}\EE{2}{L}{3}{L}+\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{2}{R}\EE{2}{L}{3}{L} \\
+%            & + \pE{1}{3}{L}\pE{2}{1}{R}\EE{1}{L}{2}{R}\EE{2}{L}{3}{R}+\pE{1}{3}{L}\pE{2}{1}{L}\EE{1}{R}{2}{R}\EE{2}{L}{3}{R} \\
+%            & + \pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{L}\EE{2}{R}{3}{L}+\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{2}{L}\EE{2}{R}{3}{L} \\
+%            & + \pE{1}{3}{L}\pE{2}{1}{R}\EE{1}{L}{2}{L}\EE{2}{R}{3}{R}+\pE{1}{3}{L}\pE{2}{1}{L}\EE{1}{R}{2}{L}\EE{2}{R}{3}{R}, \\
+%            & \pE{1}{2}{L}\pE{1}{2}{R}\EE{1}{L}{3}{R}\EE{1}{R}{3}{L}+\pE{1}{2}{L}\pE{1}{2}{R}\EE{1}{L}{3}{L}\EE{1}{R}{3}{R}, \\
+%            & \pE{1}{2}{R}\pE{2}{1}{R}\EE{1}{L}{3}{R}\EE{2}{L}{3}{L}+\pE{1}{2}{R}\pE{2}{1}{L}\EE{1}{R}{3}{R}\EE{2}{L}{3}{L} \\
+%            & + \pE{1}{2}{R}\pE{2}{1}{R}\EE{1}{L}{3}{L}\EE{2}{L}{3}{R}+\pE{1}{2}{R}\pE{2}{1}{L}\EE{1}{R}{3}{L}\EE{2}{L}{3}{R} \\
+%            & + \pE{1}{2}{L}\pE{2}{1}{R}\EE{1}{L}{3}{R}\EE{2}{R}{3}{L}+\pE{1}{2}{L}\pE{2}{1}{L}\EE{1}{R}{3}{R}\EE{2}{R}{3}{L} \\
+%            & + \pE{1}{2}{L}\pE{2}{1}{R}\EE{1}{L}{3}{L}\EE{2}{R}{3}{R}+\pE{1}{2}{L}\pE{2}{1}{L}\EE{1}{R}{3}{L}\EE{2}{R}{3}{R}, \\
+%            & \pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{L}{3}{R}\EE{2}{R}{3}{L}+\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{L}{3}{L}\EE{2}{R}{3}{R}, \\
+%            & \pE{1}{2}{R}\pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{L}+\pE{1}{2}{L}\pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{R} \\
+%            & + \pE{1}{2}{R}\pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{2}{L}+\pE{1}{2}{L}\pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{2}{R}, \\
+%            & \pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{3}{L}+\pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{L}\pE{2}{1}{R}\EE{1}{L}{3}{R} \\
+%            & + \pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{3}{L}+\pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{L}\pE{2}{1}{L}\EE{1}{R}{3}{R}, \\
+%            & \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{L}{3}{L}+\pE{1}{2}{R}\pE{1}{3}{L}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{L}{3}{R} \\
+%            & + \pE{1}{2}{L}\pE{1}{3}{R}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{R}{3}{L}+\pE{1}{2}{L}\pE{1}{3}{L}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{R}{3}{R}, \\
+%            & \pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{L}\pE{2}{1}{R}
+%            \Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\subsection{Ansatz for 4 gravitons}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_1 = \Bigl\{
+%            & \pE{1}{2}{L}\EE{1}{R}{3}{L}\EE{2}{R}{3}{R}, \pE{1}{2}{L}\EE{2}{R}{3}{L}\EE{1}{R}{3}{R}, \pE{1}{2}{R}\EE{1}{R}{3}{L}\EE{2}{L}{3}{R}, \\
+%            & \pE{1}{2}{R}\EE{2}{L}{3}{L}\EE{1}{R}{3}{R}, \pE{1}{3}{L}\EE{2}{R}{3}{R}\EE{1}{R}{2}{L}, \pE{1}{3}{L}\EE{1}{R}{2}{R}\EE{2}{L}{3}{R}, \\
+%            & \pE{1}{3}{R}\EE{1}{R}{2}{L}\EE{2}{R}{3}{L}, \pE{1}{3}{R}\EE{2}{L}{3}{L}\EE{1}{R}{2}{R}, \\
+%            & \pE{1}{2}{L}\pE{1}{3}{L}\pE{1}{3}{R}\EE{1}{R}{2}{R}, \pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{R}\EE{1}{R}{3}{L}, \\
+%            & \pE{1}{2}{L}\pE{1}{3}{L}\pE{1}{2}{R}\EE{1}{R}{3}{R}, \pE{1}{2}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{2}{R}{3}{L}, \\
+%            & \pE{1}{2}{L}\pE{1}{3}{L}\pE{2}{1}{R}\EE{2}{R}{3}{R}, \pE{1}{3}{L}\pE{1}{2}{R}\pE{1}{3}{R}\EE{1}{R}{2}{L}, \\
+%            & \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\EE{2}{L}{3}{L}, \pE{1}{3}{L}\pE{1}{2}{R}\pE{2}{1}{R}\EE{2}{L}{3}{R}, \\
+%            & \pE{1}{2}{L}\pE{1}{3}{L}\pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_2 = \Bigl\{
+%            & \pE{2}{1}{L}\EE{2}{R}{3}{R}\EE{1}{R}{3}{L},\pE{2}{1}{L}\EE{1}{R}{3}{R}\EE{2}{R}{3}{L}, \pE{1}{3}{R}\EE{1}{L}{2}{R}\EE{1}{R}{3}{L}, \\
+%            & \pE{1}{3}{L}\EE{1}{R}{3}{R}\EE{1}{L}{2}{R}, \pE{2}{1}{R}\EE{1}{L}{3}{L}\EE{2}{R}{3}{R}, \pE{1}{3}{R}\EE{1}{L}{3}{L}\EE{1}{R}{2}{R}, \\
+%            & \pE{2}{1}{R}\EE{1}{L}{3}{R}\EE{2}{R}{3}{L}, \pE{1}{3}{L}\EE{1}{R}{2}{R}\EE{1}{L}{3}{R}, \\
+%            & \pE{1}{3}{L}\pE{2}{1}{L}\pE{1}{3}{R}\EE{1}{R}{2}{R}, \pE{2}{1}{L}\pE{1}{2}{R}\pE{1}{3}{R}\EE{1}{R}{3}{L}, \\
+%            & \pE{1}{3}{L}\pE{2}{1}{L}\pE{1}{2}{R}\EE{1}{R}{3}{R}, \pE{2}{1}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{2}{R}{3}{L}, \\
+%            & \pE{1}{3}{L}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{R}{3}{R}, \pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{R}, \\
+%            & \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{3}{L}, \pE{1}{3}{L}\pE{1}{2}{R}\pE{2}{1}{R}\EE{1}{L}{3}{R}, \\
+%            & \pE{1}{3}{L}\pE{2}{1}{L}\pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_3 = \Bigl\{
+%            & \pE{2}{1}{R}\EE{1}{L}{2}{L}\EE{2}{R}{3}{R}, \pE{1}{2}{R}\EE{1}{L}{2}{L}\EE{1}{R}{3}{R}, \pE{2}{1}{R}\EE{1}{L}{2}{R}\EE{2}{L}{3}{R}, \\
+%            & \pE{1}{2}{L}\EE{1}{R}{3}{R}\EE{1}{L}{2}{R}, \pE{2}{1}{L}\EE{2}{R}{3}{R}\EE{1}{R}{2}{L}, \pE{2}{1}{L}\EE{1}{R}{2}{R}\EE{2}{L}{3}{R}, \\
+%            & \pE{1}{2}{R}\EE{1}{L}{3}{R}\EE{1}{R}{2}{L}, \pE{1}{2}{L}\EE{1}{R}{2}{R}\EE{1}{L}{3}{R}, \\
+%            & \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{L}, \pE{1}{2}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{R}, \\
+%            & \pE{2}{1}{L}\pE{1}{2}{R}\pE{1}{3}{R}\EE{1}{R}{2}{L}, \pE{1}{2}{L}\pE{2}{1}{L}\pE{1}{3}{R}\EE{1}{R}{2}{R}, \\
+%            & \pE{1}{2}{L}\pE{2}{1}{L}\pE{1}{2}{R}\EE{1}{R}{3}{R}, \pE{2}{1}{L}\pE{1}{2}{R}\pE{2}{1}{R}\EE{2}{L}{3}{R}, \\
+%            & \pE{1}{2}{L}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{R}{3}{R}, \pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{R}\EE{1}{L}{3}{R}, \\
+%            & \pE{1}{2}{L}\pE{2}{1}{L}\pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{\alpha} \cdot \Vec{T}\lfloor_{\epsilon_1^L \rightarrow p_1} =
+%        & \alpha_1(x_9+x_{10}+x_{12}+x_{14}+x_{16}+x_{17}+x_{21}+x_{23}) \\
+%        & + (\alpha_2+2\alpha_3)(x_{31}+x_{33}) + (2\alpha_3+\alpha_5)(x_{36}+x_{38}) \\
+%        & + (\alpha_4+\alpha_6)(x_{41}+x_{42}+x_{44}+x_{46})+2(\alpha_8+\alpha_9)x_{49}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{\alpha} \cdot \Vec{T}\lfloor_{\epsilon_2^L \rightarrow p_2} =
+%        & -\alpha_1(x_2+x_4+x_5+x_8-x_{15}-x_{18}-x_{20}-x_{24}) \\
+%        & + (\alpha_2-2\alpha_4)(x_{27}+x_{35}) + (\alpha_3-\alpha_6)(x_{28}+x_{30}+x_{37}+x_{40}) \\
+%        & + (2\alpha_4-\alpha_7)(x_{45}+x_{48}) + 2(\alpha_8-\alpha_{10})x_{51}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{\alpha} \cdot \Vec{T}\lfloor_{\epsilon_3^L \rightarrow p_3} =
+%        & -\alpha_1(x_1+x_3+x_6+x_7+x_{11}+x_{13}+x_{19}+x_{22}) \\
+%        & - (\alpha_3+\alpha_4)(x_{25}+x_{26}+x_{32}+x_{34}) - (\alpha_5+2\alpha_6)(x_{29}+x_{39}) \\
+%        & - (2\alpha_6+\alpha_7)(x_{43}+x_{47}) - 2(\alpha_9+\alpha_{10})x_{50}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{gathered}
+%        \alpha_1=0 \comma
+%        \alpha_2+2\alpha_3=0 \comma
+%        \alpha_2-2\alpha_4=0 \comma
+%        \alpha_3+\alpha_4=0 \comma
+%        2\alpha_3+\alpha_5=0 \comma
+%        \alpha_3-\alpha_6=0 \,, \\
+%        \alpha_4+\alpha_6=0 \comma
+%        \alpha_5+2\alpha_6=0 \comma
+%        2\alpha_4-\alpha_7=0 \comma
+%        2\alpha_6+\alpha_7=0 \comma
+%        \alpha_8+\alpha_9=0 \, \\
+%        \alpha_8-\alpha_{10}=0 \comma
+%        \alpha_9+\alpha_{10}=0
+%    \end{gathered}
+%\end{equation}
+%
+%\begin{center}
+%    \begin{tabular}{l|l}
+%        $x_1 = \pE{1}{2}{R}\EE{1}{L}{3}{R}\EE{1}{R}{2}{L}$ & $x_{25} = \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{L}$ \\
+%        $x_2 = \pE{1}{3}{R}\EE{1}{L}{3}{L}\EE{1}{R}{2}{R}$ & $x_{26} = \pE{1}{2}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{R}$ \\
+%        $x_3 = \pE{1}{2}{L}\EE{1}{L}{3}{R}\EE{1}{R}{2}{R}$ & $x_{27} = \pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{2}{R}$ \\
+%        $x_4 = \pE{1}{3}{L}\EE{1}{L}{3}{R}\EE{1}{R}{2}{R}$ & $x_{28} = \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\EE{1}{L}{3}{L}$ \\
+%        $x_5 = \pE{1}{3}{R}\EE{1}{L}{2}{R}\EE{1}{R}{3}{L}$ & $x_{29} = \pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{R}\EE{1}{L}{3}{R}$ \\
+%        $x_6 = \pE{1}{2}{R}\EE{1}{L}{2}{L}\EE{1}{R}{3}{R}$ & $x_{30} = \pE{1}{2}{R}\pE{1}{3}{L}\pE{2}{1}{R}\EE{1}{L}{3}{R}$ \\
+%        $x_7 = \pE{1}{2}{L}\EE{1}{L}{2}{R}\EE{1}{R}{3}{R}$ & $x_{31} = \pE{1}{2}{R}\pE{1}{3}{L}\pE{1}{3}{R}\EE{1}{R}{2}{L}$ \\
+%        $x_8 = \pE{1}{3}{L}\EE{1}{L}{2}{R}\EE{1}{R}{3}{R}$ & $x_{32} = \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{2}{L}$ \\
+%        $x_9 = \pE{1}{3}{R}\EE{1}{R}{2}{R}\EE{2}{L}{3}{L}$ & $x_{33} = \pE{1}{2}{L}\pE{1}{3}{L}\pE{1}{3}{R}\EE{1}{R}{2}{R}$ \\
+%        $x_{10} = \pE{1}{2}{R}\EE{1}{R}{3}{R}\EE{2}{L}{3}{L}$ & $x_{34} = \pE{1}{2}{L}\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{2}{R}$ \\
+%        $x_{11} = \pE{2}{1}{R}\EE{1}{L}{2}{R}\EE{2}{L}{3}{R}$ & $x_{35} = \pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{2}{R}$ \\
+%        $x_{12} = \pE{1}{3}{L}\EE{1}{R}{2}{R}\EE{2}{L}{3}{R}$ & $x_{36} = \pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{R}\EE{1}{R}{3}{L}$ \\
+%        $x_{13} = \pE{2}{1}{L}\EE{1}{R}{2}{R}\EE{2}{L}{3}{R}$ & $x_{37} = \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{L}\EE{1}{R}{3}{L}$ \\
+%        $x_{14} = \pE{1}{2}{R}\EE{1}{R}{3}{L}\EE{2}{L}{3}{R}$ & $x_{38} = \pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{L}\EE{1}{R}{3}{R}$ \\
+%        $x_{15} = \pE{2}{1}{R}\EE{1}{L}{3}{R}\EE{2}{R}{3}{L}$ & $x_{39} = \pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{L}\EE{1}{R}{3}{R}$ \\
+%        $x_{16} = \pE{1}{3}{R}\EE{1}{R}{2}{L}\EE{2}{R}{3}{L}$ & $x_{40} = \pE{1}{2}{R}\pE{1}{3}{L}\pE{2}{1}{L}\EE{1}{R}{3}{R}$ \\
+%        $x_{17} = \pE{1}{2}{L}\EE{1}{R}{3}{R}\EE{2}{R}{3}{L}$ & $x_{41} = \pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{R}\EE{2}{L}{3}{L}$ \\
+%        $x_{18} = \pE{2}{1}{L}\EE{1}{R}{3}{R}\EE{2}{R}{3}{L}$ & $x_{42} = \pE{1}{2}{R}\pE{1}{3}{L}\pE{2}{1}{R}\EE{2}{L}{3}{R}$ \\
+%        $x_{19} = \pE{2}{1}{R}\EE{1}{L}{2}{L}\EE{2}{R}{3}{R}$ & $x_{43} = \pE{1}{2}{R}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{L}{3}{R}$ \\
+%        $x_{20} = \pE{2}{1}{R}\EE{1}{L}{3}{L}\EE{2}{R}{3}{R}$ & $x_{44} = \pE{1}{2}{L}\pE{1}{3}{R}\pE{2}{1}{R}\EE{2}{R}{3}{L}$ \\
+%        $x_{21} = \pE{1}{3}{L}\EE{1}{R}{2}{L}\EE{2}{R}{3}{R}$ & $x_{45} = \pE{1}{3}{R}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{R}{3}{L}$ \\
+%        $x_{22} = \pE{2}{1}{L}\EE{1}{R}{2}{L}\EE{2}{R}{3}{R}$ & $x_{46} = \pE{1}{2}{L}\pE{1}{3}{L}\pE{2}{1}{R}\EE{2}{R}{3}{R}$ \\
+%        $x_{23} = \pE{1}{2}{L}\EE{1}{R}{3}{L}\EE{2}{R}{3}{R}$ & $x_{47} = \pE{1}{2}{L}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{R}{3}{R}$ \\
+%        $x_{24} = \pE{2}{1}{L}\EE{1}{R}{3}{L}\EE{2}{R}{3}{R}$ & $x_{48} = \pE{1}{3}{L}\pE{2}{1}{L}\pE{2}{1}{R}\EE{2}{R}{3}{R}$ \\
+%        \hline
+%        \multicolumn{2}{c}{$x_{49} = \pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{R}$} \\
+%        \multicolumn{2}{c}{$x_{50} = \pE{1}{2}{L}\pE{1}{2}{R}\pE{1}{3}{R}\pE{2}{1}{L}\pE{2}{1}{R}$} \\
+%        \multicolumn{2}{c}{$x_{51} = \pE{1}{2}{R}\pE{1}{3}{L}\pE{1}{3}{R}\pE{2}{1}{L}\pE{2}{1}{R}$}
+%    \end{tabular}
+%\end{center}
+%
+%\begin{center}
+%    \begin{tabular}{c|c|c}
+%        $x_1=\pE{1}{2}{L}\EE{1}{R}{2}{R}$ & $x_9=\pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{R}$ & $x_{17}=\pE{1}{2}{L}\pE{2}{1}{R}\pE{3}{2}{R}$ \\
+%        $x_2=\pE{1}{2}{R}\EE{1}{R}{2}{L}$ & $x_{10}=\pE{1}{2}{R}\pE{2}{1}{L}\pE{2}{1}{R}$ & $x_{18}=\pE{2}{1}{L}\pE{2}{1}{R}\pE{3}{2}{R}$ \\
+%        $x_3=\pE{2}{1}{L}\EE{1}{R}{2}{R}$ & $x_{11}=\pE{1}{2}{R}\pE{2}{1}{R}\pE{3}{1}{L}$ & $x_{19}=\pE{2}{1}{R}\pE{3}{1}{L}\pE{3}{2}{R}$ \\
+%        $x_4=\pE{2}{1}{R}\EE{1}{L}{2}{R}$ & $x_{12}=\pE{1}{2}{L}\pE{1}{2}{R}\pE{3}{1}{R}$ & $x_{20}=\pE{1}{2}{L}\pE{3}{1}{R}\pE{3}{2}{R}$ \\
+%        $x_5=\pE{3}{1}{L}\EE{1}{R}{2}{R}$ & $x_{13}=\pE{1}{2}{R}\pE{2}{1}{L}\pE{3}{1}{R}$ & $x_{21}=\pE{2}{1}{L}\pE{3}{1}{R}\pE{3}{2}{R}$ \\
+%        $x_6=\pE{3}{1}{R}\EE{1}{L}{2}{R}$ & $x_{14}=\pE{1}{2}{R}\pE{3}{1}{L}\pE{3}{1}{R}$ & $x_{22}=\pE{3}{1}{L}\pE{3}{1}{R}\pE{3}{2}{R}$ \\
+%        $x_7=\pE{3}{2}{L}\EE{1}{R}{2}{R}$ & $x_{15}=\pE{1}{2}{R}\pE{2}{1}{R}\pE{3}{2}{L}$ & $x_{23}=\pE{2}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R}$ \\
+%        $x_8=\pE{3}{2}{R}\EE{1}{R}{2}{L}$ & $x_{16}=\pE{1}{2}{R}\pE{3}{1}{R}\pE{3}{2}{L}$ & $x_{24}=\pE{3}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R}$
+%    \end{tabular}
+%\end{center}
+
+
+

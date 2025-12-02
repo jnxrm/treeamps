@@ -1,0 +1,21 @@
+\section{Introduction}
+
+%\begin{description}
+%    \item[What are scattering amplitudes?] Probability measure
+%    \item[Applications] Collider physics, quantum qravity, gravitational waves
+%    \item[On-shell methods] Spinor-helicity framework, recursion relations, unitarity   
+%\end{description}
+
+%\subsection{[Title 2]}
+%\subsection{[Title 2]}
+
+
+Scattering amplitudes, known also as S-matrix elements, are mathematical objects that describe the probabilities of possible outcomes when elementary particles interact with each other. The importance of scattering amplitudes is profound. They allow physicists to make precise predictions for the outcomes of high-energy particle scattering experiments, such as the Large Hadron Collider (LHC) at CERN. For instance, the discovery of the Higgs boson would not have been possible without a deep understanding of scattering amplitudes. Furthermore, they provide a window into the intricacies of quantum field theory, potentially revealing hidden structures within this framework.
+
+While Feynman diagrams are a common tool for calculating scattering amplitudes in perturbative quantum field theory (as described in standard textbooks), their usefulness has limitations. As the number of external particles or loops in a scattering process increases, the sheer number of diagrams explodes, making calculations cumbersome. Interestingly, despite this complexity, the final answers for scattering amplitudes often turn out to be surprisingly simple. This suggests that Feynman diagrams might be obscuring underlying patterns and cancellations that lead to simple final results.
+
+Driven by this intriguing observation, theoretical physicists have embarked on a quest for alternative methods to understand and compute scattering amplitudes, bypassing Feynman diagrams. The past few decades have witnessed significant breakthroughs in this pursuit, with advancements in on-shell recursion relations, unitarity methods, and the bootstrap technique. Comprehensive reviews on these topics can be found in e.g.\,\cite{Elvang:2015rqa,Cheung:2017pzi}.
+
+The bootstrap method, with roots in the S-matrix program \cite{Eden:1966dnq}, offers a fascinating approach. The core idea is that on-shell scattering amplitudes can potentially be determined by their inherent properties, such as symmetries and analyticity. Recent studies in e.g.\,\cite{Boels:2016xhc, Boels:2017gyc} have demonstrated that on-shell gauge invariance can give strong constraints for amplitudes involving gluons and gravitons. The purpose of this thesis is to further investigate this novel method, with a particular focus on developing efficient techniques to solve the large linear systems that arise in the bootstrap approach for tree-level amplitudes.
+
+This thesis is organized as follows. Chapter \ref{sec:the-s-matrix} provides a foundational review of Poincaré symmetry, particles, and scattering amplitudes. Then, in Chapter \ref{sec:quantum-field-theory}, we briefly review quantum field theory and Feynman diagram formalism. In Chapter \ref{sec:bootstrapping-the-s-matrix}, we discuss the bootstrap method in detail, including its fundamental idea, working framework, and illustrative examples for three and four-particle scattering. This chapter will also highlight a key finding: algorithms and tools initially developed for reducing loop-level amplitudes (Feynman integrals) can be effectively repurposed to reduce linear systems encountered while bootstrapping tree-level amplitudes. We conclude the thesis in Chapter \ref{sec:conclusion-and-outlook}.

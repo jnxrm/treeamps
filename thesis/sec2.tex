@@ -1,0 +1,287 @@
+\newpage
+%\section{Scattering Amplitudes}
+\section{The S-matrix}
+\label{sec:the-s-matrix}
+
+\subsection{Lorentz symmetry} \label{subsec:ch2-symmetry}
+%Following {Boels:2016xhc,
+
+%Following Weinberg vol 1 \cite{Weinberg:1995mt}, section 2.5, give a review about ``particle = irreducible representation of the little group''.
+
+%\begin{tcolorbox}[standard jigsaw, opacityback=0]
+%		First introduce the notion of physical states in Hilbert space as we know it from quantum mechanics. This emphasises Unitary transformations and Hermitian operators. Then over to space-time symmetries, in particular Poincaré symmetry. That is: the Lorentz group and the set of space-time translations. 
+%\end{tcolorbox}
+
+
+%We believe the Poincaré group describes  Any physical state must transform according
+%
+%The Lorentz group is a subgroup of the Poincaré group and is th
+%
+%To be able to talk about scattering amplitudes we need to clearly understand what we mean by particles scattering off each other. Especially we need to define particles as irreducible representations of the Poincaré group.
+%
+%The Poincaré group is made up of the group of translations in space time
+%
+%A physical state must remain invariant under the set of transformations contained in the Poincaré group. Its subgroups are the Lorentz group and the group of space-time translations. The generators of the Lorentz group are given by the 
+%
+%\begin{equation}
+%	x^\mu \rightarrow x^\mu + a^\mu \,,
+%\end{equation}
+%
+%and the Lorentz group. The latter consisting of boosts and rotations contained in the antisymmetric 
+%
+%Poincaré transformation
+%
+%\begin{equation}
+%	x^\mu \rightarrow \Lambda^{\mu}{}_{\nu}\,x^\nu + a^\mu
+%\end{equation}
+%
+%Lorentz transformation
+
+
+Any theory of nature that aims to describe reality must obey certain symmetries. That is, a given physical state must remain invariant under certain symmetry transformations. One of the most fundamental symmetries is given by the Poincaré group\footnote{Or the inhomogeneous Lorentz group \cite{Weinberg:1995mt}.}, which is a semi-direct product of its subgroups: the group of translations in $D$-dimensional space-time\footnote{In this chapter we are working in D-dimensional space-time, unless stated otherwise.}, denoted $\mathbb{R}^D$, and the Lorentz group, denoted $\operatorname{SO}(D-1,1)$\footnote{More precisely, the restricted Lorentz group, in which all transformations preserve the orientation of space and time.}. The transformation of a $D$-vector under the Poincaré group, a so-called Poincaré transformation, can be stated as
+\begin{equation}
+\label{eq:sec2:poincaré-transformation}
+	x^\mu \rightarrow {x^{\prime}}^{\mu} = \Lambda^{\mu}{}_{\nu} x^{\nu} + a^{\mu} \,.
+\end{equation}
+Here, $\Lambda$ is an element of the (restricted)\footnote{Implying $\det\Lambda = 1$ and $\Lambda^{0}{}_{0} \geq 0\,$.} Lorentz group and $a$ is a an element of the translation group. The elements of the Lorentz group are the set of matrices that preserves the space-time interval, meaning ${x^2 \equiv \eta_{\mu\nu} x^\mu x^\nu}$ is the same in all reference frames, with $\eta_{\mu\nu}$ being the metric and $x^{\mu}$ a $D$-vector. Consequentially, the metric will place some restrictions on $\Lambda$. To this end, we set $a = 0$ in \eqref{eq:sec2:poincaré-transformation}, giving the Lorentz transformation,
+\begin{equation}
+\label{eq:sec2:lorentz-transformation}
+	x^{\mu} \rightarrow {x^{\prime}}^{\mu} = \Lambda^{\mu}{}_{\nu}x^{\nu} \,.
+\end{equation}
+Now, we compare the space-time interval in two different reference frames:
+\begin{equation}
+\begin{aligned}
+	x^2 = \eta_{\mu\nu}x^{\mu}x^{\nu} &= \eta_{\mu\nu}{x^{\prime}}^{\mu}{x^{\prime}}^{\nu} \\
+	&= \eta_{\mu\nu}\Lambda^{\mu}{}_{\rho}\Lambda^{\nu}{}_{\sigma}x^{\rho}x^{\sigma} \\
+	&= \eta_{\rho\sigma}\Lambda^{\rho}{}_{\mu}\Lambda^{\sigma}{}_{\nu}x^{\mu}x^{\nu} = {x'}^2 \,.
+\end{aligned}	
+\end{equation}
+This implies that the elements of the Lorentz group obeys
+\begin{equation}
+	\eta_{\mu\nu} = \eta_{\rho\sigma}\Lambda^{\rho}{}_{\mu}\Lambda^{\sigma}{}_{\nu} \,,
+\end{equation}
+as well as the existence of an inverse element, $(\Lambda^{-1})^{\mu}{}_{\nu} = \Lambda_{\nu}{}^{\mu}$ \cite{Srednicki:2007qs}.
+Looking at two consecutive Poincaré transformations, as given by \eqref{eq:sec2:poincaré-transformation}, leads us to the composition rule of the group:
+\begin{equation}
+\label{eq:sec2:composition-rule}
+\begin{aligned}
+	{x^{\prime\prime}}^{\mu} &= \tilde{\Lambda}^{\mu}{}_{\nu}{x^{\prime}}^{\nu} + \tilde{a}^{\mu} \\
+	&= \tilde{\Lambda}^{\mu}{}_{\nu}(\Lambda^{\nu}{}_{\rho}x^{\rho} + a^{\nu}) + \tilde{a}^{\mu} \\
+	&= \tilde{\Lambda}^{\mu}{}_{\nu}\Lambda^{\nu}{}_{\rho}x^{\rho} + \tilde{\Lambda}^{\mu}{}_{\nu}a^{\nu} + \tilde{a}^{\mu} \\
+	&= (\tilde{\Lambda}{\Lambda}x)^{\mu} + (\tilde{\Lambda}a + \tilde{a})^{\mu}.
+\end{aligned}
+\end{equation}
+We can expand the Lorentz transformation around the identity by writing
+\begin{equation}\label{eq:sec2:lorentz-expansion}
+	\Lambda^{\mu}{}_{\nu} = \delta^{\mu}{}_{\nu} + \omega^{\mu}{}_{\nu}
+\end{equation}
+for some infinitesimal $\omega$. Inserting \eqref{eq:sec2:lorentz-expansion} into \eqref{eq:sec2:composition-rule} leads to
+\begin{equation}
+\begin{aligned}
+	\eta_{\mu\nu} &= \eta_{\rho\sigma}(\delta^{\rho}{}_{\mu} + \omega^{\rho}{}_{\mu})(\delta^{\sigma}{}_{\nu} + \omega^{\sigma}{}_{\nu}) \\
+	&= \eta_{\rho\sigma}\delta^{\rho}{}_{\mu}\delta^{\sigma}{}_{\nu} + \eta_{\rho\sigma}\delta^{\rho}{}_{\mu}\omega^{\sigma}{}_{\nu} + \eta_{\rho\sigma}\omega^{\rho}{}_{\mu}\delta^{\sigma}{}_{\nu} + \mathcal{O}(\omega^2) \\
+	&= \eta_{\mu\nu} + \eta_{\mu\sigma}\omega^{\sigma}{}_{\nu} + \eta_{\rho\nu}\omega^{\rho}{}_{\mu} + \mathcal{O}(\omega^2) \\
+	&= \eta_{\mu\nu} + \omega_{\mu\nu} + \omega_{\nu\mu} + \mathcal{O}(\omega^2) \,.
+\end{aligned}	
+\end{equation}
+Keeping only terms linear in $\omega$ we get 
+\begin{equation}\label{}
+\omega_{\mu\nu} = -\omega_{\nu\mu} \,.
+\end{equation}
+We let a general Poincaré transformation take the form $U(\Lambda,a)$ and expand it around the identity $U(\mathbb{1},0)$. This gives us, to leading order, the infinitesimal Poincaré transformation ${U(\mathbb{1}+\omega,\epsilon)}$, where $\epsilon$ is taken to be an infinitesimal translation. Examining how this transforms under a general Poincaré transformation will give us some more insights. Firstly, using \eqref{eq:sec2:composition-rule} and noticing that $U^{-1}(\mathbb{1}+\omega,a) = U(\Lambda^{-1},-\Lambda^{-1}a)$, we get
+\begin{equation} \label{eq:ch2-infinitesimal_composition}
+	U(\Lambda,a)U(\mathbb{1}+\omega,\epsilon)U^{-1}(\Lambda,a) = U(\mathbb{1}+\Lambda\omega\Lambda^{-1},\Lambda\epsilon-\Lambda\omega\Lambda^{-1}a) \,.
+\end{equation}
+A result from group theory states that any group action can be expanded infinitesimally using the generators of the group \cite{Zee:2016fuk}. In the case of the Poincaré group these generators are $M_{\mu\nu}$, composed of rotations and boosts, and $P_\mu$, the generator of translations. Therefore we can write the infinitesimal Poincaré transformation as
+\begin{equation} \label{eq:ch2-infinitesimal_poincaré_transformation}
+	U(\mathbb{1}+\omega,\epsilon) = \mathbb{1} - \frac{i}{2}\omega^{\mu\nu}M_{\mu\nu} + i\epsilon^{\mu}P_{\mu} + \cdots \,.
+\end{equation}
+Now we compute \eqref{eq:ch2-infinitesimal_composition} using the generators of the group, $M_{\mu\nu}$ and $P_{\mu}$:
+\begin{equation} \label{eq:ch2-transformation-generators}
+	\begin{aligned}
+		&U(\Lambda,a)(\mathbb{1} - \frac{i}{2}\omega^{\mu\nu}M_{\mu\nu} + i\epsilon^{\mu}P_{\mu})U^{-1}(\Lambda,a) \\
+		&= \mathbb{1} - \frac{i}{2}(\Lambda\omega\Lambda^{-1})^{\mu\nu}M_{\mu\nu} + i(\Lambda\epsilon - \Lambda\omega\Lambda^{-1}a)^{\mu}P_{\mu} \\
+		&= \mathbb{1} - \frac{i}{2}\Lambda^{\mu}{}_{\rho}\omega^{\rho\sigma}(\Lambda^{-1})_{\sigma}{}^{\nu}M_{\mu\nu} + i\Lambda^{\mu}{}_{\nu}\epsilon^{\nu}P_{\mu} - i\Lambda^{\mu}{}_{\rho}\omega^{\rho\sigma}(\Lambda^{-1})_{\sigma}{}^{\nu}a_{\nu}P_{\mu} \\
+		&= \mathbb{1} - \frac{i}{2}\omega^{\rho\sigma}\Lambda^{\mu}{}_{\rho}(\Lambda^{-1})_{\sigma}{}^{\nu}(M_{\mu\nu} - 2a_{\nu}P_{\mu}) + i\epsilon^{\nu}\Lambda^{\mu}{}_{\nu}P_{\mu} \\
+		&= \mathbb{1} - \frac{i}{2}\omega^{\rho\sigma}\Lambda^{\mu}{}_{\rho}\Lambda^{\nu}{}_{\sigma}(M_{\mu\nu} - a_{\nu}P_{\mu} + a_{\mu}P_{\nu}) + i\epsilon^{\nu}\Lambda^{\mu}{}_{\nu}P_{\mu}
+	\end{aligned}
+\end{equation}
+By comparing the first and last lines of \eqref{eq:ch2-transformation-generators}, we see that the generators transform according to
+\begin{align}
+	\label{eq:ch2-lorentz_generators_transformation}
+	U(\Lambda, a)M_{\mu\nu}U^{-1}(\Lambda, a) &= \Lambda^{\rho}{}_{\mu}\Lambda^{\sigma}{}_{\nu}(M_{\rho\sigma} - a_{\rho}P_{\sigma} + a_{\sigma}P_{\rho}) \\
+	\label{eq:ch2-momentum-generator-transformation}
+	U(\Lambda, a)P_{\mu}U^{-1}(\Lambda, a) &= \Lambda^{\nu}{}_{\mu}P_{\nu} \,.
+\end{align}
+Now we make $\Lambda$ and $a$ infinitesimal in \eqref{eq:ch2-lorentz_generators_transformation} by setting $\Lambda^{\mu}{}_{\nu} = \delta^{\mu}{}_{\nu} + \omega^{\mu}{}_{\nu}$ and $a^{\mu} = \epsilon^{\mu}$,
+\begin{equation} \label{eq:ch2-lorentz_generators_sandwich_1}
+	U(\mathbb{1}+\omega,\epsilon)M_{\mu\nu}U^{-1}(\mathbb{1}+\omega, \epsilon) = (\delta^{\rho}{}_{\mu} + \omega^{\rho}{}_{\mu})(\delta^{\sigma}{}_{\nu} + \omega^{\sigma}{}_{\nu})(M_{\rho\sigma} - \epsilon_{\sigma}P_{\rho} + \epsilon_{\sigma}P_{\rho}) \,.
+\end{equation}
+This enables us to see how the generators transforms in two ways and deduce from that the commutator relations between the generators, which defines the Lie algebra of the Poincaré group. Using \eqref{eq:ch2-infinitesimal_poincaré_transformation} the generators transforms as
+\begin{equation} \label{eq:ch2-lorentz_generators_sandwich_2}
+	U(\mathbb{1}+\omega, \epsilon)M_{\mu\nu}U^{-1}(\mathbb{1}+\omega, \epsilon) = (\mathbb{1} + \frac{i}{2}\omega^{\rho\sigma}M_{\rho\sigma} + i\epsilon^{\rho}P_{\rho} + \cdots)M_{\mu\nu}(\mathbb{1} - \frac{i}{2}\omega^{\rho\sigma}M_{\rho\sigma} - i\epsilon^{\rho}P_{\rho} + \cdots) \,.
+\end{equation}
+Computing \eqref{eq:ch2-lorentz_generators_sandwich_1} we get
+\begin{equation} \label{eq:ch2-generators_transformation_1}
+	\begin{aligned}
+	&(\delta^{\rho}{}_{\mu} + \omega^{\rho}{}_{\mu})(\delta^{\sigma}{}_{\nu} + \omega^{\sigma}{}_{\nu})(M_{\rho\sigma} - \epsilon_{\sigma}P_{\rho} + \epsilon_{\sigma}P_{\rho}) \\
+		&= M_{\mu\nu} + \omega^{\sigma}{}_{\nu}M_{\mu\sigma} + \omega^{\rho}{}_{\mu}M_{\rho\nu} - \epsilon_{\mu}P_{\nu} + \epsilon_{\nu}P_{\mu} + \mathcal{O}(\omega^{2},\omega\epsilon) \\
+		&= M_{\mu\nu} - \omega^{\rho\sigma}\eta_{\nu\rho}M_{\mu\sigma} - \omega^{\rho\sigma}\eta_{\mu\sigma}M_{\nu\rho} - \epsilon^{\rho}\eta_{\mu\rho}P_{\nu} + \epsilon^{\rho}\eta_{\nu\rho}P_{\mu} + \mathcal{O}(\omega^{2},\omega\epsilon) \\
+		&= M_{\mu\nu} - \frac{1}{2}\omega^{\rho\sigma}(\eta_{\nu\rho}M_{\mu\sigma} - \eta_{\nu\sigma}M_{\mu\rho} + \eta_{\mu\sigma}M_{\nu\rho} - \eta_{\mu\rho}M_{\nu\sigma}) - \epsilon^{\rho}(\eta_{\mu\rho}P_{\nu} - \eta_{\nu\rho}P_{\mu}) + \mathcal{O}(\omega^{2},\omega\epsilon) \,. \\
+	\end{aligned}
+\end{equation}
+Next we compute \eqref{eq:ch2-lorentz_generators_sandwich_2}:
+\begin{equation} \label{eq:ch2-generators_transformation_2}
+	\begin{aligned}
+		&U(\mathbb{1}+\omega, \epsilon)M_{\mu\nu}U^{-1}(\mathbb{1}+\omega, \epsilon) \\
+		&= (\mathbb{1} + \frac{i}{2}\omega^{\rho\sigma}M_{\rho\sigma} + i\epsilon^{\rho}P_{\rho} + \cdots)M_{\mu\nu}(\mathbb{1} - \frac{i}{2}\omega^{\rho\sigma}M_{\rho\sigma} - i\epsilon^{\rho}P_{\rho} + \cdots) \\
+		&= M_{\mu\nu} - \frac{i}{2}\omega^{\rho\sigma}M_{\mu\nu}M_{\rho\sigma} + \frac{i}{2}\omega^{\rho\sigma}M_{\rho\sigma}M_{\mu\nu} - i\epsilon^{\rho}M_{\mu\nu}P_{\rho} + i\epsilon^{\rho}P_{\rho}M_{\mu\nu} + \mathcal{O}(\omega^{2},\epsilon^{2},\omega\epsilon) \\
+		&= M_{\mu\nu} - \frac{i}{2}\omega^{\rho\sigma}[M_{\mu\nu},M_{\rho\sigma}] - i\epsilon^{\rho}[M_{\mu\nu},P_{\rho}] + \mathcal{O}(\omega^{2},\epsilon^{2},\omega\epsilon)
+	\end{aligned}
+\end{equation}
+From the last lines in \eqref{eq:ch2-generators_transformation_1} and \eqref{eq:ch2-generators_transformation_2} we get the commutator relations
+\begin{align}
+\begin{aligned}
+		i[M_{\mu\nu},M_{\rho\sigma}] &= \eta_{\nu\rho}M_{\mu\sigma} - \eta_{\nu\sigma}M_{\mu\rho} - \eta_{\mu\rho}M_{\nu\sigma} + \eta_{\mu\sigma}M_{\nu\rho} \,, \\
+		i[M_{\mu\nu},P_{\rho}] &=  \eta_{\mu\rho}P_{\nu} - \eta_{\nu\rho}P_{\mu} \,, \\
+		[P_{\mu},P_{\nu}] &= 0 \,.
+\end{aligned}
+\end{align}
+Finally, we have derived the Lie algebra of the Poincaré group. The first line describes the algebra of the Lorentz group, i.e. $\operatorname{SO}(D{-}1,1)$.
+
+Now we want to classify particle states as irreducible representations of the Poincaré group. We start with two representative states in $D=4$ that are eigenstates of the generator of translations, with momenta given by:
+\begin{equation}
+\label{eq:sec2:representative-states}
+    \begin{split}
+        p_m^\mu &= \{m,0,0,0\} \\
+        p_\omega^\mu &= \{\omega,0,0,\omega\}
+    \end{split}
+\end{equation}
+The first line in \eqref{eq:sec2:representative-states} describes a massive particle in its rest frame and the second line describes a massless particle traveling in the $z$-direction. The maximal subgroups of the Lorentz group that leaves the two momentum vectors invariant are $SO(3)$ and $ISO(2)$, respectively. These subgroups are known as little groups. Further, we classify each state according to the irreducible representation of the corresponding little group. For that purpose we introduce the two Casimir invariants,
+\begin{equation}
+    C_1 = P_{\mu}P^{\mu}
+\end{equation}
+and
+\begin{equation}
+    C_2 = W_{\mu}W^{\mu} \,.
+\end{equation}
+Here, $P^\mu$ is the generator of translations and $W^\mu$ is the Pauli-Lubanski vector given by \cite{Zee:2016fuk}
+\begin{equation}
+\label{eq:sec2:pauli-lubanski-vector}
+    W^\sigma = \frac{1}{2}\epsilon^{\mu\nu\rho\sigma}M_{\mu\nu}P_{\rho} \,.
+\end{equation}
+The Casimir invariants readily commutes with all the generators of the Poincaré group, therefore their eigenvalues will work as labels for states they act upon. The massive representative state is labeled by its mass, $m$, and spin, $s$. In the massless case the spin label is replaced by the helicity of the particle, $\lambda$, the component of angular momentum in the direction of motion. For a detailed discussion, we refer to Weinberg's book \cite{Weinberg:1995mt}. In this work, we focus only on massless particles.
+
+\subsection{Particles}\label{subsec:ch2-particles}
+
+As we have seen Poincaré symmetry leads to the classification of particles as irreducible representations (irreps) of the little group \cite{Wigner:1939cj}. Specifically, in the $D$-dimensional spacetime, the little groups that characterize physical massless and massive particles are $\operatorname{ISO}(D{-}2)$\footnote{Isometry group (or Euclidean group) of the $(D-2)$-dimensional plane \cite{Schwartz:2014sze}.} and $\operatorname{SO}(D{-}1)$, respectively.
+
+\vskip 5pt
+Furthermore, for simplicity, we limit ourselves to studying massless bosons with integer spins. Vector bosons, such as photons and gluons, are described using polarisation vectors 
+\begin{align}
+\epsilon_\mu^I(p)
+\end{align}
+with $I$ and $\mu$ the little group and Lorentz indices.  They span a spin-1 irrep of the little group. More generally, the irrep of the little group $\operatorname{SO}(D{-}2)$ is specified by a product of polarisation vectors $\epsilon_\mu^I(p)$. The product of two polarisation vectors is a rank-2 tensor. It is a reducible representation that can be decomposed into a traceless symmetric part (graviton), and an anti-symmetric part (2-form) plus a trace part (dilaton), i.e. \cite{Boels:2017gyc}
+\begin{equation}
+\label{eq:sec2:polarisation-tensor-decomposition}
+    \epsilon_\mu^I\epsilon_\nu^J = 
+    \bigg(\epsilon_\mu^{\{I}\epsilon_\nu^{J\}} - {\delta^{IJ} \over D-2}\epsilon_\mu^I\epsilon_\nu^I \bigg)
+    + \epsilon_\mu^{[I}\epsilon_\nu^{J]}
+    + {\delta^{IJ} \over D-2}\epsilon_\mu^I\epsilon_\nu^I \,.
+\end{equation}
+Following \cite{Boels:2016xhc}, we separate the polarisation tensor describing the graviton into left ($\epsilon_\mu^L$) and right ($\epsilon_\mu^R$) polarisation vectors.
+
+
+
+
+
+
+
+
+
+
+
+
+%\zl{The content you outlined below is excellent. However, it's important to remember that we have less than a month left to complete the writing. As I've mentioned before, our initial goal should be to have a minimal version ASAP. As for this part, let's focus only on massless vectors and their generations, like \cite{Boels:2016xhc}.}
+
+%\begin{itemize}
+	%\item Little group classification leads to quantum numbers like mass and spin. In the massless case this becomes energy and helicity.
+	%\item Continuous spin is a consequence of the classification, but it will be disregarded as unphysical. As it has never before been observed in nature \cite{Weinberg:1995mt}.
+%\end{itemize}
+
+%Using the Casimir operators $P_{\mu}P^{\mu}$ and $W_{\mu}W^{\mu}$ we can construct states that are invariant under these operators.
+
+
+
+
+
+\subsection{Scattering}
+
+%Following section 2 of \cite{White:2019ggo}, give a brief introduction about amplitudes and their general properties. Note: let us focus on tree-level properties: amplitudes have only simple poles.
+
+Let us consider the scattering process of $n$ massless particles carrying momenta $p_1,\ldots,p_n$ respectively.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=1]
+  \fill[black,opacity=0.20] (0,0) circle (24pt);
+  \draw[line width=1.9pt] (0,0) circle (24pt);
+
+  \draw[line width=0.8pt] (220:24pt) -- (220:70pt);
+  \draw[->,>=angle 45,line width=0.8pt] (220:24pt) -- (220:59pt);
+
+  \draw[line width=0.8pt] (140:24pt) -- (140:70pt);
+  \draw[->,>=angle 45,line width=0.8pt] (140:24pt) -- (140:59pt);
+
+  % dots
+  \fill[] (90:40pt)circle (1.0pt);
+  \fill[] (110:40pt)circle (1.0pt);
+  \fill[] (70:40pt)circle (1.0pt);
+
+  \draw[line width=0.8pt] (40:24pt) -- (40:70pt); % node[right] { $\Phi_{i-1}$};
+  \draw[->,>=angle 45,line width=0.8pt] (40:24pt) -- (40:59pt);
+
+  \draw[line width=0.8pt] (-40:24pt) -- (-40:70pt); % node[right] { $\Phi_{i+1}$};
+  \draw[->,>=angle 45,line width=0.8pt] (-40:24pt) -- (-40:59pt);
+
+  % dots
+  \fill[] (-90:40pt)circle (1.0pt);
+  \fill[] (-110:40pt)circle (1.0pt);
+  \fill[] (-70:40pt)circle (1.0pt);
+
+  \end{tikzpicture}
+
+  \caption{An $n$-particle scattering amplitude.}
+  \label{fig:n-particle-scattering-amplitude}
+\end{figure}
+
+As shown schematically in Figure \ref{fig:n-particle-scattering-amplitude}, for the sake of simplicity yet without sacrificing generality, it is assumed that all particles are outgoing. The on-shell condition for each external particle mandates that
+\begin{align}
+p_i^2 = 0, \quad i=1,\ldots,n.
+\end{align}
+Furthermore, due to the translation symmetry, the conservation of total momentum must be satisfied,
+\begin{align}
+\sum_{i=1}^{n} p_i^\mu = 0.
+\end{align}
+
+In general, the scattering amplitude is a scalar function of the momenta $p_i$
+and the wavefunctions $\psi^I_i(p_i)$ (polarisation vectors and tensors) of external particles \cite{Boels:2016xhc,Boels:2017gyc,Peskin:1995ev,Cheung:2017pzi}. More preciously, the amplitude must be multi-linear in their external wavefunctions. For example, a gluon amplitude takes the form
+\begin{align}
+A_n = \epsilon_{1,\mu_1}\epsilon_{2,\mu_2}\cdots \epsilon_{n,\mu_n} I^{\mu_1\mu_2\cdots\mu_n}
+\end{align}
+This structure is quite manifest in the formalism of Feynman diagrams, which we will see examples of in the next chapter. Note that for a scalar particle, its wavefunction is completely determined by its momentum and thus, conventionally, can be equalled to unity. This reflects the fact that the amplitude of scalars is simply a function of the momenta:
+\begin{align}
+A_{\text{scalar}} = A(p_1,\ldots,p_n)
+\end{align}
+The transversality principle states that any polarization vector is orthogonal to its corresponding momentum vector, which can be represented as 
+\begin{align}\label{chap2-transversality}
+\epsilon_i(p_i) \cdot p_i = 0 \,.
+\end{align}
+According to the on-shell gauge invariance, for gluons, photons, or gravitons, the on-shell scattering amplitude vanishes when any polarization vector is substituted with its momentum:
+\begin{align}\label{chap2-gauge-inv}
+A(\epsilon_i^\mu \to p_i^\mu) = 0 \,.
+\end{align}
+Bose symmetry implies that the scattering amplitude remains unchanged when the quantum numbers of two indistinguishable bosons (particles with integer spins) are interchanged.
+
+Finally, the locality is manifested through the singularity structure of scattering amplitudes in kinematic variables. Specifically, at the tree level, the amplitude exhibits the singularity of a simple pole, $1/P^2$, occurring when an intermediate state goes on-shell, $P^2\to m^2$.
+

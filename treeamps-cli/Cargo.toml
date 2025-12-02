@@ -1,0 +1,8 @@
+[package]
+name = "treeamps-cli"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+treeamps-core = { path = "../treeamps-core" }

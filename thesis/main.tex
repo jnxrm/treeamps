@@ -1,0 +1,217 @@
+\documentclass[12pt]{article}
+
+\usepackage{KUstyle}
+\usepackage[margin=0.8in]{geometry} % Package for pagemargin
+\usepackage{setspace} % Package for linespacing
+\usepackage{tabularx} % Package for table
+\usepackage{fontspec}
+\usepackage{enumitem}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{xpatch}
+\usepackage{blindtext}
+\usepackage{url}
+\usepackage{tcolorbox}
+\usepackage{bbold}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+
+\usepackage[
+   backend=biber,
+   style=phys,
+   articletitle=true,
+   biblabel=brackets,
+   chaptertitle=false,
+   pageranges=false,
+   eprint=true,
+]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{slashed}
+\usepackage{shuffle}
+\usepackage{braket}
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows}
+
+% This change the content of the frontpage
+\ptype{Master's thesis}
+\author{Jo Nykrem}
+%\title{Generalisations of the Double Copy}
+\title{Bootstrapping Tree Amplitudes using Loop Tools}
+\subtitle{}
+\date{Date: {April 2, 2024}}
+\supervisor{Supervisors: {N. Emil J. Bjerrum-Bohr, Zhengwen Liu}}
+%\fpimage{picture.png} % Remove this command if no image is desired
+
+\renewcommand{\contentsname}{Table of content}
+
+\newcommand{\del}{\partial}
+\newcommand{\vphi}{\varphi}
+
+\renewcommand{\a}[1]{\alpha_{#1}}
+\newcommand{\e}[1]{\epsilon_{#1}}
+\newcommand{\ee}[2]{(\epsilon_{#1}\epsilon_{#2})}
+\newcommand{\pe}[2]{(p_{#1}\epsilon_{#2})}
+\newcommand{\ep}[2]{(\epsilon_{#1}p_{#2})}
+\newcommand{\pp}[2]{(p_{#1}p_{#2})}
+
+\newcommand{\EE}[4]{(\epsilon_{#1}^{#2}\cdot\epsilon_{#3}^{#4})}
+\newcommand{\pE}[3]{(p_{#1}\cdot\epsilon_{#2}^{#3})}
+
+\renewcommand{\d}[2]{{#1}\cdot{#2}}
+\newcommand{\comma}{\,,\,}
+
+%\newcommand{\footcomment}[1]{\let\thefootnote\relax\footnote{#1}}
+
+\DeclareMathOperator{\tr}{Tr}
+
+\definecolor{maroonKU}{RGB}{144, 26, 30}
+\newcommand{\zl}[1]{[{\color{maroonKU}{ZL}:~{#1}}]}
+
+%\setlength\parindent{0pt}
+
+\begin{document}
+
+\maketitle
+
+\onehalfspacing
+
+\newpage
+
+\begin{abstract}
+% The thesis desires to study extensions and potential
+% obstructions of double-copy structures at the tree level. In this
+% thesis, we want to highlight the implication of double-copy
+% relations induced by introducing higher derivative couplings in
+% the theories, concentrating on Yang-Mills and Gravity. Such
+% higher derivative coupling is required in numerous areas of
+% particle physics and is critical for effective field theory
+% descriptions. Our analysis uses a bootstrap/first principles
+% method to compute gauge invariant amplitude candidates.
+% These are interesting in and of themselves and their mapping
+% at the Lagrangian level. For higher points, our analysis
+% includes loop tools and finite field frameworks demanded at
+% tree-level scattering. We will also examine the state of the art
+% in the field.
+The thesis presents a method of bootstrapping the S-matrix based on a first-principle approach to scattering amplitudes and its symmetries. The focus is on massless gauge bosons, including gluons and gravitons, motivated by the celebrated double copy relation between gauge and gravity theories. We propose a method of utilising computational tools from the field of loop integral calculations to solve large linear systems arising in the bootstrap. We also consider effective couplings and how these can be identified from solutions to the linear systems. 
+%We also give a review of the state of the art in the field.
+\end{abstract}
+
+
+
+
+
+
+
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\input{sec1.tex}
+
+\input{sec2.tex}
+
+\input{sec3.tex}
+
+\input{sec4.tex}
+
+
+
+
+
+
+
+
+\newpage
+\section{Conclusion and outlook}
+\label{sec:conclusion-and-outlook}
+
+Throughout this work, we have explored a novel perspective on the formulation and comprehension of scattering amplitudes in particle physics. By leveraging the principles of Poincaré symmetry and fundamental properties of scattering amplitudes, such as their multilinearity in the wavefunctions and the transversality of polarisation vectors for external particles, we can write down a general ansatz for scattering amplitudes for a given set of external massless particles. Then imposing the on-shell gauge invariance gives strong constraints for the ansatz\,--\,a homogeneous linear system. Reducing this linear system, we may obtain all possible independent gauge-invariant objects, which are all possible on-shell scattering amplitudes up to overall factor. This innovative methodology promises not only deeper insights into the nature of elementary particles and their fundamental interactions through the S-matrix, but also heralds more streamlined techniques for amplitude calculations.
+
+At the heart of this methodology is a homogeneous linear system. Therefore, it is crucial to develop an efficient way to solve these linear equations. To this end, we adapted and integrated techniques initially devised for reducing loop amplitudes into our bootstrap approach. Through a comprehensive analysis of many examples, involving up to nine gluons, we demonstrated the practicality and efficiency of applying loop-integral reduction tools in the bootstrap context for tree-level amplitudes.
+
+Future research could fruitfully explore the underlying mathematical structures of these linear systems further. This would lead to useful insights to design more efficient algorithms, essential for extending the bootstrap method to scattering amplitudes involving a greater number of external particles. Moreover, investigating the double-copy relation between gauge theory and gravity within the bootstrap framework presents an intriguing avenue of inquiry, promising to enrich our understanding of both the double-copy and the bootstrap method.
+
+
+
+
+
+
+
+
+
+\newpage
+
+\input{appendix.tex}
+
+
+%{\color{red}Old structure}
+%
+%\section{Theoretical background}
+%
+%\subsection{Amplitudes, S-matrix}
+%
+%\subsubsection{Lagrangian approach (QFT)}
+%
+%\subsubsection{(n-3)! independent partial amplitudes}
+%
+%\section{First principles approach}
+%
+%Cf https://arxiv.org/pdf/1607.08246.pdf and sec 2.1 of https://arxiv.org/pdf/1710.10208.pdf
+%
+%The method outlined in the following is based on the paper \cite{Boels:2016xhc}. 
+%
+%In the following we will get a grasp of how to approach scattering amplitudes from first principles.
+%
+%\subsection{Physical constraints}
+%
+%\subsubsection{Transversality}
+%
+%\subsubsection{Ward-Takashi identities}
+%
+%\subsection{Solving the constraints}
+%
+%\subsection{Examples}
+%
+%\zl{Hi Jo, I suggested that it's not very necessary to give detailed analyses for every example. It would be better to focus more on writing the general framework at this stage. First, you should write some theoretical aspects: including what properties/principle/symmetries scattering amplitudes must obey; then from these properties, one can know that building blocks for constructing amplitudes, and these properties (in particular gauge invariance) also give strong constraints; finally by solving constraints using novel loop tools, one can obtain all allowed gauge-invariant objects (amplitude candidates).
+
+%After introducing the framework, you of course need to show how it work in practise using several simple examples, for example three-pt and four-point gluon/graviton cases as you did; but you have not to give details for everyone, you just need to select eg two or three representative examples; then for others, you just need to describe briefly.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+%\bibliographystyle{JHEP}
+%\bibliography{refs}
+\printbibliography
+
+\end{document}

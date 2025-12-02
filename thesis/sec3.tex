@@ -1,0 +1,942 @@
+\newpage
+\section{Quantum Field Theory}
+\label{sec:quantum-field-theory}
+
+In the previous chapter, we introduced the basic concepts of Lorentz symmetry, particles, and scattering amplitudes. In this chapter, we understand particles and S-matrix from the viewpoint of quantum field theory.
+
+%This chapter focuses more on traditional QFT and Lagrangian methodology.
+%Read also e.g \cite{Boels:2017gyc}
+
+%\zl{Here the basic structure I suggested follows:} In chapter 2, we understand particles as the irreducible representations of the little group, then review the basic properties of the S-matrix for these particles scatter off each other. In this chapter, we understand particles and S-matrix from the viewpoint of quantum field theory/Lagrangian (Feynman diagrams). We first briefly introduce various fields, such as scalars, gauge vectors and gravitons (maybe also fermions) using the simplest theories, like $\lambda\phi^4$, pure Yang-Mills/QCD and Hilbert-Einstein gravity. Then once we have all building blocks of fields, we can show that one can construct higher-dimensional (EFT) operators.
+
+%Then in the next chapter, we combine ideas from this and previous chapters to show our main methods/results.  
+
+\subsection{Scalar fields}\label{subsec:scalar-fields}
+
+We begin this chapter by looking at the scattering of scalar particles in the context of $\lambda\phi^3$-theory («phi-cubed»). The Lagrangian is given by
+\begin{equation}
+\label{eq:sec3:phi3-lagrangian}
+	\mathcal{L} = \frac{1}{2}(\del_{\mu}\phi)^{2}-\frac{1}{2}m^{2}\phi^{2}-\frac{\lambda}{3!}\phi^{3} \,,
+\end{equation}
+with $(\del_{\mu}\phi)^2 \equiv \eta_{\mu\nu}\,\del^{\mu}\phi\,\del^{\nu}\phi$. The first two terms describe a free particle of mass $m$ propagating through space-time, and make up the Lagrangian of what is known as free Klein-Gordon (K-G) field theory. The last term in \eqref{eq:sec3:phi3-lagrangian} describes the interaction between fields, whose strength is characterized by a coupling constant, $\lambda$.
+
+When the coupling constant $\lambda$ is sufficiently small, the theory can be solved iteratively using perturbation methods. This can be carried out using Feynman diagrams systematically. More precisely, we can read out the propagator of scalars in momentum space\footnote{Ignoring the $i\varepsilon$-prescription of Feynman \cite{Elvang:2015rqa}.},
+\begin{align}
+\label{eq:sec3:phi3-propagator}
+    \Delta(p) &= \frac{i}{p^2-m^2}
+\end{align}
+from the free Klein-Gordon Lagrangian, and the three-scalar vertex,
+\begin{align}
+\label{eq:sec3:phi3-vertex}
+    V_{\phi\phi\phi} &= -i\lambda \,,
+\end{align}
+from the interacting Lagrangian. As discussed earlier, the wavefunctions of external scalar lines can conventionally be considered unity, 1.
+
+Focusing on massless particles, we omit the mass term from the propagator for simplicity. Roughly speaking, the scattering amplitude for a given process is given by summing over all possible diagrams, categorized by their number of closed loops. Specifically, the tree-level amplitude, i.e.~the leading order in the perturbative expansion, is given by diagrams of tree-like topology, which have no closed loops. See any standard textbook for details, e.g.~\cite{Peskin:1995ev,Weinberg:1995mt}.
+
+We now proceed to calculate the tree-level scattering amplitudes for four scalar particles. Using \eqref{eq:sec3:phi3-propagator} and \eqref{eq:sec3:phi3-vertex}, we can construct Feynman diagrams. In this case, we get the three diagrams shown in Figure \ref{fig:sec3:4pt-stu-channel-diagrams}. Throughout the rest of this work we are working with all external momenta pointing outwards, as well as defining the Mandelstam invariants \cite{Mandelstam:1958xc} as ${s = (p_1+p_2)^2}$, ${t = (p_1+p_3)^2}$ and ${u = (p_1+p_4)^2}$ in every 4-particle scattering process.
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \tikzset{line/.style={line width=0.8pt}};
+            
+            \draw[line] (-0.50,0) -- (0.50,0);
+            
+            \tikzset{shift={(-0.50,0)}};
+            \node at (135:1.25) {2};
+            \draw[line] (0,0) -- (135:1);
+            \node at (225:1.25) {1};
+            \draw[line] (0,0) -- (225:1);
+            
+            \tikzset{shift={(1,0)}};
+            \node at (45:1.25) {3};
+            \draw[line] (0,0) -- (45:1);
+            \node at (315:1.25) {4};
+            \draw[line] (0,0) -- (315:1);
+        \end{tikzpicture}
+        \caption{$s$-channel diagram.}
+        \label{fig:sec3:4pt-s-channel-diagram}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+	\begin{tikzpicture}
+            \tikzset{line/.style={line width=0.8pt}};
+            
+            \draw[line] (0,0.50) -- (0,-0.50);
+            
+            \tikzset{shift={(0,-0.5)}};
+            
+            \node at (225:1.25) {1};
+            \draw[line] (0,0) -- (225:1);
+            \node (4) at (315:1.1) {};
+            \node at (315:1.25) {4};
+            
+            \tikzset{shift={(0,1)}};
+            
+            \node at (135:1.25) {2};
+            \draw[line] (0,0) -- (135:1);
+            
+            \node at (45:1.25) {3};
+            \node (3) at (45:1.1) {};
+            
+            \draw[line] (0,0) -- (4);
+            
+            \tikzset{shift={(0,-1)}};
+            
+            \draw[line] (0,0) -- (3);
+        \end{tikzpicture}
+        \caption{$t$-channel diagram.}
+        \label{fig:sec3:4pt-t-channel-diagram}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \tikzset{line/.style={line width=0.8pt}};
+            
+            \draw[line] (0,0.50) -- (0,-0.50);
+            
+            \tikzset{shift={(0,-0.5)}};
+            \node at (225:1.25) {1};
+            \draw[line] (0,0) -- (225:1);
+            \node at (315:1.25) {4};
+            \draw[line] (0,0) -- (315:1);
+            
+            \tikzset{shift={(0,1)}}
+            \node at (135:1.25) {2};
+            \draw[line] (0,0) -- (135:1);
+            \node at (45:1.25) {3};
+            \draw[line] (0,0) -- (45:1);
+        \end{tikzpicture}
+        \caption{$u$-channel diagram.}
+        \label{fig:sec3:4pt-u-channel-diagram}
+    \end{subfigure}
+    \caption{Schematical diagrams contributing to the scattering process, $1+2 \rightarrow 3+4$, at tree level.}
+    \label{fig:sec3:4pt-stu-channel-diagrams}
+\end{figure}
+Each of the diagrams in Figure \ref{fig:sec3:4pt-stu-channel-diagrams} is translated to an expression using \eqref{eq:sec3:phi3-propagator} and \eqref{eq:sec3:phi3-vertex}. The value of the diagram in e.g. Figure \ref{fig:sec3:4pt-s-channel-diagram} is equal to
+\begin{equation}
+ iA_{\phi\phi\phi\phi}^s = V_{\phi\phi\phi}\,\Delta(P_{12})\,V_{\phi\phi\phi} = -\frac{i\lambda^2}{s-m^2} \,,
+\end{equation}
+where $P_{ij} \equiv p_i + p_j$. Repeating for the remaining two diagrams and summating, we get the full amplitude expression given by
+\begin{equation}
+\label{eq:sec3:phi3-amplitude}
+\begin{split}
+    A_{\phi\phi\phi\phi} ={}& A_{\phi\phi\phi\phi}^s + A_{\phi\phi\phi\phi}^t + A_{\phi\phi\phi\phi}^u \\
+    ={}& -\frac{\lambda^2}{s-m^2} - \frac{\lambda^2}{t-m^2} - \frac{\lambda^2}{u-m^2} \\
+    ={}& -\lambda^2\biggl(\frac{1}{s-m^2}+\frac{1}{t-m^2}+\frac{1}{u-m^2}\biggr) \,.
+\end{split}
+\end{equation}
+It is easy to see that \eqref{eq:sec3:phi3-amplitude} exhibits both Bose symmetry and locality. The amplitude in the massless case is obtained by taking the $m \rightarrow 0$ limit of \eqref{eq:sec3:phi3-amplitude}.
+
+Using dimensional analysis, in which, as usual, $\hbar = c = 1$, we can deduce\footnote{Given a Lagrangian of the form $\mathcal{L}_{\phi^n} = \mathcal{L}_{\text{K-G}}-\frac{\lambda_n}{n!}\phi^n$, the dimension of the coupling constant is $[\lambda_n] = D - \frac{1}{2}n(D-2)$ \cite{Srednicki:2007qs}.} that the coupling constant is dimensionless in $D = 6$ space-time dimensions and has mass dimension 2 in $D = 4$. In the perturbative regime, field theories with mass dimension of the coupling constant bigger or equal to zero are especially convenient to work with. This is essentially because of the renormalisability condition \cite{Peskin:1995ev}. In fact, phi-cubed theory is one of only two renormalisable scalar field theories\footnote{The other being $\lambda\phi^4$-theory («phi-fourth»), most notably part of the description of the Higgs field \cite{Peskin:1995ev}. We note that the phi-fourth coupling constant is dimensionless in $D=4$.}. If the dimension of the coupling constant of a theory is non-zero, it is (usually) either ill- or trivially defined in the high energy limit. The latter occurs when the coupling constant has a positive mass dimension, as it scales inversely with energy. On the other hand, if the mass dimension of the coupling constant is negative, the theory explodes in the high energy limit. As we will see in Section \ref{subsec:graviton-fields}, this is highly relevant for the perturbative expansion of Einstein-Hilbert gravity.
+
+\subsection{Gauge fields}\label{subsec:gauge-fields}
+
+In this section we introduce gauge symmetry starting with the Abelian gauge symmetry of Quantum electrodynamics (QED), then extending this to the non-Abelian case of Yang-Mills theory.
+
+\subsubsection*{Gauge symmetry}
+
+We start by considering a fermionic field that transforms under a local\footnote{Meaning space-time dependent.} $\operatorname{U}(1)$ symmetry:
+\begin{equation}
+\label{eq:sec3:u(1)-fermionic-field-transformation}
+    \psi(x) \rightarrow \psi'(x) = U(x)\psi(x) \,, \quad U(x) = U(\alpha(x)) = e^{i\alpha(x)}
+\end{equation}
+Here, $U(\alpha)$ is an element of the Abelian group $\operatorname{U}(1)$, and $\alpha(x)$ is a local phase change. We also introduce the gauge covariant derivate,
+\begin{equation}
+\label{eq:sec3:u(1)-covariant-derivative}
+    D_{\mu} \equiv \del_{\mu} - igA_{\mu} \,,
+\end{equation}
+where $g$ is a coupling constant and $A_{\mu}(x)$ is a vector field, also called gauge field. The covariant derivate of the field transforms similar to the field itself,
+\begin{equation}
+    D_{\mu}\psi(x) \rightarrow \bigl(D_{\mu}\psi(x)\bigr)' = U(x)D_{\mu}\psi(x) \,,
+\end{equation}
+as long as the gauge field transforms according to
+\begin{equation}
+\label{eq:sec3:u(1)-gauge-field-transformation}
+    A_{\mu}(x) \rightarrow A'_{\mu}(x) = A_{\mu} + \frac{1}{g}\del_{\mu}\alpha(x) \,.
+\end{equation}
+The second term in \eqref{eq:sec3:u(1)-gauge-field-transformation} manifests the gauge ``freedom'' of the field, as the space-dependent parameter $\alpha$ can be arbitrarily chosen. We also define an antisymmetric field tensor in terms of \eqref{eq:sec3:u(1)-covariant-derivative},
+\begin{equation}
+\label{eq:sec3:abelian-antisymmetric-field-tensor}
+    F_{\mu\nu} \equiv \frac{i}{g}[D_{\mu},D_{\nu}] = \del_{\mu}A_{\nu} - \del_{\nu}A_{\mu} \,,
+\end{equation}
+which is invariant under \eqref{eq:sec3:u(1)-gauge-field-transformation}. Now it is clear that we can construct a gauge-invariant Lagrangian for the gauge field using \eqref{eq:sec3:abelian-antisymmetric-field-tensor}. The simplest such Lagrangian (in four space-time dimensions or less \cite{Cheng:1984vwu}) is
+\begin{equation}
+\label{eq:sec3:u(1)-gauge-invariant-term}
+    \mathcal{L} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} \,.
+\end{equation}
+In the context of quantum electrodynamics, the gauge field describes a massless spin-1 particle known as the photon. The antisymmetric tensor with coupling constant $e$, the electric charge, is recognised as the electromagnetic field tensor.
+
+\subsubsection*{Yang-Mills}
+
+% When extending QED to multiple fermionic fields, we are led to the non-Abelian gauge theory known as Yang-Mills theory (YM) \cite{Yang:1954ek}. \zl{This is not so correct, but... the main difference is the gauge group --  abelian and non-abelian. Abelian gauge field (Maxwell) can also couple to a multiplet of matter fields, which transforms under a higher-dimensional representation of $U(1)$.} Here we will treat the case of $N$ fermionic fields, in which we work in the $\operatorname{SU}(N)$ gauge group compared to the previous $\operatorname{U}(1)$ group.
+
+% Yang-Mills theory (YM) is a non-abelian gauge theory based on the special unitary group $\operatorname{SU}(N)$. When combined with Dirac's theory it describes the interaction between the massive fermions and massless gauge bosons we know as, respectively, quarks and gluons, which makes it an integral part of the standard model.
+
+% The main difference between QED and YM is the inclusion of multiple fermionic fields. This means that instead of working with a a single field transforming through $\operatorname{U}(1)$ phase factors, as in \eqref{eq:sec3:u(1)-fermionic-field-transformation}, we have an $N$-dimensional multiplet of fields that transforms into eachother by the means of unitary ${N \times N}$ matrices, which are elements of the special unitary group ${\operatorname{SU}(N)}$\footnote{$\operatorname{SU}(N)$ is obtained by removing the subgroup $\operatorname{U}(1)$ from $\operatorname{U}(N)$.} \cite{Peskin:1995ev}. In the following we will extend the discussion from the previous section and as usual our focus will be on the massless gauge bosons in the theory.
+
+Yang-Mills theory (YM) is a non-abelian gauge theory based on the special unitary group $\operatorname{SU}(N)$\footnote{$\operatorname{SU}(N)$ is obtained by removing the subgroup $\operatorname{U}(1)$ from $\operatorname{U}(N)$.}. When combined with Dirac's theory it describes the interaction between the massive fermions and massless gauge bosons we know as, respectively, quarks and gluons, which makes it an integral part of the standard model. In the following we will extend the discussion from the previous section, deriving Feynman rules and compute scattering amplitudes. As usual, our focus will be on the massless gauge bosons in the theory.
+
+We  consider the local transformation of multiple fermionic fields organised in an $N$-dimensional multiplet,
+\begin{equation}
+\label{eq:sec3:fermionic-multiplet}
+    \Psi(x) =
+    \begin{pmatrix}
+        \psi_{1}(x) \\
+        \vdots \\
+        \psi_{N}(x) \\
+    \end{pmatrix} \,.
+\end{equation}
+These fields transform into eachother by the means of unitary ${N{\times}N}$ matrices, which are elements of the $\operatorname{SU}(N)$ \cite{Peskin:1995ev}. The transformation of \eqref{eq:sec3:fermionic-multiplet} is given by
+\begin{equation}
+    \psi_{i}(x) \rightarrow \psi'_{i}(x) = [U(x)]_{i}{}^{j}\,\psi_{j}(x) \,, \quad U(x) = U(\alpha(x)) = e^{i\alpha^{a}(x)T^{a}} \,,
+\end{equation}
+where $\alpha^a$ are real constants and the matrices $T^a$, $a\in\{1,2,\ldots, N^2 {-} 1\}$, are the fundamental representations of the generators of $\operatorname{SU}(N)$. The generators are normalised according to
+\begin{equation}
+\label{eq:sec3:su(n)-generators-normalisation}
+    \tr(T^{a}T^{b}) = \delta^{ab} \,,
+\end{equation}
+and satisfy the commutation relation
+\begin{equation}
+\label{eq:sec3:su(n)-commutation-relation}
+[T^a,T^b] = i\sqrt{2}f^{abc}T^c \,,
+\end{equation}
+where $f^{abc}$ are the structure constants of the group, defining the $\operatorname{SU}(N)$ Lie algebra.
+The covariant derivative naturally extends from \eqref{eq:sec3:u(1)-covariant-derivative} to
+\begin{equation}
+\label{eq:sec3:ym-covariant-derivative}
+    D_{\mu} \equiv \del_{\mu} - igA_{\mu} \,, \quad A_{\mu} \equiv A_{\mu}^{a\:}T^{a} \,,
+\end{equation}
+with $A_{\mu}(x)$ a matrix valued gauge-field. The transformation rule for the covariant derivative,
+\begin{equation}
+    D_{\mu}\psi(x) \rightarrow \bigl(D_{\mu}\psi(x)\bigr)' = U(x)D_{\mu}\psi(x) \,,
+\end{equation}
+dictates that the gauge field to transforms according to
+\begin{equation}
+     A_{\mu}(x) \rightarrow A'_{\mu}(x) = U(x)A_{\mu}(x)U^{-1}(x) - \frac{i}{g}\bigl(\del_{\mu}U(x)\bigr)U^{-1}(x) \,.
+\end{equation}
+As in the previous section we can define an antisymmetric field tensor using the covariant derivate:
+\begin{equation}
+\label{eq:sec3:non-abelian-antisymmetric-field-tensor}
+    F_{\mu\nu} \equiv \frac{i}{g}[D_{\mu},D_{\nu}] = \del_{\mu}A_{\nu} - \del_{\nu}A_{\mu} - \frac{ig}{\sqrt{2}}[A_{\mu},A_{\nu}] = F_{\mu\nu}^{a}T^{a}
+\end{equation}
+Here,
+\begin{equation}
+\label{eq:sec3:non-abelian-antisymmetric-field-tensor-adjoint}
+    F_{\mu\nu}^{a} = \del_{\mu}A_{\nu}^{a} - \del_{\nu}A_{\mu}^{a} + gf^{abc}A_{\mu}^{b\:}A_{\nu}^{c} \,.
+\end{equation}
+Now, with the help of \eqref{eq:sec3:non-abelian-antisymmetric-field-tensor} we can construct a gauge-invariant Lagrangian for the gauge field:
+\begin{equation}
+\label{eq:sec3:ym-lagrangian}
+    \mathcal{L} = -\frac{1}{4}\tr\bigl(F_{\mu\nu}F^{\mu\nu}\bigr) = -\frac{1}{4}F_{\mu\nu}^{a}F^{a\mu\nu}
+\end{equation}
+This is recognised as the YM Lagrangian.
+
+To derive Feynman rules from \eqref{eq:sec3:ym-lagrangian}, we expand it:
+\begin{equation}
+\label{eq:sec3:ym-lagrangian-expanded}
+    \mathcal{L} = -\frac{1}{2}\del_{\mu}A_{\nu}^{a\:}(\del^{\mu}A^{a\nu} - \del^{\nu}A^{a\mu}) -\frac{g}{2}f^{abc}(\del_{\mu}A_{\nu}^{a} - \del_{\nu}A_{\mu}^{a})A^{b\mu}A^{c\nu} - \frac{g^2}{4}f^{abe}f^{ecd}A_{\mu}^{a\:}A_{\nu}^{b\:}A^{c\mu}A^{d\nu}
+\end{equation}
+We identify two vertices, linearly and quadratically proportional to the coupling constant, which is translated to
+\begin{align}
+\label{eq:sec3:su(n)-cubic-vertex}
+    V_{ggg}^{a_1 a_2 a_3 \mu_1 \mu_2 \mu_3}(p_1,p_2,p_3) ={}& igf^{a_{1}a_{2}a_{3}}\bigl(\eta^{\mu_{1}\mu_{2}}(p_1-p_2)^{\mu_{3}}+\eta^{\mu_{2}\mu_{3}}(p_2-p_3)^{\mu_{1}}+\eta^{\mu_{3}\mu_{1}}(p_3-p_1)^{\mu_{2}}\bigr) \\
+\intertext{and}
+\label{eq:sec3:su(n)-quartic-vertex}
+    \begin{split}
+        V_{gggg}^{a_1 \cdots a_4 \mu_1 \cdots \mu_4}(p_1,\dots,p_4) ={}& - ig^2\bigl[f^{a_{1}a_{2}b}f^{b\,a_{3}a_{4}}(\eta^{\mu_{1}\mu_{4}}\eta^{\mu_{2}\mu_{3}} - \eta^{\mu_{1}\mu_{3}}\eta^{\mu_{2}\mu_{4}}) \\
+	{}&+ f^{a_{1}a_{3}b}f^{b\,a_{2}a_{4}} (\eta^{\mu_{1}\mu_{2}}\eta^{\mu_{3}\mu_{4}} - \eta^{\mu_{1}\mu_{3}}\eta^{\mu_{2}\mu_{4}}) \\
+	{}&+ f^{a_{1}a_{4}b}f^{b\,a_{2}a_{3}} (\eta^{\mu_{1}\mu_{2}}\eta^{\mu_{3}\mu_{4}} - \eta^{\mu_{1}\mu_{4}}\eta^{\mu_{2}\mu_{3}})\bigr]
+    \end{split}
+\end{align}
+respectively. To derive the propagator between two gauge fields, we must fix the gauge field. This is traditionally done via the Fadeev-Popov method \cite{Peskin:1995ev}, in which one introduces anti-commuting fields, called ghosts, that appears inside loops. For our purposes we note that one can add a gauge-fixing term to the Lagrangian in \eqref{eq:sec3:ym-lagrangian}. There are a family of such terms, known as $R_{\xi}$ gauges \cite{Srednicki:2007qs}:
+\begin{equation}
+    \label{eq:sec3:r-xi-gauge-family}
+    \mathcal{L}_{\mathrm{gf}}(\xi) = -\frac{1}{2\xi}\del^{\mu}A_{\mu}^{a\:}\del^{\nu}A_{\nu}^{a}
+\end{equation}
+Setting $\xi = 1$ gives the Feynman-'t Hooft gauge. Adding this to \eqref{eq:sec3:ym-lagrangian-expanded}, the terms involving two derivatives of the field looks like:
+\begin{equation}
+    \mathcal{L}_{A^2} = -\frac{1}{2}\bigl(\del_{\mu}A_{\nu}^{a\:}\del^{\mu}A^{a\nu} - \del_{\mu}A_{\nu}^{a\:}\del^{\nu}A^{a\mu} + \del_{\mu}A^{a\mu}\del_{\nu}A^{a\nu}\bigr)
+\end{equation}
+Doing some integrations-by-parts, the last two terms cancel eachother and the resulting term becomes
+\begin{equation}
+    \mathcal{L}_{A^2} = \frac{1}{2}A_{\mu}^{a\:}\del^{2}A^{a\mu} \,.
+\end{equation}
+Now it is clear that the propagator takes the form
+\begin{equation}
+\label{eq:sec3:su(n)-propagator}
+    \Delta_{\mu\nu}^{ab}(p) = -\delta^{ab}\frac{i\eta_{\mu\nu}}{p^2} \,.
+\end{equation}
+We present an alternative method of gauge-fixing in Appendix \ref{sec:gervais-neveu-gauge} that affects the three- and four-point vertices as well as the propagator, further simplifying the Feynman rules.
+
+Inspecting the commutation relation \eqref{eq:sec3:su(n)-commutation-relation}, we see that we can express the structure constants purely in terms of the generators of the group:
+\begin{equation}
+\label{eq:sec3:su(n)-structure-constant-trace}
+    i\sqrt{2}f^{abc} = \tr(T^{a}T^{b}T^{c})-(T^{a}T^{c}T^{b}) = \tr\bigl(T^a[T^b,T^c]\bigr)
+\end{equation}
+When constructing amplitudes using \eqref{eq:sec3:su(n)-cubic-vertex} and \eqref{eq:sec3:su(n)-quartic-vertex}, we see that they involve products of traces that shares a colour index. One can gather these types of products of traces into one single trace using the Fierz identity \cite{Dixon:2015der}:
+\begin{equation}
+\label{eq:sec3:fierz-identity}
+    (T^{a})_{i}{}^{j}(T^{a})_{k}{}^{l} = \delta_{i}{}^{l}\delta_{k}{}^{j} - \frac{1}{N}\delta_{i}{}^{j}\delta_{k}{}^{l}
+\end{equation}
+We demonstrate how one of the trace products appearing in $f^{abe}f^{ecd}$ can be ``Fierz'ed'':
+\begin{equation}
+    \begin{aligned}
+        \tr(T^{a}T^{b}T^{e})\tr(T^{e}T^{c}T^{d}) &= (T^{a})_{i}{}^{j}(T^{b})_{j}{}^{k}(T^{e})_{k}{}^{i}(T^{e})_{l}{}^{m}(T^{c})_{m}{}^{n}(T^{d})_{n}{}^{l} \\
+        &= (T^{a})_{i}{}^{j}(T^{b})_{j}{}^{k}(\delta_{k}{}^{m}\delta_{l}{}^{i} - \frac{1}{N}\delta_{k}{}^{i}\delta_{l}{}^{m})(T^{c})_{m}{}^{n}(T^{d})_{n}{}^{l} \\
+        &= \tr(T^{a}T^{b}T^{c}T^{d}) - \frac{1}{N}\delta^{ab}\delta^{cd}
+    \end{aligned}
+\end{equation}
+Repeating this exercise for each of the trace products, the $\frac{1}{N}$ terms will cancel eachother out and we end up with
+\begin{equation}
+    \label{eq:sec3:su(n)-contact-trace}
+    \begin{aligned}
+        (i\sqrt{2})^{2}f^{abe}f^{ecd} &= -\tr(T^{a}T^{b}T^{c}T^{d}) + \tr(T^{a}T^{b}T^{d}T^{c}) +\tr(T^{a}T^{c}T^{d}T^{b}) - \tr(T^{a}T^{d}T^{c}T^{b}) \\
+        &= -\tr\bigl([T^a,T^b][T^c,T^d]\bigr) \,.
+    \end{aligned}
+\end{equation}
+% Inserting \eqref{eq:sec3:su(n)-structure-constant-as-traces} and \eqref{eq:sec3:su(n)-contact-trace} into \eqref{eq:sec3:ym-lagrangian-expanded} and inspecting the single- and zero-derivative terms, we 
+% \begin{equation}
+%     \begin{gathered}
+%         \mathcal{L}_{1\del+2\del} = \frac{ig}{2\sqrt{2}}\del_{\mu}A_{\nu}^{a\:}A^{b\mu}A^{c\nu}\tr\bigl(T^a[T^{b},T^{c}]\bigr) - \frac{g^2}{8}A_{\mu}^{a\:}A_{\nu}^{b\:}A^{c\mu}A^{d\nu}\tr\big([T^a,T^b][T^c,T^d]\bigr)
+%     \end{gathered}
+% \end{equation}
+Now, it is clear that any amplitude derived from \eqref{eq:sec3:ym-lagrangian-expanded}, with \eqref{eq:sec3:su(n)-structure-constant-trace} and \eqref{eq:sec3:su(n)-contact-trace} inserted, can be reduced to a sum of single traces over the generators. This leads to the colour decomposition of tree amplitudes \cite{Berends:1987cv,Mangano:1988kk}:
+\begin{equation}
+\label{eq:sec3:tree-amplitude-colour-decomposition}
+    \mathcal{A}_{n} = g^{n-2}\sum_{\sigma\in{S_n/Z_n}}\tr(T^{a_{\sigma(1)}}\cdots{T^{a_{\sigma(n)}}})A_{n}(\sigma(1),\dots,\sigma(n)) \,,
+\end{equation}
+where the gauge coupling constant is not included in the partial amplitudes, $A_{n}$. The ordering of external legs, $\sigma$, is taken to be the permutations of $n$ objects modulo all cyclic permutations, reflecting the cyclicity of the generator traces.
+
+The partial amplitudes satisfy a set of relations that reduces the number of independent basis partial amplitudes. There are three relations that reduces the number of basis partial amplitudes from $n!$ to $(n-3)!$, of which the first is cyclic-, and reflection invariance \cite{Bern:2008qj}:
+\begin{equation}
+\label{eq:sec3:cyclic-reflection-invariance}
+    A_n(1,2,\dots,n) = A_n(2,\dots,n,1) \,, \quad A_n(1,2,\dots,n) = (-1)^n A_n(n,\dots,2,1)
+\end{equation}
+This is saying that only the overall cyclic order of the partial amplitude matters, not where the order is read off from. Next, we have the Kleiss-Kuijf relations given by \cite{Weinzierl:2016bus}:
+\begin{equation}
+\label{eq:sec3:kk-relations}
+    A_n(1,\{\alpha\},n,\{\beta\}) = (-1)^{|\beta|}\sum_{\sigma\in\{\alpha\}\shuffle\{\beta\}^T}A_n(1,\{\sigma\},n)
+\end{equation}
+Here, $|\beta|$ is the length of the set $\{\beta\}$ and the sum is taken over all shuffles between $\{\alpha\}$ and $\{\beta\}^T$; the set of permutations preserving the relative ordering within the two subsets. The superscripted $T$ denotes the reversal of the ordering of $\{\beta\}$. Lastly, there is the well known BCJ relations, which can be written as \cite{Bern:2019prr}
+\begin{equation}
+\label{eq:sec3:bcj-relations}
+    \sum_{i=2}^{n-1}p_1\cdot(p_2+\dots+p_i)A_n(2,\dots,i,1,i+1,\dots,n) = 0 \,.
+\end{equation}
+As stated above, when combining \eqref{eq:sec3:cyclic-reflection-invariance}, \eqref{eq:sec3:kk-relations} and \eqref{eq:sec3:bcj-relations} any $n$-point colour-ordered amplitude can be written in terms of $(n-3)!$ independent basis partial amplitudes \cite{Bjerrum-Bohr:2009ulz}. As a consequence, in both the 3- and 4-point case, only one basis amplitude is needed. These will be computed in the following.
+
+We can now write down colour-ordered Feynman rules for the partial amplitudes. The cubic vertex is the same as in \eqref{eq:sec3:su(n)-cubic-vertex} with the replacement $gf^{abc}\rightarrow\frac{1}{\sqrt{2}}$ and the quartic vertex is simplified significantly \cite{Dixon:1996wi}:
+\begin{align}
+    \label{eq:sec3:colour-ordered-qubic-vertex}
+    \begin{split}
+        V_{ggg}^{\mu_1 \mu_2 \mu_3}(p_1,p_2,p_3) ={}& \frac{i}{\sqrt{2}}\bigl(\eta^{\mu_{1}\mu_{2}}(p_1-p_2)^{\mu_{3}}+\eta^{\mu_{2}\mu_{3}}(p_2-p_3)^{\mu_{1}} \\
+        {}&+ \eta^{\mu_{3}\mu_{1}}(p_3-p_1)^{\mu_{2}}\bigr)
+    \end{split} \\[2ex]
+    \label{eq:sec3:colour-ordered-quartic-vertex}
+    V_{gggg}^{\mu_1 \cdots \mu_4}(p_1,\dots,p_4) ={}& \frac{i}{2}\bigl(2\eta^{\mu_{1}\mu_{3}}\eta^{\mu_{2}\mu_{4}}-\eta^{\mu_{1}\mu_{2}}\eta^{\mu_{3}\mu_{4}}-\eta^{\mu_{1}\mu_{4}}\eta^{\mu_{2}\mu_{3}}\bigr)
+\end{align}
+In addition, the propagator is written without the colour-indexed Kronecker delta in \eqref{eq:sec3:su(n)-propagator}, namely
+\begin{equation}
+    \Delta_{\mu\nu}(p) = -\frac{i\eta_{\mu\nu}}{p^2} \,.
+\end{equation}
+The colour-ordered three-point amplitude is easily computed by contracting three external polarisation vectors to the vertex in \eqref{eq:sec3:su(n)-cubic-vertex} with the aforementioned replacement. We denote the cubic vertex by $V_{ggg}^{\mu\nu\rho}(p,k,l)$, where the momenta in the parantheses belongs to the leg with corresponding Lorentz index:
+\begin{equation}
+    \begin{split}
+        i A_{ggg}(1,2,3) ={}& {\epsilon_{1}}_{\mu_{1}}{\epsilon_{2}}_{\mu_{2}}{\epsilon_{3}}_{\mu_{3}}V_{ggg}^{\mu_{1}\mu_{2}\mu_{3}}(p_1,p_2,p_3) \\
+        ={}& \frac{i}{\sqrt{2}}\bigl[(\epsilon_{1}\cdot\epsilon_{2})(\epsilon_{3}\cdot{p_{1}}) - (\epsilon_{1}\cdot\epsilon_{2})(\epsilon_{3}\cdot{p_{2}}) + (\epsilon_{2}\cdot\epsilon_{3})(\epsilon_{1}\cdot{p_{2}}) \\
+        {}&- (\epsilon_{2}\cdot\epsilon_{3})(\epsilon_{1}\cdot{p_{3}}) + (\epsilon_{3}\cdot\epsilon_{1})(\epsilon_{2}\cdot{p_{3}}) - (\epsilon_{3}\cdot\epsilon_{1})(\epsilon_{2}\cdot{p_{1}})\bigr]
+    \end{split}
+\end{equation}
+
+We would now like to compute the value of the four-point gauge-field amplitude using the colour-ordered Feynman rules. There are three diagrams contributing to the amplitude. Two of the diagrams are the familiar $s$- and $u$-channel diagrams. The $t$-channel diagram is excluded because of colour-ordering. In addition there is a contributing contact diagram shown, schematically, in Figure~\ref{fig:sec3:4pt-contact-diagram}.
+% \begin{figure}
+%     \centering
+%     \begin{subfigure}[b]{0.3\textwidth}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \tikzset{line/.style={line width=0.8pt}};
+            
+%             \draw[line] (-0.50,0) -- (0.50,0);
+            
+%             \tikzset{shift={(-0.50,0)}};
+%             \node at (135:1.25) {2};
+%             \draw[line] (0,0) -- (135:1);
+%             \node at (225:1.25) {1};
+%             \draw[line] (0,0) -- (225:1);
+            
+%             \tikzset{shift={(1,0)}};
+%             \node at (45:1.25) {3};
+%             \draw[line] (0,0) -- (45:1);
+%             \node at (315:1.25) {4};
+%             \draw[line] (0,0) -- (315:1);
+%         \end{tikzpicture}
+%         \caption{$s$-channel diagram.}
+%         \label{fig:sec3:su(n)-s-channel-diagram}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.3\textwidth}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \tikzset{line/.style={line width=0.8pt}};
+            
+%             \draw[line] (0,0.50) -- (0,-0.50);
+            
+%             \tikzset{shift={(0,-0.5)}};
+%             \node at (225:1.25) {1};
+%             \draw[line] (0,0) -- (225:1);
+%             \node at (315:1.25) {4};
+%             \draw[line] (0,0) -- (315:1);
+            
+%             \tikzset{shift={(0,1)}}
+%             \node at (135:1.25) {2};
+%             \draw[line] (0,0) -- (135:1);
+%             \node at (45:1.25) {3};
+%             \draw[line] (0,0) -- (45:1);
+%         \end{tikzpicture}
+%         \caption{$u$-channel diagram.}
+%         \label{fig:sec3:su(n)-u-channel-diagram}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.3\textwidth}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \tikzset{line/.style={line width=0.8pt}};
+            
+%             \node at (225:1.25) {1};
+%             \draw[line] (0,0) -- (225:1);
+%             \node at (315:1.25) {4};
+%             \draw[line] (0,0) -- (315:1);
+            
+%             \node at (135:1.25) {2};
+%             \draw[line] (0,0) -- (135:1);
+%             \node at (45:1.25) {3};
+%             \draw[line] (0,0) -- (45:1);
+%         \end{tikzpicture}
+%         \caption{Contact diagram}
+%         \label{fig:sec3:su(n)-contact-diagram}
+%     \end{subfigure}
+%     \caption{The three diagrams contributing to the four-point colour-ordered gauge-field amplitude.}
+%     \label{fig:sec3:4pt-colour-ordered-diagrams}
+% \end{figure}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[scale=1]
+        \tikzset{line/.style={line width=0.8pt}};
+        
+        \node at (225:1.25) {1};
+        \draw[line] (0,0) -- (225:1);
+        \node at (315:1.25) {4};
+        \draw[line] (0,0) -- (315:1);
+        
+        \node at (135:1.25) {2};
+        \draw[line] (0,0) -- (135:1);
+        \node at (45:1.25) {3};
+        \draw[line] (0,0) -- (45:1);
+    \end{tikzpicture}
+    \caption{Contact diagram}
+    \label{fig:sec3:4pt-contact-diagram}
+\end{figure}
+The $s$- and $u$-channel diagrams is then given by
+\begin{align}
+\label{eq:sec3:4pt-s-channel-expression}
+    i A_{gggg}^{s}(1,2,3,4) &= {\epsilon_{1}}_{\mu_{1}}{\epsilon_{2}}_{\mu_{2}}{\epsilon_{3}}_{\mu_{3}}{\epsilon_{3}}_{\mu_{4}}V_{ggg}^{\mu_{1}\mu_{2}\nu}(p_1,p_2,P_{34})\Delta_{\nu\rho}(P_{12})V_{ggg}^{\rho\mu_{3}\mu_{4}}(P_{12},p_3,p_4) \\
+\intertext{and}
+\label{eq:sec3:4pt-u-channel-expression}
+    i A_{gggg}^{u}(1,2,3,4) &= {\epsilon_{1}}_{\mu_{1}}{\epsilon_{2}}_{\mu_{2}}{\epsilon_{3}}_{\mu_{3}}{\epsilon_{3}}_{\mu_{4}}V_{ggg}^{\mu_{4}\mu_{1}\nu}(p_4,p_1,P_{23})\Delta_{\nu\rho}(P_{14})V_{ggg}^{\rho\mu_{2}\mu_{3}}(P_{14},p_2,p_3) \,.
+\end{align}
+The value of the contact diagram in Figure is simply the quartic vertex contracted with four polarisation vectors:
+\begin{equation}
+\label{eq:sec3:4pt-contact-expression}
+    \begin{aligned}
+        i A_{gggg}^{c}(1,2,3,4) &= \frac{i}{2}{\epsilon_{1}}_{\mu_{1}}{\epsilon_{2}}_{\mu_{2}}{\epsilon_{3}}_{\mu_{3}}{\epsilon_{3}}_{\mu_{4}}(2\eta^{\mu_{1}\mu_{3}}\eta^{\mu_{2}\mu_{4}}-\eta^{\mu_{1}\mu_{2}}\eta^{\mu_{3}\mu_{4}}-\eta^{\mu_{1}\mu_{4}}\eta^{\mu_{2}\mu_{3}}) \\[2ex]
+        &= \frac{i}{2}\bigl[2(\epsilon_{1}\cdot\epsilon_{3})(\epsilon_{2}\cdot\epsilon_{4}) - (\epsilon_{1}\cdot\epsilon_{2})(\epsilon_{3}\cdot\epsilon_{4}) - (\epsilon_{1}\cdot\epsilon_{4})(\epsilon_{2}\cdot\epsilon_{3})\bigr] \,.
+    \end{aligned}
+\end{equation}
+The full four-point amplitude is the sum of \eqref{eq:sec3:4pt-s-channel-expression}, \eqref{eq:sec3:4pt-u-channel-expression} and \eqref{eq:sec3:4pt-contact-expression} and is given by, dropping the explicit dot-notation for compactness,
+\begin{equation}
+\label{eq:sec3:4pt-ym-amplitude}
+    \begin{split}
+        A_{gggg}(1,2,3,4) ={}& A_{gggg}^{s}(1,2,3,4) + A_{gggg}^{u}(1,2,3,4) + A_{gggg}^{c}(1,2,3,4) \\[2ex]
+        ={}&\frac{1}{s(s+t)}\Bigl(t(s+t)\ee{1}{2}\ee{3}{4} + s(s+t)\ee{1}{3}\ee{2}{4} - st\ee{1}{4}\ee{2}{3} \\[1ex]
+        {}&+ 2s\bigl[\ee{1}{2}\ep{3}{1}\ep{4}{2} + \ee{1}{3}\ep{2}{3}\ep{4}{2} + \ee{1}{3}\ep{2}{1}\ep{4}{3} \\
+        {}&+ \ee{1}{3}\ep{2}{3}\ep{4}{3} + \ee{1}{4}\ep{2}{1}\ep{3}{1} + \ee{1}{4}\ep{2}{3}\ep{3}{1} \\
+        {}&- \ee{2}{3}\ep{1}{3}\ep{4}{2} - \ee{2}{4}\ep{1}{2}\ep{3}{1} + \ee{2}{4}\ep{1}{3}\ep{3}{2} \\
+        {}&- \ee{3}{4}\ep{1}{3}\ep{2}{1} - \ee{3}{4}\ep{1}{3}\ep{2}{3}\bigr] \\[1ex]
+        {}&+ 2t\bigl[\ee{1}{2}\ep{3}{1}\ep{4}{2} + \ee{1}{2}\ep{3}{2}\ep{4}{2} + \ee{1}{2}\ep{3}{2}\ep{4}{3} \\
+        {}&+ \ee{1}{3}\ep{2}{1}\ep{4}{3} + \ee{1}{4}\ep{2}{1}\ep{3}{1} + \ee{1}{4}\ep{2}{1}\ep{3}{2} \\
+        {}&- \ee{2}{3}\ep{1}{2}\ep{4}{3} - \ee{2}{4}\ep{1}{2}\ep{3}{1} - \ee{2}{4}\ep{1}{2}\ep{3}{2} \\
+        {}&- \ee{3}{4}\ep{1}{3}\ep{2}{1} + \ee{3}{4}\ep{1}{2}\ep{2}{3}\bigr]\Bigr) \,.
+    \end{split}
+\end{equation}
+
+
+
+
+\subsection{Einstein gravity}\label{subsec:graviton-fields}
+
+%\begin{description}
+%    \item [Einstein-Hilbert gravity]
+%\end{description}
+
+In the following we will consider the perturbative expansion of Einstein-Hilbert (EH) gravity. As is well known, the coupling constant of EH has positive mass dimension, and is thus not renormalisable in the scheme of perturbative QFT. However, when viewed as an effective field theory, meaning valid at low energies relative to the Planck scale, we are free to do computations in the same manner as in the previous section, deriving Feynman rules from a Lagrangian density.
+
+%{\color{blue} here I consider building the Lagrangian from the commutator of the covariant derivative, mirroring the previous sections}
+%
+%In analogy with the discussion of gauge fields in the previous section, we consider now a massive scalar field, $\phi$, transforming under a local coordinate transformation:
+%\begin{equation}
+%    x^{\mu} \rightarrow x'^{\mu} = x^{\mu} + a^{\mu}(x) \,,
+%\end{equation}
+%This is known as a general coordinate transformation. 
+
+The Einstein-Hilbert Lagrangian is given by
+\begin{equation}
+\label{eq:sec3:eh-lagrangian}
+    \mathcal{L}_{\mathrm{EH}} = \frac{2}{\kappa^2}\sqrt{-g}R \,,
+\end{equation}
+where the coupling constant is $\kappa = \sqrt{32\pi{G}}$, $g_{\mu\nu}$ the metric tensor and $g = \det g_{\mu\nu}$. The square root-factor comes from the fact that $d^4x \sqrt{-g}$ is a well-defined measure, which is diffeomorphism invariant \cite{Donoghue:2017pgk}.
+%a correction of the measure in the action integral,
+%\begin{equation}
+%    S=\int{d^{4}y\,\mathcal{L}} = \int{d^{4}x\,\sqrt{-g}\,\mathcal{L}} \,,
+%\end{equation}
+%when going to curved space. 
+Here, we include the factor $\sqrt{-g}$ in the Lagrangian, avoiding a notation involving the action. $R = g^{\mu\nu}R_{\mu\nu}$ is the metric contraction of the Ricci tensor, also known as the scalar curvature. The Ricci tensor is given by \cite{Donoghue:1994dn}:
+\begin{equation}
+    R_{\mu\nu} = \del_{\nu}\Gamma_{\mu\lambda}^{\lambda} - \del_{\lambda}\Gamma_{\mu\nu}^{\lambda} + \Gamma_{\mu\lambda}^{\sigma}\Gamma_{\nu\sigma}^{\lambda} - \Gamma_{\mu\nu}^{\sigma}\Gamma_{\lambda\sigma}^{\lambda}
+\end{equation}
+Here, $\Gamma$ denotes the Christoffel symbol and is defined in terms of the metric by:
+\begin{equation}
+    \Gamma_{\nu\rho}^{\mu} = \frac{1}{2}g^{\mu\sigma}(\del_{\nu}g_{\sigma\rho} + \del_{\rho}g_{\sigma\nu} - \del_{\sigma}g_{\nu\rho})
+\end{equation}
+In the weak field limit, the metric can be parameterized as
+\begin{equation}\label{matric-expansion}
+    g_{\mu\nu} = \eta_{\mu\nu} + \kappa\,h_{\mu\nu} \,,
+\end{equation}
+where $\eta_{\mu\nu}$ is the flat metric and the second term is an exitation of Minkowski space, capturing any curvature in our space. We identify $h_{\mu\nu}$ with the graviton field. Then, the inverse metric is given by an expansion of the graviton field in powers of the coupling constant:
+\begin{equation}
+\label{eq:sec3:metric-expansion}
+    g^{\mu\nu} = \eta^{\mu\nu} - \kappa\,h^{\mu\nu} + \kappa^2\,h^{\mu\rho}h_{\rho}{}^{\nu} - \kappa^3\,h^{\mu\rho}h_{\rho}{}^{\sigma}h_{\sigma}{}^{\nu} + \kappa^4\,h^{\mu\rho}h_{\rho}{}^{\sigma}h_{\sigma}{}^{\lambda}h_{\lambda}{}^{\nu} + \mathcal{O}(\kappa^5)
+\end{equation}
+Similarily, the expansion of $\sqrt{-g}$ is given by
+\begin{equation}
+    \sqrt{-g} = 1 + \frac{1}{2}\kappa\,h - \frac{1}{4}\kappa^2\Bigl((h_{\mu\nu})^2 - \frac{1}{2}h^2\Bigr) + \frac{1}{6}\kappa^3\Bigl(h_{\mu}{}^{\nu}h_{\nu}{}^{\rho}h_{\rho}{}^{\mu} - \frac{3}{4}h(h_{\mu\nu})^2 + \frac{1}{8}h^3\Bigr) + \mathcal{O}(\kappa^4) \,,
+\end{equation}
+where we have defined $h \equiv h_{\mu}{}^{\mu}$ and $(h_{\mu\nu})^2 \equiv h_{\mu\nu}h^{\mu\nu}$. The Lagrangian in \eqref{eq:sec3:eh-lagrangian} is invariant under the local  translation
+\begin{equation}
+    x^{\mu} \rightarrow x'^{\mu} = x^{\mu} + \xi^{\mu}(x) \,,
+\end{equation}
+which is known as a general coordinate transformation. This entails, to linear order, the following transformation for the graviton-field:
+\begin{equation}
+    h_{\mu\nu} \rightarrow h'_{\mu\nu} = h_{\mu\nu} + \del_{\mu}\xi_{\nu} + \del_{\nu}\xi_{\mu}
+\end{equation}
+This is a gauge transformation for the graviton field, thus indicating the necessity to add a gauge-fixing term to \eqref{eq:sec3:eh-lagrangian} in order to derive Feynman rules. One possible choice of gauge is the de Donder gauge \cite{Cheung:2020gyp}, given by
+\begin{equation}
+\label{eq:sec3:de-donder-gauge-fixing-term}
+    \mathcal{L}_{\mathrm{gf}} = -\Big(\partial^\nu h_{\mu\nu} - \frac{1}{2}\del_{\mu}h\Big)^2 \,,
+\end{equation}
+where $h$ denotes the trace of the graviton field, $h \equiv \eta_{\mu\nu}h^{\mu\nu} = h_{\mu}{}^{\mu}$. Now, inserting the expansion \eqref{eq:sec3:metric-expansion} into the gauge fixed EH Lagrangian, we can order the resulting terms in powers of the coupling constant. This gives, schematically,
+\begin{equation}
+    \mathcal{L}_{\mathrm{EH}} = \mathcal{L}_{hh} + \mathcal{L}_{\mathrm{gf}} + \kappa\mathcal{L}_{hhh} + \kappa^2\mathcal{L}_{hhhh} + \mathcal{O}(\kappa^3) \,,
+\end{equation}
+where the order of the field in each term is given by the subscript. We note that the gauge-fix in \eqref{eq:sec3:de-donder-gauge-fixing-term} only affects the propagator, like we saw with the $R_\xi$-gauges in YM. Up to quadratic order in the coupling constant we get terms in the Lagrangian that produce a propagator, a cubic- and a quartic vertex. Most of the computations in the remaining part of this chapter have been done with the aid of \texttt{FeynRules} \cite{Alloul:2013bka}, a \textsc{Mathematica} package.
+
+The gauge-fixed two-point Lagrangian is given by
+\begin{equation}
+\label{eq:sec3:lagrangian-propagator}
+    \begin{split}
+        % \mathcal{L}_{hh} ={}& 2 h^{\mu\nu} \del_{\nu}\del_{\mu}h^{\rho}{}_{\rho}-4 h^{\mu\nu} \del_{\nu}\del_{\rho}h_{\mu}{}^{\rho}- \frac{3}{4}\del_{\nu}h^{\rho}{}_{\rho} \del^{\nu}h^{\mu}{}_{\mu} -3 \del_{\mu}h^{\mu\nu} \del_{\rho}h_{\nu}{}^{\rho}+3 \del^{\nu}h^{\mu}{}_{\mu} \del_{\rho}h_{\nu}{}^{\rho} \\
+        % {}&+ h^{\mu}{}_{\mu} \del_{\rho}\del_{\nu}h^{\nu\rho} + 2 h^{\mu\nu} \del_{\rho}\del^{\rho}h_{\mu\nu}-h^{\mu}{}_{\mu} \del_{\rho}\del^{\rho}h^{\nu}{}_{\nu}-\del_{\nu}h_{\mu\rho} \del^{\rho}h^{\mu\nu} + \frac{3}{2}\del_{\rho}h_{\mu\nu} \del^{\rho}h^{\mu\nu} \\
+        \mathcal{L}_{hh} ={}& 2 h^{\mu\nu}\,\del_{\nu}\del_{\mu}h-4 h^{\mu\nu}\,\del_{\nu}\del_{\rho}h_{\mu}{}^{\rho}- \frac{3}{4}(\del_{\mu}h)^2 -3 \del_{\mu}h^{\mu\nu}\,\del_{\rho}h_{\nu}{}^{\rho}+3 \del^{\nu}h\,\del_{\rho}h_{\nu}{}^{\rho} \\
+        {}&+ h\,\del_{\rho}\del_{\nu}h^{\nu\rho} + 2 h^{\mu\nu}\,\del^{2}h_{\mu\nu}-h\, \del^{2}h-\del_{\nu}h_{\mu\rho}\,\del^{\rho}h^{\mu\nu} + \frac{3}{2}(\del_{\mu}h_{\nu\rho})^{2} \\
+        ={}&- 2 \del_{\nu}h^{\mu\nu}\,\del_{\mu}h + 4 \del_{\nu}h^{\mu\nu}\,\del_{\rho}h_{\mu}{}^{\rho}- \frac{3}{4}(\del_{\mu}h)^2 -3 \del_{\mu}h^{\mu\nu}\,\del_{\rho}h_{\nu}{}^{\rho}+3 \del^{\nu}h\,\del_{\rho}h_{\nu}{}^{\rho} \\
+        {}&- \del_{\rho}h\,\del_{\nu}h^{\nu\rho} - 2 (\del_{\rho}h_{\mu\nu})^2 + (\del_{\mu}h)^{2} - \del^{\rho}h_{\mu\rho}\,\del_{\nu}h^{\mu\nu} + \frac{3}{2}(\del_{\mu}h_{\nu\rho})^{2} \\
+        ={}& \frac{1}{4}(\del_{\mu}h)^2 - \frac{1}{2}(\del_{\mu}h_{\nu\rho})^2
+    \end{split}
+\end{equation}
+To arrive at the last equality in \eqref{eq:sec3:lagrangian-propagator}, we perform some integrations-by-parts in the second equality, which makes it apparent that six of the terms vanish. Specifically, the first, fifth and sixth term sums to zero. The same goes for the second, fourth and ninth term. The remaining terms evaluates, after performing integration-by-parts on the seventh and eigth term, to the compact form given. The cubic Lagrangian is given by the following 28 terms:
+%\\{\color{blue} Hi Zhengwen, the full form of the quartic Lagrangian should probably go in the appendix, maybe also the cubic Lagrangian.}\\
+%\zl{Yes, to me, it's fine to display the 3-graviton here and put the 4-graviton to an appendix. But the 4-graviton is not very lengthy, so it's also not a problem if you want to present it in the main text here.}
+\begin{equation}
+    \begin{split}
+        \mathcal{L}_{hhh} ={}& -\frac{3}{2}h^{\mu\nu}\,\del_{\mu}h^{\rho\sigma}\,\del_{\nu}h_{\rho\sigma}+\frac{1}{2}h^{\mu\nu}\,\del_{\mu}h\,\del_{\nu}h-2 h^{\mu\nu}\,\del_{\nu}h\,\del_{\rho}h_{\mu}{}^{\rho}-2 h^{\mu\nu}\,\del_{\nu}h_{\mu}{}^{\rho}\,\del_{\rho}h \\
+        {}&-2 h_{\mu}{}^{\rho}\,h^{\mu\nu}\,\del_{\rho}\del_{\nu}h + h\,h^{\nu\rho}\,\del_{\rho}\del_{\nu}h + 4 h_{\mu}{}^{\rho}\,h^{\mu\nu}\,\del_{\rho}\del_{\sigma}h_{\nu}{}^{\sigma}-2 h\,h^{\nu\rho}\,\del_{\rho}\del_{\sigma}h_{\nu}{}^{\sigma} \\
+        {}&+h^{\mu\nu}\,\del_{\rho}h\,\del^{\rho}h_{\mu\nu}-\frac{1}{4}h(\del_{\rho}h)^{2} + 2 h^{\mu\nu}\,\del_{\rho}h_{\mu}{}^{\rho}\,\del_{\sigma}h_{\nu}{}^{\sigma} + 4 h^{\mu\nu}\,\del_{\nu}h_{\mu}{}^{\rho}\,\del_{\sigma}h_{\rho}{}^{\sigma} \\
+        {}&- h\,\del_{\nu}h^{\nu\rho}\,\del_{\sigma}h_{\rho}{}^{\sigma} - 2 h^{\mu\nu}\,\del^{\rho}h_{\mu\nu}\,\del_{\sigma}h_{\rho}{}^{\sigma} + h\,\del^{\rho}h\,\del_{\sigma}h_{\rho}{}^{\sigma} + 2 h^{\mu\nu}\,h^{\rho\sigma}\,\del_{\sigma}\del_{\nu}h_{\mu\rho} \\
+        {}&- 2 h^{\mu\nu}\,h^{\rho\sigma}\,\del_{\sigma}\del_{\rho}h_{\mu\nu} - \frac{1}{2}h_{\mu\nu}\,h^{\mu\nu}\,\del_{\sigma}\del_{\rho}h^{\rho\sigma} + \frac{1}{4}h^{2}\,\del_{\sigma}\del_{\rho}h^{\rho\sigma} - 2 h_{\mu}{}^{\rho}\,h^{\mu\nu}\,\del^{2}h_{\nu\rho} \\
+        {}&+ h\,h^{\nu\rho}\,\del^{2}h_{\nu\rho} + \frac{1}{2}(h_{\mu\nu})^{2}\,\del^{2}h - \frac{1}{4}h^{2}\,\del^{2}h + 2 h^{\mu\nu}\,\del_{\nu}h_{\rho\sigma}\,\del^{\sigma}h_{\mu}{}^{\rho} \\
+        {}&+ h^{\mu\nu}\,\del_{\rho}h_{\nu\sigma}\,\del^{\sigma}h_{\mu}{}^{\rho} - 3 h^{\mu\nu}\,\del_{\sigma}h_{\nu\rho}\,\del^{\sigma}h_{\mu}{}^{\rho} - \frac{1}{2}h\,\del_{\rho}h_{\nu\sigma}\,\del^{\sigma}h^{\nu\rho} + \frac{3}{4}h\,\del_{\sigma}h_{\nu\rho}\,\del^{\sigma}h^{\nu\rho}
+    \end{split}
+\end{equation}
+The quartic Lagrangian is given by 66 terms:
+\begin{equation}
+    \begin{split}
+        \mathcal{L}_{hhhh} ={}&- h^{\mu\nu} h^{\rho\sigma}\,\del_{\nu}h_{\sigma\lambda}\,\del_{\rho}h_{\mu}{}^{\lambda}+ \frac{3}{2}h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\nu}h^{\sigma\lambda}\,\del_{\rho}h_{\sigma\lambda}- \frac{3}{4}h\,h^{\nu\rho}\,\del_{\nu}h^{\sigma\lambda}\,\del_{\rho}h_{\sigma\lambda} \\
+        {}&- \frac{1}{2}h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\nu}h \del_{\rho}h+ \frac{1}{4}h\,h^{\nu\rho}\,\del_{\nu}h\,\del_{\rho}h + 2 h_{\mu}{}^{\rho} h^{\mu\nu} h^{\sigma\lambda}\,\del_{\rho}\del_{\nu}h_{\sigma\lambda} \\
+        {}&- 4 h_{\mu}{}^{\rho} h^{\mu\nu} h^{\sigma\lambda}\,\del_{\rho}\del_{\lambda}h_{\nu\sigma}+2 h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\rho}h\,\del_{\sigma}h_{\nu}{}^{\sigma}-h\,h^{\nu\rho}\,\del_{\rho}h\,\del_{\sigma}h_{\nu}{}^{\sigma} \\
+        {}&+ 3 h^{\mu\nu} h^{\rho\sigma}\,\del_{\rho}h_{\mu}{}^{\lambda}\,\del_{\sigma}h_{\nu\lambda}-2 h^{\mu\nu} h^{\rho\sigma}\,\del_{\nu}h_{\mu}{}^{\lambda}\,\del_{\sigma}h_{\rho\lambda}+2 h^{\mu\nu} h^{\rho\sigma}\,\del_{\nu}h_{\mu\rho}\,\del_{\sigma}h \\
+        {}&- h^{\mu\nu} h^{\rho\sigma}\,\del_{\rho}h_{\mu\nu}\,\del_{\sigma}h+2 h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\rho}h_{\nu}{}^{\sigma}\,\del_{\sigma}h-h\,h^{\nu\rho}\,\del_{\rho}h_{\nu}{}^{\sigma}\,\del_{\sigma}h \\
+        {}&+ 2 h_{\mu}{}^{\rho} h^{\mu\nu} h_{\nu}{}^{\sigma}\,\del_{\sigma}\del_{\rho}h-h\,h_{\nu}{}^{\sigma} h^{\nu\rho}\,\del_{\sigma}\del_{\rho}h- \frac{1}{2}(h_{\mu\nu})^{2} h^{\rho\sigma}\,\del_{\sigma}\del_{\rho}h \\
+        {}&+ \frac{1}{4}h^{2}\,h^{\rho\sigma}\,\del_{\sigma}\del_{\rho}h -4 h_{\mu}{}^{\rho} h^{\mu\nu} h_{\nu}{}^{\sigma}\,\del_{\sigma}\del_{\lambda}h_{\rho}{}^{\lambda}+2 h\,h_{\nu}{}^{\sigma} h^{\nu\rho}\,\del_{\sigma}\del_{\lambda}h_{\rho}{}^{\lambda} \\
+        {}&+ (h_{\mu\nu})^{2} h^{\rho\sigma}\,\del_{\sigma}\del_{\lambda}h_{\rho}{}^{\lambda}- \frac{1}{2}h^{2}\,h^{\rho\sigma}\,\del_{\sigma}\del_{\lambda}h_{\rho}{}^{\lambda}-h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\sigma}h\,\del^{\sigma}h_{\nu\rho} \\
+        {}&+ \frac{1}{2}h\,h^{\nu\rho}\,\del_{\sigma}h \del^{\sigma}h_{\nu\rho} + \frac{1}{8}(h_{\mu\nu})^{2}\,(\del_{\sigma}h)^{2} - \frac{1}{16}h^{2}(\del_{\sigma}h)^{2} \\
+        {}&- 2 h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\sigma}h_{\nu}{}^{\sigma}\,\del_{\lambda}h_{\rho}{}^{\lambda}+h\,h^{\nu\rho}\,\del_{\sigma}h_{\nu}{}^{\sigma}\,\del_{\lambda}h_{\rho}{}^{\lambda}-4 h^{\mu\nu} h^{\rho\sigma}\,\del_{\nu}h_{\mu\rho}\,\del_{\lambda}h_{\sigma}{}^{\lambda} \\
+        {}&+ 2 h^{\mu\nu} h^{\rho\sigma}\,\del_{\rho}h_{\mu\nu}\,\del_{\lambda}h_{\sigma}{}^{\lambda}-4 h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\rho}h_{\nu}{}^{\sigma}\,\del_{\lambda}h_{\sigma}{}^{\lambda}+2 h\,h^{\nu\rho}\,\del_{\rho}h_{\nu}{}^{\sigma}\,\del_{\lambda}h_{\sigma}{}^{\lambda} \\
+        {}&+ \frac{1}{2}(h_{\mu\nu})^{2}\,\del_{\rho}h^{\rho\sigma}\,\del_{\lambda}h_{\sigma}{}^{\lambda} - \frac{1}{4}h^{2}\,\del_{\rho}h^{\rho\sigma}\,\del_{\lambda}h_{\sigma}{}^{\lambda} + 2 h_{\mu}{}^{\rho} h^{\mu\nu}\,\del^{\sigma}h_{\nu\rho}\,\del_{\lambda}h_{\sigma}{}^{\lambda} \\
+        {}&- h\,h^{\nu\rho}\,\del^{\sigma}h_{\nu\rho}\,\del_{\lambda}h_{\sigma}{}^{\lambda}- \frac{1}{2}(h_{\mu\nu})^{2}\,\del^{\sigma}h\,\del_{\lambda}h_{\sigma}{}^{\lambda} + \frac{1}{4}h^{2}\,\del^{\sigma}h \del_{\lambda}h_{\sigma}{}^{\lambda} \\
+        {}&+ h\,h^{\nu\rho} h^{\sigma\lambda}\,\del_{\lambda}\del_{\rho}h_{\nu\sigma}+2 h_{\mu}{}^{\rho} h^{\mu\nu} h^{\sigma\lambda}\,\del_{\lambda}\del_{\sigma}h_{\nu\rho}-h\,h^{\nu\rho} h^{\sigma\lambda}\,\del_{\lambda}\del_{\sigma}h_{\nu\rho} \\
+        {}&+ \frac{1}{3}h_{\mu}{}^{\rho} h^{\mu\nu} h_{\nu\rho}\,\del_{\lambda}\del_{\sigma}h^{\sigma\lambda} - \frac{1}{4}h\,(h_{\nu\rho})^{2}\,\del_{\lambda}\del_{\sigma}h^{\sigma\lambda} + \frac{1}{24}h^{3}\,\del_{\lambda}\del_{\sigma}h^{\sigma\lambda} \\
+        {}&+ 2 h_{\mu}{}^{\rho} h^{\mu\nu} h_{\nu}{}^{\sigma}\,\del^{2}h_{\rho\sigma}-h\,h_{\nu}{}^{\sigma} h^{\nu\rho}\,\del^{2}h_{\rho\sigma}- \frac{1}{2}(h_{\mu\nu})^{2} h^{\rho\sigma}\,\del^{2}h_{\rho\sigma} \\
+        {}&+ \frac{1}{4}h^{2}\,h^{\rho\sigma}\,\del^{2}h_{\rho\sigma} - \frac{1}{3}h_{\mu}{}^{\rho} h^{\mu\nu} h_{\nu\rho}\,\del^{2}h + \frac{1}{4}h\,(h_{\nu\rho})^{2}\,\del^{2}h \\
+        {}&- \frac{1}{24}h^{3}\,\del^{2}h + 2 h^{\mu\nu} h^{\rho\sigma}\,\del_{\sigma}h_{\rho\lambda}\,\del^{\lambda}h_{\mu\nu}-\frac{1}{2}h^{\mu\nu} h^{\rho\sigma}\,\del_{\lambda}h_{\rho\sigma}\,\del^{\lambda}h_{\mu\nu} \\
+        {}&- 2 h^{\mu\nu} h^{\rho\sigma}\,\del_{\sigma}h_{\nu\lambda}\,\del^{\lambda}h_{\mu\rho} + \frac{3}{2}h^{\mu\nu} h^{\rho\sigma}\,\del_{\lambda}h_{\nu\sigma}\,\del^{\lambda}h_{\mu\rho} - 2 h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\rho}h_{\sigma\lambda}\,\del^{\lambda}h_{\nu}{}^{\sigma} \\
+        {}&+ h\,h^{\nu\rho}\,\del_{\rho}h_{\sigma\lambda}\,\del^{\lambda}h_{\nu}{}^{\sigma}-h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\sigma}h_{\rho\lambda}\,\del^{\lambda}h_{\nu}{}^{\sigma}+ \frac{1}{2}h\,h^{\nu\rho}\,\del_{\sigma}h_{\rho\lambda}\,\del^{\lambda}h_{\nu}{}^{\sigma} \\
+        {}&+ 3 h_{\mu}{}^{\rho} h^{\mu\nu}\,\del_{\lambda}h_{\rho\sigma}\,\del^{\lambda}h_{\nu}{}^{\sigma} - \frac{3}{2}h\,h^{\nu\rho}\,\del_{\lambda}h_{\rho\sigma}\,\del^{\lambda}h_{\nu}{}^{\sigma} + \frac{1}{4}(h_{\mu\nu})^{2}\,\del_{\sigma}h_{\rho\lambda}\,\del^{\lambda}h^{\rho\sigma} \\
+        {}&- \frac{1}{8}h^{2}\,\del_{\sigma}h_{\rho\lambda}\,\del^{\lambda}h^{\rho\sigma}- \frac{3}{8}(h_{\mu\nu})^{2}(\del_{\lambda}h_{\rho\sigma})^{2} + \frac{3}{16}h^{2}(\del_{\lambda}h_{\rho\sigma})^{2}
+    \end{split}
+\end{equation}
+The graviton propagator derived from \eqref{eq:sec3:lagrangian-propagator} is given by \cite{Cheung:2020gyp}
+\begin{equation}
+    \Delta_{\mu\nu\rho\sigma}(p) = \frac{iP_{\mu\nu\rho\sigma}}{p^2} \,, \quad P_{\mu\nu\rho\sigma} = \frac{1}{2}\Bigl(\eta_{\mu\rho}\eta_{\nu\sigma} + \eta_{\mu\sigma}\eta_{\nu\rho} - \frac{2}{D-2}\eta_{\mu\nu}\eta_{\rho\sigma}\Bigr) \,.
+\end{equation}
+The three graviton vertex includes 495 terms and the four graviton vertex has 7770 terms. The general structure of the vertices are given in the following:
+\begin{align}
+    \begin{split}
+        V_{hhh}^{\mu_1\nu_1\mu_2\nu_2\mu_3\nu_3}(p_1,p_2,p_3) ={}& \frac{i}{2}\bigl(2p_{1}^{\mu_3}p_{1}^{\nu_3} + \frac{3}{2}p_{1}^{\mu_3}p_{2}^{\nu_3} + \cdots\bigr)\eta^{\mu_1\nu_1}\eta^{\mu_2\nu_2} \\
+        {}&- \frac{i}{2}\bigl({p_1}\cdot{p_1} + {p_1}\cdot{p_2} + \cdots\bigr)\eta^{\mu_{1}\nu_{3}}\eta^{\mu_{3}\nu_{1}}\eta^{\mu_{2}\nu_{2}} + \cdots
+    \end{split} \\[2ex]
+    \begin{split}
+        V_{hhhh}^{\mu_1\nu_1\cdots\mu_4\nu_4}(p_1,\dots,p_4) ={}& \frac{i}{4}\bigl(2p_{1}^{\mu_4}p_{1}^{\nu_4} + p_{2}^{\mu_4}p_{1}^{\nu_4} + \cdots \bigr)\eta^{\mu_1\nu_3}\eta^{\mu_3\nu_1}\eta^{\mu_2\nu_2} \\
+        {}&+ \frac{i}{4}\bigl({p_1}\cdot{p_1} + {p_1}\cdot{p_2} + \cdots\bigr)\eta^{\mu_1\nu_4}\eta^{\mu_4\nu_1}\eta^{\mu_2\nu_3}\eta^{\mu_3\nu_2} + \cdots
+    \end{split}
+\end{align}
+
+
+Now we compute scattering amplitudes using these Feynman rules. Using the cubic vertex, we get the three-graviton amplitude:
+\begin{align}
+    iA_{hhh} ={}& {\epsilon_1}_{\mu_1\nu_1}{\epsilon_2}_{\mu_2\nu_2}{\epsilon_3}_{\mu_3\nu_3}V_{hhh}^{\mu_1\nu_1\mu_2\nu_2\mu_3\nu_3}(p_1,p_2,p_{3})
+\end{align}
+There are four diagrams contributing to the four-graviton amplitude: one diagram for each of the $s$-, $t$- and $u$-channels, as well as a contact diagram. The amplitude is therefore given by the sum of the following expressions:
+\begin{equation}
+    \begin{split}
+        iA_{hhhh}^{s} ={}& {\epsilon_1}_{\mu_1\nu_1}{\epsilon_2}_{\mu_2\nu_2}{\epsilon_3}_{\mu_3\nu_3}{\epsilon_4}_{\mu_4\nu_4}V_{hhh}^{\mu_1\nu_1\mu_2\nu_2\rho\sigma}(p_1,p_2,P_{34})\Delta_{\rho\sigma\lambda\kappa}(P_{12})V_{hhh}^{\lambda\kappa\mu_3\nu_3\mu_4\nu_4}(P_{12},p_3,p_4) \\[2ex]
+        iA_{hhhh}^t ={}& {\epsilon_1}_{\mu_1\nu_1}{\epsilon_2}_{\mu_2\nu_2}{\epsilon_3}_{\mu_3\nu_3}{\epsilon_4}_{\mu_4\nu_4}V_{hhh}^{\mu_1\nu_1\mu_3\nu_3\rho_1\sigma_1}(p_1,p_3,P_{24})\Delta_{\rho\sigma\lambda\kappa}(P_{13})V_{hhh}^{\lambda\kappa\mu_2\nu_2\mu_4\nu_4}(P_{13},p_2,p_4) \\[2ex]
+        iA_{hhhh}^u ={}& {\epsilon_1}_{\mu_1\nu_1}{\epsilon_2}_{\mu_2\nu_2}{\epsilon_3}_{\mu_3\nu_3}{\epsilon_4}_{\mu_4\nu_4}V_{hhh}^{\mu_1\nu_1\mu_4\nu_4\rho\sigma}(p_1,p_4,P_{23})\Delta_{\rho\sigma\lambda\kappa}(P_{14})V_{hhh}^{\lambda\kappa\mu_2\nu_2\mu_3\nu_3}(P_{14},p_2,p_3) \\[2ex]
+        iA_{hhhh}^{c} ={}& {\epsilon_1}_{\mu_1\nu_1}{\epsilon_2}_{\mu_2\nu_2}{\epsilon_3}_{\mu_3\nu_3}{\epsilon_4}_{\mu_4\nu_4}V_{hhhh}^{\mu_1\nu_1\dots\mu_3\nu_4}(p_1,p_2,p_3,p_4)
+    \end{split}
+\end{equation}
+Here, we have expressed the left-right polarisation vectors in leg $i$ using a compact notation, ${{\epsilon_i}_{\mu\nu} \equiv \epsilon_{i,\mu}^L\epsilon_{i,\nu}^R}$.
+
+% \begin{figure}
+%     \centering
+%     \begin{subfigure}[b]{0.2\textwidth}
+%         \centering
+%         \begin{tikzpicture}[scale=0.8]
+%             \tikzset{line/.style={line width=0.8pt}};
+            
+%             \draw[line] (-0.50,0) -- (0.50,0);
+            
+%             \tikzset{shift={(-0.50,0)}};
+%             \node at (135:1.25) {2};
+%             \draw[line] (0,0) -- (135:1);
+%             \node at (225:1.25) {1};
+%             \draw[line] (0,0) -- (225:1);
+            
+%             \tikzset{shift={(1,0)}};
+%             \node at (45:1.25) {3};
+%             \draw[line] (0,0) -- (45:1);
+%             \node at (315:1.25) {4};
+%             \draw[line] (0,0) -- (315:1);
+%         \end{tikzpicture}
+%         \caption{$s$-channel diagram}
+%         \label{fig:sec3:hhhh-s-channel-diagram}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.2\textwidth}
+%         \centering
+%         \begin{tikzpicture}
+%             \tikzset{line/.style={line width=0.8pt}};
+            
+%             \draw[line] (0,0.50) -- (0,-0.50);
+            
+%             \tikzset{shift={(0,-0.5)}};
+            
+%             \node at (225:1.25) {1};
+%             \draw[line] (0,0) -- (225:1);
+%             \node (4) at (315:1.1) {};
+%             \node at (315:1.25) {4};
+            
+%             \tikzset{shift={(0,1)}};
+            
+%             \node at (135:1.25) {2};
+%             \draw[line] (0,0) -- (135:1);
+            
+%             \node at (45:1.25) {3};
+%             \node (3) at (45:1.1) {};
+            
+%             \draw[line] (0,0) -- (4);
+            
+%             \tikzset{shift={(0,-1)}};
+            
+%             \draw[line] (0,0) -- (3);
+%         \end{tikzpicture}
+%         \caption{$t$-channel diagram}
+%         \label{fig:sec3:hhhh-t-channel-diagram}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.2\textwidth}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \tikzset{line/.style={line width=0.8pt}};
+            
+%             \draw[line] (0,0.50) -- (0,-0.50);
+            
+%             \tikzset{shift={(0,-0.5)}};
+%             \node at (225:1.25) {1};
+%             \draw[line] (0,0) -- (225:1);
+%             \node at (315:1.25) {4};
+%             \draw[line] (0,0) -- (315:1);
+            
+%             \tikzset{shift={(0,1)}}
+%             \node at (135:1.25) {2};
+%             \draw[line] (0,0) -- (135:1);
+%             \node at (45:1.25) {3};
+%             \draw[line] (0,0) -- (45:1);
+%         \end{tikzpicture}
+%         \caption{$u$-channel diagram}
+%         \label{fig:sec3:hhhh-u-channel-diagram}
+%     \end{subfigure}
+%     \begin{subfigure}[b]{0.2\textwidth}
+%         \centering
+%         \begin{tikzpicture}[scale=1]
+%             \tikzset{line/.style={line width=0.8pt}};
+            
+%             \node at (225:1.25) {1};
+%             \draw[line] (0,0) -- (225:1);
+%             \node at (315:1.25) {4};
+%             \draw[line] (0,0) -- (315:1);
+            
+%             \node at (135:1.25) {2};
+%             \draw[line] (0,0) -- (135:1);
+%             \node at (45:1.25) {3};
+%             \draw[line] (0,0) -- (45:1);
+%         \end{tikzpicture}
+%         \caption{Contact diagram}
+%         \label{fig:sec3:hhhh-contact-diagram}
+%     \end{subfigure}
+%     \caption{The three diagrams contributing to the four-point colour-ordered gauge-field amplitude.}
+%     \label{fig:sec3:hhhh-diagrams}
+% \end{figure}
+
+
+% \zl{Several terms with typical tensor structures should be okay: like $p^{\mu}p^{\mu} g
+% ^{\mu\nu}g^{\mu\nu}g^{\mu\nu} $ and $p\cdot p g^{\mu\nu}g^{\mu\nu}g^{\mu\nu}g^{\mu\nu} $.
+% }
+
+
+
+
+
+% {\color{red}Ho Jo, printing Feynman rules in a compact format does not make much sense. In this era, few people read Feynman rules directly from a paper, even for short ones. Either showcase several terms to illustrate the structure or to place the complete one in an appendix.}
+
+% {\color{blue} Hi, yes, I understand :)}
+
+% {\color{blue} I am currently understanding the structure of the terms in the cubic vertex. Will try not to spend a lot more time on it}
+
+\vskip 7pt
+Of course, gravity couples to matter. Here we include scalars by making use of the minimal coupling, i.e.
+\begin{equation}
+    \mathcal{L}_{\mathrm{\phi}} = \frac{1}{2}\sqrt{-g}\bigl(g^{\mu\nu}\del_{\mu}\phi\del_{\nu}\phi - m^2\phi^2\bigr) \,.
+\end{equation}
+Similarly expanding this Lagrangian in the weak-field limit yields
+\begin{equation}
+    \mathcal{L}_{\phi} = \mathcal{L}_{0} + \kappa\,\mathcal{L}_{\phi\phi{h}} + \kappa^2\,\mathcal{L}_{\phi\phi{hh}} + \kappa^3\,\mathcal{L}_{\phi\phi{hhh}} + \mathcal{O}(\kappa^4) \,,
+\end{equation}
+where $\mathcal{L}_{0} = \frac{1}{2}\bigl(\del_{\mu}\phi\del^{\mu}\phi - m^2\phi^{2}\bigr)$, reminiscing \eqref{eq:sec3:phi3-lagrangian} of Section \ref{subsec:scalar-fields}, which results in the scalar propagator in \eqref{eq:sec3:phi3-propagator}. The remaining terms, to third order in the coupling constant, are given by:
+\begin{align}
+\label{eq:sec3:2phi-h-lagrangian-term}
+    \mathcal{L}_{\phi\phi{h}} ={}& -\frac{1}{4}h\,\phi^{2}\,m^2 + \frac{1}{4}(\del_{\mu}\phi)^2 - \frac{1}{2}h^{\mu\nu}\,\del_{\mu}\phi\,\del_{\nu}\phi \\
+\label{eq:sec3:2phi-2h-lagrangian-term}
+    \mathcal{L}_{\phi\phi{hh}} ={}& \frac{1}{16}\bigl(h^{2} - 2(h_{\mu\nu})^{2}\bigr)\bigl((\del_{\rho}\phi)^{2} - m^{2}\phi^{2}\bigr) - \frac{1}{4}\bigl(h\,h_{\mu}{}^{\nu} - 2h_{\mu}{}^{\rho}h_{\rho}{}^{\nu}\bigr)\del^{\mu}\phi\del_{\nu}\phi \\
+\label{eq:sec3:2phi-3h-lagrangian-term}
+    \begin{split}
+        \mathcal{L}_{\phi\phi{hhh}} ={}& \frac{1}{96}\bigl(h^3 - 6h(h_{\mu\nu})^2 + 8h_{\mu}{}^{\nu}h_{\nu}{}^{\rho}h_{\rho}{}^{\mu}\bigr)\bigl((\del_{\sigma}\phi)^2 - m^{2}\phi^{2}\bigr) \\
+        & -\frac{1}{16}\bigl(h^{2}h_{\mu}{}^{\nu} - 4h\,h_{\mu}{}^{\rho}\,h_{\rho}{}^{\nu} - 2h_{\mu}{}^{\nu}(h_{\rho\sigma})^{2} + 2h_{\mu}{}^{\rho}h_{\rho}{}^{\sigma}h_{\sigma}{}^{\nu}\bigr)\del^{\mu}\phi\,\del_{\nu}\phi
+    \end{split}
+\end{align}
+The corresponding Feynman rules for the first two vertices are given by
+\begin{align}
+    V_{\phi\phi{h}}^{\mu\nu}(p_1,p_2,p_3) ={}&
+    \frac{i}{2}\bigl(p_{1}^{\mu}p_{2}^{\nu}+p_{2}^{\mu}p_{1}^{\nu}-(m^{2}+{p_1}\cdot{p_2})\eta^{\mu\nu}\bigr)
+    \intertext{and}
+    \begin{split}
+	V_{\phi\phi{hh}}^{\mu_1\nu_1\mu_2\nu_2}(p_1,\dots,p_4) ={}& \frac{i}{4}\bigl[(p_1^{\mu _1}p_2^{\mu _2}+p_2^{\mu _1} p_1^{\mu _2})\eta ^{\nu _1 \nu _2} + (p_1^{\nu _1} p_2^{\nu _2}+p_2^{\nu _1} p_1^{\nu _2})\eta ^{\mu _1 \mu _2} \\
+	{}&- (p_1^{\mu_2}p_2^{\nu_2}+p_2^{\mu_2}p_1^{\nu_2})\eta^{\mu_1\nu_1} - (p_1^{\mu_2}p_2^{\nu_1}+p_2^{\mu_2}p_1^{\nu_1})\eta^{\mu_1\nu_2} \\
+	{}&- (p_1^{\mu_1}p_2^{\nu_2}+p_2^{\mu_1}p_1^{\nu_2})\eta^{\mu_2\nu_1} - (p_1^{\mu_1}p_2^{\nu_1}+p_2^{\mu_1}p_1^{\nu_1})\eta^{\mu_2\nu_2} \\
+	{}&+ (m^2+p_1 \cdot p_2) (\eta ^{\mu _2 \nu _1} \eta ^{\mu _1 \nu _2}+ \eta ^{\mu _1 \nu _1} \eta ^{\mu _2 \nu _2}- \eta ^{\mu _1 \mu _2} \eta ^{\nu _1 \nu _2})\bigr]
+\end{split}
+\end{align}
+
+Now we compute the amplitudes of gravitons and scalars using Feynman rules. The simplest three-point amplitude is
+\begin{equation}
+    \begin{split}
+        i A_{\phi\phi{h}} ={}& {\epsilon_3}_{\mu\nu}\,V_{\phi\phi{h}}^{\mu\nu}(p_1,p_2,p_3) \\
+        ={}& \frac{i}{2}\bigl[({p_1}\cdot{\epsilon_3^L})({p_2}\cdot{\epsilon_3^R}) + ({p_2}\cdot{\epsilon_3^L})({p_1}\cdot{\epsilon_3^R}) - m^2({\epsilon_3^L}\cdot{\epsilon_3^R}) - ({p_1}\cdot{p_2})({\epsilon_3^L}\cdot{\epsilon_3^R})\bigr] \\
+        ={}& \frac{i}{2}\bigl[({p_1}\cdot{\epsilon_3^L})({p_2}\cdot{\epsilon_3^R}) + ({p_2}\cdot{\epsilon_3^L})({p_1}\cdot{\epsilon_3^R})\bigr]
+        \\
+        ={}& -i ({p_1}\cdot{\epsilon_3^L})({p_1}\cdot{\epsilon_3^R})
+    \end{split}
+\end{equation}
+% {\color{blue} Hi Zhengwen, I suppose I can leave the result of the calculations in this section as they appear in FeynRules. Then, in section 4, I can use the results in this section and modify them using momentum conservation, transversality, etc., to make it clear that there is a correspondence between the bootstrap method and using Feynman rules.}
+
+% \zl{Hi Jo, you decide this by yourself :) To me, it would be good to present the only final simplified results, intermediate expressions are really unnecessary. This means: you just need to plug Feynman rules into diagrams, then you get an amplitude, then use on-shell properties and gauge invariance to write the results in terms of independent variables. These can simply be done in MMA; then you just need to convert expressions into a TeX format.}
+
+% {\color{blue} Okay, that seems fine. Then I just present the results in the format of section 4}
+
+% \zl{Yes, when you used amplitudes' properties, such as momentum conservation and transversity, you can refer to Chapter 2. Do everything regarding simplification in MMA :)}
+
+% {\color{blue} Yes!}
+
+% Between the second and third line we have imposed momentum conservation, ${p_1 = -p_2 - p_3}$, transversality, ${p_a \cdot \epsilon_a = 0}$, as well as
+For the scattering of two scalar particles and two gravitons there are four diagrams contributing. Taking leg one and two to be scalars and the remaining legs as gravitons we get the following four expressions:
+\begin{equation}
+    \begin{split}
+        iA_{\phi\phi{hh}}^s &= {\epsilon_3}_{\mu_1\nu_1}{\epsilon_4}_{\mu_2\nu_2}V_{\phi\phi{h}}^{\rho\sigma}(p_1,p_2,P_{34})\Delta_{\rho\sigma\lambda\kappa}(P_{12})V_{hhh}^{\lambda\kappa\mu_1\nu_1\mu_2\nu_2}(P_{12},p_3,p_4) \\[2ex]
+        iA_{\phi\phi{hh}}^t &= {\epsilon_3}_{\mu_1\nu_1}{\epsilon_4}_{\mu_2\nu_2}V_{\phi\phi{h}}^{\mu_1\nu_1}(p_3,p_1,P_{24})\Delta(P_{13})V_{\phi\phi{h}}^{\mu_2\nu_2}(P_{13},p_2,p_4) \\[2ex]
+        iA_{\phi\phi{hh}}^u &= {\epsilon_3}_{\mu_1\nu_1}{\epsilon_4}_{\mu_2\nu_2}V_{\phi\phi{h}}^{\mu_2\nu_2}(p_4,p_1,P_{23})\Delta(P_{14})V_{\phi\phi{h}}^{\mu_1\nu_1}(P_{14},p_2,p_3) \\[2ex]
+        iA_{\phi\phi{hh}}^c &= {\epsilon_3}_{\mu_1\nu_1}{\epsilon_4}_{\mu_2\nu_2}V_{\phi\phi{hh}}^{\mu_1\nu_1\mu_2\nu_2}(p_1,p_2,p_3,p_4)
+    \end{split}
+\end{equation}
+
+% \begin{equation}
+%     \begin{split}
+%         A_{\phi\phi{hh}} ={}& \epsilon_{1,\mu_1}^{L}\epsilon_{1,\nu_1}^{R}\epsilon_{2,\mu_2}^{L}\epsilon_{2,\nu_2}^{R}\,V_{\phi\phi{hh}}^{\mu_1\nu_1\mu_2\nu_2} \\
+%         ={}&- \frac{i}{4}\bigl[({p_4}\cdot{\epsilon_1^L})({p_3}\cdot{\epsilon_2^L})({\epsilon_1^R}\cdot{\epsilon_2^R}) - ({p_3}\cdot{\epsilon_1^L})({p_4}\cdot{\epsilon_2^L})({\epsilon_1^R}\cdot{\epsilon_2^R}) - ({\epsilon_1^L}\cdot{\epsilon_2^R})({p_4}\cdot{\epsilon_2^L})({p_3}\cdot{\epsilon_1^R}) \\
+%         {}&- ({\epsilon_1^L}\cdot{\epsilon_2^R})({p_3}\cdot{\epsilon_2^L})({p_4}\cdot{\epsilon_1^R}) - ({p_4}\cdot{\epsilon_1^L})({\epsilon_2^L}\cdot{\epsilon_1^R})({p_3}\cdot{\epsilon_2^R}) - ({\epsilon_1^L}\cdot{\epsilon_2^L})({p_4}\cdot{\epsilon_1^R})({p_3}\cdot{\epsilon_2^R}) \\
+%         {}&- ({p_3}\cdot{\epsilon_1^L})({\epsilon_2^L}\cdot{\epsilon_1^R})({p_4}\cdot{\epsilon_2^R}) - ({\epsilon_1^L}\cdot{\epsilon_2^L})({p_3}\cdot{\epsilon_1^R})({p_4}\cdot{\epsilon_2^R}) \\
+%         {}&+ ({\epsilon_1^L}\cdot{\epsilon_2^R})({\epsilon_2^L}\cdot{\epsilon_1^R})({p_3}\cdot{p_4}) + ({\epsilon_1^L}\cdot{\epsilon_2^L})({\epsilon_1^R}\cdot{\epsilon_2^R})({p_3}\cdot{p_4})\bigr]
+%     \end{split}
+% \end{equation}
+
+% \begin{equation}
+%     \begin{split}
+%        A_{\phi\phi{hh}} ={}& \epsilon_{3,\mu_1}^{L}\epsilon_{3,\nu_1}^{R}\epsilon_{4,\mu_2}^{L}\epsilon_{4,\nu_2}^{R}\,V_{\phi\phi{hh}}^{\mu_1\nu_1\mu_2\nu_2} \\
+%        {}& \frac{i}{4}\bigl[s ({e_3^L}\cdot{e_4^R}) ({e_4^L}\cdot{e_3^R}) + s ({e_3^L}\cdot{e_4^L}) ({e_3^R}\cdot{e_4^R}) - ({p_2}\cdot{e_3^L}) ({p_1}\cdot{e_4^L}) ({e_3^R}\cdot{e_4^R}) - ({p_1}\cdot{e_3^L}) ({p_2}\cdot{e_4^L}) ({e_3^R}\cdot{e_4^R}) - ({e_3^L}\cdot{e_4^R}) ({p_2}\cdot{e_4^L}) ({p_1}\cdot{e_3^R}) - ({e_3^L}\cdot{e_4^R}) ({p_1}\cdot{e_4^L}) ({p_2}\cdot{e_3^R}) - ({p_2}\cdot{e_3^L}) ({e_4^L}\cdot{e_3^R}) ({p_1}\cdot{e_4^R}) - ({e_3^L}\cdot{e_4^L}) ({p_2}\cdot{e_3^R}) ({p_1}\cdot{e_4^R}) - ({p_1}\cdot{e_3^L}) ({e_4^L}\cdot{e_3^R}) ({p_2}\cdot{e_4^R}) - ({e_3^L}\cdot{e_4^L}) ({p_1}\cdot{e_3^R}) ({p_2}\cdot{e_4^R})\bigr]
+%     \end{split}
+% \end{equation}
+
+% Hi, Zhengwen. Would you agree that this is correct?
+% \begin{equation}
+%     h_{\mu}{}^{\nu}h^{\mu\rho}h_{\rho\nu} = h_{\mu}{}^{\nu}h_{\nu}{}^{\rho}h_{\rho}{}^{\mu}
+% \end{equation}
+% Meaning we can manipulate the indices in that way? Maybe I'm too tired to not see that it isn't allowed...
+
+% Yes, it's correct, $h_{\mu\nu}$ is a symmetric tensor (graviton). 
+% Right, then I'm not too tired after all
+
+% Hi Jo, note the covariant derivativ $\nabla_\mu$ is different with $\nabla^\mu$:  $\nabla_\mu=\partial_\mu$, but $\nabla^\mu = g^{\mu\nu} \partial_\nu = \partial^\nu + \cdots$.
+
+% Yes, I see what you mean!
+
+
+%We consider a system of two gravitationally interacting non-spinning compact objects, which can be described by the following model \cite{Bern:2019nnu,Bern:2019crd,Cheung:2018wkq,Cheung:2020gyp}
+
+
+
+
+
+
+\subsection{Effective interactions}\label{subsec:effective-interactions}
+
+In the previous sections, we explored various fields characterized by spins 0, 1, and 2. We delved into numerous theories where these fields serve as foundational ingredients, including Maxwell theory, Yang-Mills theory, and Hilbert-Einstein theory of gravity. Furthermore, these fields can also provide the building blocks for formulating more (general) theories. In this section, we will present a few notable examples.
+
+%maybe discuss a bit from the low-energy effective action of the bosonic closed strings
+
+\subsubsection{Born-Infield theory}
+
+Born-Infield theory is a non-linear generalization of Maxwell theory, whose Lagrangian reads
+
+\begin{align}
+\mathcal{L}_{\mathrm{BI}}=\ell_{s}^{-2}\left(\sqrt{-\operatorname{det}\left(\eta_{\mu \nu}-\ell_{s} F_{\mu \nu}\right)}-1\right)
+\end{align}
+where $\ell_{s}$ is a coupling constant which is related to the fundamental scale $\ell_{s}=\sqrt{2 \pi \alpha^{\prime}}$ in the context of string theory. 
+Unlike the Maxwell theory, the Born-Infield theory incorporates self-interactions between Abelian gauge fields (photons).To see this, We expand the Lagrangian in the coupling $\ell_{s}$. In four dimensions, we find
+\begin{align}
+-\operatorname{det}\left(\eta_{\mu \nu}-\ell_{s} F_{\mu \nu}\right)=\left(1+\ell_{s}^{2} I_{2}\right)^{2}+2 \ell_{s}^{4} I_{4}
+\end{align}
+with
+\begin{align}
+I_{2} \equiv \frac{1}{4} F_{\mu \nu} F^{\mu \nu}, \quad I_{4} \equiv-\frac{1}{8}\left(F_{\mu \nu} F^{\nu \alpha} F_{\alpha \beta} F^{\beta \mu}-\frac{1}{4}\left(F_{\mu \nu} F^{\mu \nu}\right)^{2}\right)
+\end{align}
+Therefore, then we arrive at
+\begin{align}
+\mathcal{L}_{\mathrm{BI}}= & I_{2}+\ell_{s}^{2} I_{4}-\ell_{s}^{4} I_{2} I_{4}+\ell_{s}^{6}\left(I_{2}^{2}-\frac{1}{2} I_{4}\right) I_{4}+\ell_{s}^{8}\left(\frac{3}{2} I_{2} I_{4}-I_{2}^{3}\right) I_{4}  +\mathcal{O}\left(\ell_{s}^{10}\right)
+\end{align}
+Here the first term $I_2$ is just the Maxwell term, which gives the photon propagator (after taking a proper gauge fixing condition). Higher terms give vertices between photons
+
+
+
+
+\subsubsection{Higher-dimensional interactions of gluons}
+
+The simplest generalization of Yang-Mills is \cite{Broedel:2012rc}
+\begin{align}
+F^3 \sim f^{abc} F^{a}_{\mu\nu}F^{b\nu\rho} F_{\rho}^{c\mu}
+\end{align}
+Expanding it in gluon field $A$, we obtain 3-gluon, 4-gluon, 5-gluon and 6-gluon vertices. For example, the Feynman rules for the 3-gluon and the 4-gluon vertices are given by
+\begin{align}
+V^{\mu_1\mu_2\mu_3}_{~a_1a_2a_3} =
+3  f^{a_1 a_2 a_3}
+\Big(&
+(p_1\cdot p_2) p_3^{\mu _2}  \eta^{\mu_1 \mu_3} 
+- (p_1\cdot p_2) p_3^{\mu _1}  \eta^{\mu_2\mu_3} 
+- (p_1\cdot p_3) p_2^{\mu_3}  \eta^{\mu_1\mu_2} 
++ (p_1\cdot p_3) p_2^{\mu_1}  \eta^{\mu_2\mu_3} 
+\nonumber\\
+&+ (p_2\cdot p_3) p_1^{\mu_3}  \eta^{\mu_1\mu_2} 
+- (p_2\cdot p_3) p_1^{\mu_2}   \eta^{\mu_1\mu_3} 
++ p_1^{\mu_2} p_2^{\mu_3}  p_3^{\mu _1}
+- p_1^{\mu _3} p_2^{\mu _1}  p_3^{\mu _2}
+\Big),
+\end{align}
+and
+\begin{align}
+V^{\mu_1\mu_2\mu_3\mu_4}_{~a_1a_2a_3a_4} =
+3i &  f^{a_1 a_2 c}f^{c a_3 a_4}
+\Big(
+p_1^{\mu _4} p_2^{\mu _3} \eta^{\mu _1\mu _2}
+-p_1^{\mu _3}p_2^{\mu _4} \eta^{\mu _1\mu_2}
++p_3^{\mu _4} p_4^{\mu _2} \eta^{\mu _1\mu _3}
++p_1^{\mu _2}p_2^{\mu _4} \eta^{\mu _1\mu_3}
+\nonumber\\
+&
+-p_1^{\mu _2} p_2^{\mu _3} \eta^{\mu_1\mu_4}
+-p_3^{\mu _2}p_4^{\mu _3} \eta^{\mu_1\mu_4}
+-p_1^{\mu _4} p_2^{\mu _1} \eta^{\mu_2\mu_3}
+-p_3^{\mu _4}p_4^{\mu _1} \eta^{\mu_2\mu_3}
+\nonumber\\
+&
++p_1^{\mu _3} p_2^{\mu _1} \eta^{\mu_2\mu_4}
++p_3^{\mu _1}p_4^{\mu _3}  \eta^{\mu_2\mu_4}
++p_3^{\mu _2} p_4^{\mu _1} \eta^{\mu_3\mu_4}
+-p_3^{\mu _1}p_4^{\mu _2} \eta^{\mu_3\mu_4}
+\nonumber\\
+&
++(p_1\cdot p_2) \eta^{\mu_1\mu_4} \eta^{\mu_2\mu_3}
++(p_3\cdot p_4) \eta^{\mu_1\mu_4} \eta^{\mu_2\mu_3}
+-(p_1\cdot p_2) \eta^{\mu_1\mu_3} \eta^{\mu_2\mu_4}
+-(p_3\cdot p_4) \eta^{\mu_1\mu_3} \eta^{\mu_2\mu_4}
+\Big)
+\nonumber\\
++&\, (234)\to(423) + (234)\to(342).
+\end{align}
+We will not list other Feynman rules, they can be automatically generated with the already mentioned package \texttt{FeynRules} in \textsc{Mathematica}.
+
+
+
+\subsubsection{Gravitational EFTs}
+
+%\href{https://link.springer.com/referenceworkentry/10.1007/978-981-19-3079-9_3-1}{Weak Field Observables from Scattering Amplitudes in Quantum Field Theory}
+%see page 5
+
+One can also treat general relativity as an effective field theory by introducing a series of effective operators with higher derivatives \cite{Bjerrum-Bohr:2022ows}
+\begin{align}
+\sqrt{-g} \Big(c_1 R^2 + c_2 R_{\mu\nu}R^{\mu\nu} + \cdots \Big)
+\end{align}
+Expanding these terms in the weak field limit \eqref{matric-expansion}, one can get the expanded Lagrangian and corresponding vertices.

@@ -1,0 +1,1675 @@
+\newpage
+\section{Bootstrapping the S-matrix}
+\label{sec:bootstrapping-the-s-matrix}
+
+In Chapter 2, we reviewed the basic concepts of scattering amplitudes and their general properties. In Chapter 3, we briefly discussed how to compute scattering amplitudes using Feynman diagrams in the framework of perturbative quantum field theory.
+
+
+In this Chapter, we will present an alternative approach that constructs on-shell scattering amplitudes according to symmetries and properties they obey. This method is referred to as the {\it bootstrap} approach in the literature. Our discussions will massively follow \cite{Boels:2016xhc,Boels:2017gyc}.
+
+
+%From subsection \ref{subsec:ch2-particles} we know that particles in $D$ dimensions are irreducible representations of the group $ISO(D-2)$\footnote{Inhomogeneous rotation group (or Euclidean group) in $D-2$ dimensions. Need to clarify in \ref{subsec:ch2-particles}. that the little group procedure can be extended to $D$ dimensions.}
+
+%\zl{Yes, the structure looks good! When introducing elementary particles as representations of the little group, one can introduce wave functions for these particles (focus on only bosons), i.e 1 for scalars, $\epsilon^\mu$ for vectors and $\epsilon^{\mu\nu}$ for gravitons.
+%Then in the second part of that chapter -- amplitudes, you can focus on describing amplitudes: i) linear in wavefunctions, ii) locality or pole structures.}
+
+%In this section we will explain what bootstrapping method is and how to obtain a set of linear equations that has solutions proportional to various gluon and graviton amplitudes. Section \ref{subsec:ch4-general_idea_and_procedure} will be about the building blocks of the ansatz and the constraints limiting the ansatz to potentially physical amplitudes. The procedure to obtain the linear system follows that of \cite{Boels:2016xhc}.
+
+
+
+%\begin{description}[topsep=10pt, itemsep=0pt, parsep=0pt]
+%	\item Amplitude ansatz; Basis of tensor structures consisting of momentum and polarisation vectors
+%	\item Momentum conservation, transversality
+%	\item Example of tensor structures
+%	\item Gauge invariance constraint
+%	\item 3-gluon example of obtaining equations by imposing gauge invariance
+%	\item Introduce Mandelstam variables and planar kinematic variables
+%	\item 2-gluon 2-scalar example
+%	\item Sketch 4-gluon example
+%	\item General n-point gluon procedure
+%	\item Extension to gravitons
+%	\item Sketch 3-graviton example
+%\end{description}
+
+
+%\zl{The bootstrapping approach for amplitudes is basically built on the fundamental properties of scattering amplitudes, such as Lorentz invariance, locality, unitarity, and gauge invariance (you describe in Chapter 2). More precious, our task of bootstrapping amplitudes can be divided into two/three steps: i) constructing a basis of building blocks that respect the fundamental properties of amplitudes, then an ansatz for a specific amplitude we want; ii) figuring out a set of constraints for the ansatz following the fundamental properties of amplitudes -- a system of homogeneous linear equations of coefficients in the ansatz; iii) solving/reducing the linear system to determine physical amplitudes.}
+
+\subsection{General idea and procedure} \label{subsec:ch4-general_idea_and_procedure}
+
+Let us start with recalling the basic properties of scattering amplitudes we discussed in detail in Chapter 2.
+
+In the scattering of $n$ massless particles, their momenta satisfy the on-shell condition,
+\begin{equation}
+    p_i^2 = 0, \quad i=1,\ldots,n
+\end{equation}
+and momentum conservation,
+\begin{equation}
+\label{chap4-momentum-con}
+    \sum_{i=1}^{n} p_i^\mu = 0 \,.
+\end{equation}
+The scattering amplitude must be multilinear in its external wavefunctions,
+\begin{equation}
+\label{chap4-multilinearity}
+    A_n = \epsilon_{1}^{\mu_1}\epsilon_{2}^{\mu_2}\cdots \epsilon_{n}^{\mu_n} I_{\mu_1\mu_2\cdots\mu_n}(p_1,\ldots,p_n) \,.
+\end{equation}
+Any polarisation vector is transverse to the momentum in the corresponding leg,
+\begin{equation}
+\label{chap4-transversality}
+    \epsilon_i \cdot p_i = 0 \,.
+\end{equation}
+For any gluon, photon or graviton leg, the on-shell scattering amplitude vanishes when replacing the polarisation vector by the corresponding momentum vector,
+\begin{equation}
+\label{chap4-gauge-inv}
+    A(\epsilon_i^\mu \to p_i^\mu) = 0 \,.
+\end{equation}
+We refer to \eqref{chap4-gauge-inv} as on-shell gauge invariance or the Ward identity.
+The amplitude is invariant if the quantum numbers of two indistinguishable particles with integer spins are interchanged,
+\begin{equation}
+    \{\epsilon_i,p_i,a_i\} \leftrightarrow \{\epsilon_j,p_j,a_j\} \,,
+\end{equation}
+known as Bose symmetry.
+Locality is reflected in the scattering amplitudes singularity structure in kinematics. The tree-level amplitude displays the singularity of a simple pole $1/P^2$ when an intermediate massless particle goes on-shell, $P^2 \to 0$. Furthermore, a physical scattering amplitude should also respect other constraints, such as unitarity and causality.
+% \begin{itemize}
+% \item Kinematics: in the scattering of $n$ massless particles, their momenta satisfy the following conditions:
+% \begin{align}
+% &\text{onshellness:} \qquad p_i^2 = 0, \quad i=1,\ldots,n
+% \\
+% &\text{momentum conservation:} \qquad \sum_{i=1}^{n} p_i^\mu = 0.
+% \label{chap4-momentum-con}
+% \end{align}
+
+% \item Multilinearity: the scattering amplitude must be multi-linear in their external wavefunctions
+% \begin{align}\label{chap4-multilinearity}
+% A_n = \epsilon_{1}^{\mu_1}\epsilon_{2}^{\mu_2}\cdots \epsilon_{n}^{\mu_n} I_{\mu_1\mu_2\cdots\mu_n}(p_1,\ldots,p_n).
+% \end{align}
+
+% \item Transversality: any polarisation is transverse to its momentum,
+% \begin{align}\label{chap4-transversality}
+% \epsilon_i \cdot p_i = 0.
+% \end{align}
+
+% \item Gauge invariance: for any gluon, photon, or graviton leg, the on-shell scattering amplitude vanishes if replacing its polarization by its momentum
+% \begin{align}\label{chap4-gauge-inv}
+% A(\epsilon_i^\mu \to p_i^\mu) = 0.
+% \end{align}
+
+% \item Bose symmetry: the amplitude is invariant if the quantum numbers of two indistinguishable particles with integer spins are interchanged.
+
+% \item Locality is reflected in the scattering amplitudes's singularity structure in kinematics. The tree-level amplitude displays the singularity of a simple pole $1/P^2$ when an intermediate particle on-shell $P^2\to 0$.
+
+% \end{itemize}
+
+\vskip 5pt
+The foundational concept behind bootstrapping the S-matrix is that on-shell scattering amplitudes can be determined by their intrinsic properties, such as symmetry and analyticity. In this work we consider only massless bosons up to spin 2. We delve into this methodology with a detailed explanation in the following.
+
+As a preliminary step, for a given set of external particles, one can write down all possible Lorentz invariants that are linear in the polarisation vectors for each gluon or gravition, essentially taking a form similar to \eqref{chap4-multilinearity}. Additionally, we adhere to conditions \eqref{chap4-momentum-con} and \eqref{chap4-multilinearity} to guarantee translation symmetry and transversality. Following these constraints, we can identify a set of all possible independent terms, denoted by $\vec{T}$. Subsequently, an ansatz for the amplitude can be formulated as
+\begin{align}\label{eq:sec4:ansatz}
+	A = \sum_{i}\alpha_{i}\,T_{i} \,,
+\end{align}
+where ${\vec{\alpha}} = (\alpha_1, \alpha_2,\ldots)$ represents a vector of coefficients, which may depend on the Mandelstam variables.
+
+On-shell gauge invariance, as outlined in \eqref{chap4-gauge-inv}, imposes a series of constraints on the undetermined coefficients $\vec{\alpha}$ in ansatz \eqref{eq:sec4:ansatz}. Specifically, for each gluon or graviton leg, we have:
+\begin{align}\label{}
+\sum_{i}\alpha_{i}T_{i}\Big|_{\epsilon_j\to p_j} = 0
+\quad\Longrightarrow\quad
+\sum_{i} \alpha_{i}\bigg(\sum_{j} M_{ji} x_{j}\Bigg) = 0
+\end{align}
+Here, by substituting one of the polarizations with the corresponding momentum for all terms in $\vec{T}$, a set of independent Lorentz scalar products is derived, denoted by $\vec{X}=(x_1,x_2,\ldots)$. In the equation above, the coefficients $M_{ji}$ are either constants or functions linear in the Mandelstam variables. Given the independence of elements in $X$, it necessitates that for every $x_j\in {X}$, the equation $\sum_{i} M_{ji} \alpha_{i} = 0$ holds true. Thus, on-shell gauge invariance introduces the following constraint:
+\begin{align}\label{chap4-bootstrap-eq}
+M\cdot \alpha = 0 \,,
+\end{align}
+formulating a system of homogeneous linear equations.
+
+Reducing and solving the linear system in \eqref{chap4-bootstrap-eq} provides all possible independent solutions for the coefficients, which ultimately determine the allowed forms of the scattering amplitude. As we will further elaborate, the complexity of solving these linear systems increases factorially with the number of particles involved, making the resolution of these constraints notably challenging for large $n$.
+
+Once we have obtained all possible solutions satisfying the constraints in \eqref{chap4-bootstrap-eq}, the next step is to identify the specific theories they correspond to. This necessitates a further examination of various specific properties, such as analyticity, symmetry and asymptotic behaviours in various kinematic limits.
+% \begin{itemize}
+% \item Ansatz: As a preliminary step, for a given set of extermal particles, one can write down all possible Lorentz inraviants that must be linear in the polarization for each gluon or gravition, essentially taking a form similar to \eqref{chap4-multilinearity}. Additionally, we adhere to conditions \eqref{chap4-momentum-con} and \eqref{chap4-multilinearity} to guarantee translation symmetry and transversality. Following these constraints, we can identify a set of all possible independent terms, denoted by $\vec{T}$. Subsequently, an ansatz for the amplitude can be formulated as:
+% \begin{align}\label{eq:sec4:ansatz}
+% 	A = \sum_{i}\alpha_{i}\,T_{i} \,,
+% \end{align}
+% where ${\vec{\alpha}} = (\alpha_1, \alpha_2,\ldots)$ represents a vector of coefficients, which may depend on the Mandelstam variables.
+
+% \item On-shell gauge invariance: This property, as outlined in \eqref{chap4-gauge-inv}, imposes a series of constraints on the undetermined coefficients $\vec{\alpha}$ in ansatz \eqref{eq:sec4:ansatz}. Specifically, for each gluon or graviton leg, we have:
+% \begin{align}\label{}
+% \sum_{i}\alpha_{i}T_{i}\Big|_{\epsilon_j\to p_j} = 0
+% \quad\Longrightarrow\quad
+% \sum_{i} \alpha_{i}\bigg(\sum_{j} M_{ji} x_{j}\Bigg) = 0
+% \end{align}
+% Here by substituting one of the polarizations with the corresponding momentum for all terms in $\vec{T}$, a set of independent Lorentz scalar products is derived, denoted by $\vec{X}=(x_1,x_2,\ldots)$. In the equation above, the coefficients $M_{ji}$ are either constants or functions linear in the Mandelstam variables. Given the independence of elements in $X$, it necessitates that for every $x_j\in {X}$, the equation $\sum_{i} M_{ji} \alpha_{i} = 0$ holds true. Thus, on-shell gauge invariance introduces the following constraint:
+% \begin{align}\label{chap4-bootstarp-eq}
+% M\cdot \alpha = 0\,,
+% \end{align}
+% formulating a system of homogeneous linear equations.
+
+% \item Reducing the linear system: Solving \eqref{chap4-bootstarp-eq} provides all possible independent solutions for the coefficients, which ultimately determine the allowed forms of the scattering amplitude. As we will further elaborate, the complexity of solving these linear systems increases factorially with the number of particles involved, making the resolution of these constraints notably challenging for large $n$.
+
+% \item Identification: Once we have obtained all possible solutions satisfying the constraints in \eqref{chap4-bootstarp-eq}, the next step is to identify the specific theories they correspond to. This necessitates a further examination of various specific properties, such as analyticity, symmetry and asymptotic behaviours in various kinematic limits.
+
+% \end{itemize}
+
+
+
+
+%%%%%%%%%% will check
+%%%%%%%%%% will check
+%%%%%%%%%% will check
+%%%%%%%%%% will check
+
+%
+%
+%\newpage
+%{\color{blue}The following will be removed or added to the above.}
+%
+%For any given amplitude we will have terms consisting of dot products of the form $\epsilon\cdot\epsilon$ and $p\cdot\epsilon$ in the ansatz. It is convenient to categorise these terms by the number of contractions between polarisation vectors each term consists of.
+%
+%Given an ansatz $\vec{T}$ with $n$ polarisation vectors in each element, we want to see how it transforms under the replacements $\epsilon_{i} \rightarrow p_{i}$ for each leg in the $n$-point amplitude. Since for each replacement $A_{n}(\epsilon_{i}\rightarrow{p_{i}})=0$, the same is true for the ansatz:
+%\begin{equation} \label{eq:sec4:on-shell_gauge_inv}
+%	\vec{O}_i\cdot\vec{\alpha} = \vec{T}|_{\epsilon_{i}\rightarrow{p_i}}\cdot\vec{\alpha} = 0 \,,
+%\end{equation}
+%for some coefficient vector $\vec{\alpha}$.
+%By imposing \eqref{eq:sec4:on-shell_gauge_inv} for each polarisation vector in the ansatz, we obtain a new set of independent tensor structures $\vec{X}$ with $n-1$ polarisation vectors. The equations obtained will include $\vec{X}$ and coefficients $\alpha$, which are functions of scalars and Mandelstam variables. Since the elements of $\vec{X}$ are independent, each coefficient must separately be zero when expressing \eqref{eq:sec4:on-shell_gauge_inv} in terms of the new basis\footnote{The number of independent tensor structures in $\vec{X}$ is the maximal number of independent equations in the linear system. Often the number of independent equations are smaller. Especially when limiting the ansatz to not include terms of the form $(p\cdot\epsilon)^n)$}. The dimension of $\vec{X}$ is usually larger than the dimension of $\vec{T}$.
+%
+%When implementing \eqref{eq:sec4:on-shell_gauge_inv} for each polarisation vector, we sum everything together to obtain one large sum,
+%\begin{equation}
+%	\sum_{i}\vec{\alpha}\cdot\vec{O}_i = 0 \,.
+%\end{equation} 
+%Expressing this sum in terms of the new basis $\vec{X}$ leads to
+%\begin{equation}
+%	\vec{f}(\alpha,s)\cdot\vec{X} = 0 \implies f_i(\alpha,s) = 0 \,.
+%\end{equation}
+%Where $f_i(\alpha,s)$ is the set of equations to be solved. The solutions are then the sought after scattering amplitude candidates.
+%
+%By imposing the on-shell gauge invariance condition, we obtain a set of relations between tensor structures, consisting of factors of the form $\epsilon\cdot\epsilon$ and $\epsilon\cdot{p}$, and Mandelstam invariants, which necessarily equates to zero. We can write this as
+%\begin{equation}
+%	\sum_{i,j}O_i\alpha_{j} = 0 \,,
+%\end{equation}
+%where $\vec{\alpha}$ is a coefficient vector with the same dimension as the ansatz $T$.
+%
+%When performing the replacement $\epsilon_i \rightarrow p_i$ for each polarisation vector in the ansatz, there will be transformations ${\epsilon_i\cdot{p_j} \rightarrow \frac{1}{2}s_{ij}}$ and ${\epsilon_i\cdot\epsilon_j \rightarrow p_i\cdot\epsilon_j}$, where momentum conservation is imposed whenever possible. E.g., in the four-point case, when replacing the polarisation vector in the fourth leg with its momenta, the transformation for $\epsilon_2 \cdot p_4$ looks like
+%\begin{equation}
+%	\epsilon_{2}\cdot p_{4} \rightarrow -\epsilon_{2}\cdot{p_1}-\epsilon_{2}\cdot{p_3} \,.
+%\end{equation}
+%
+%Every scattering amplitude consists of sums of products of Lorentz-invariants of the form ${p\cdot\epsilon}$ and ${\epsilon\cdot\epsilon}$
+%
+%A scattering amplitude in $n$ dimensions can be written using a minimal basis.
+%
+%Scattering amplitudes are built out of Lorentz invariant products between momentum- and polarisation vectors. The product between two momentum-vectors are proportional to the Mandelstam variables ${s_{ij}}$,
+%\begin{equation}
+%	p_i \cdot p_j = \frac{1}{2}s_{ij}
+%\end{equation}
+%
+%The ansatz for any amplitude candidate should contain all the terms that are possible to construct using momenta and polarisation vectors. In this case the possibilities are limited by certain physical constraints and the particle content of the scattering process we want to describe. We denote the ansatz for a scattering process involving $m$-polarisation vectors, $\vec{T}^{(m)}$. This is to distinguish ansatze of processes involving particles without a polarisation, i.e. scalars. The Ward identity,
+%\begin{equation}
+%	A(\epsilon_{i}\rightarrow{p_i}) = 0 \,,
+%\end{equation}
+%expresses gauge invariance as a physical constraint on the amplitude. Through replacement of any of the polarisation vectors by the momentum vector in the corresponding leg we obtain a new basis of tensor structures with $m-1$ polarisation vectors. We denote the gauge invariance condition in a given leg by
+%\begin{equation} \label{eq:sec4:gauge_invariance}
+%	O_i(\alpha,s) = \sum_{j}\alpha_{j}T_{j}^{(m)}|_{\epsilon_{i}\rightarrow{p_i}} = 0 \,,
+%\end{equation}
+%where $\vec{\alpha}$ is a coefficient vector with same dimension as $\vec{T}^{(m)}$. The $s$ in the argument denotes all Mandelstam variables that emerge when replacing a polarisation vector in factors of ${p\cdot\epsilon}$. In cases involving gravitons, there will be an additional index determining in which of the two polarisations of a graviton leg the replacement is taken:
+%\begin{equation}
+%	O_{i,I}(\alpha,s) = \sum_{j}\alpha_{j}T_{j}^{(m)}|_{\epsilon_{i}^{I}\rightarrow{p_i}} = 0 \,, \quad I = L,R \,.
+%\end{equation}
+%The $m$ replacements will have some common tensor structures that relates their coefficients. We obtain all coefficient relations by taking the sum over the polarisation vectors in \eqref{eq:sec4:gauge_invariance},
+%\begin{equation} \label{eq:sec4:zero_expression}
+%	B(\alpha,s) = \sum_{i}^{m}O_i(\alpha,s) = \sum_{i}c_{i}(\alpha,s)x_{i} = 0 \,,
+%\end{equation}
+%where $\vec{c}(\alpha,s)$ are functions dependent on ${\alpha}$ and possibly $s$, and $\vec{x}$ is the set of independent tensor structures that appear after imposing the gauge invariance condition in each polarised leg. Since $\vec{x}$ is independent, \eqref{eq:sec4:zero_expression} implies
+%\begin{equation}
+%	c_i(\alpha,s) = 0 \,, \forall \,i \,.
+%\end{equation}
+%In other words, we obtain a set of linear equations involving coefficients $\alpha$ and Mandelstam variables, which can be solved using linear algebra methods. For lower point amplitudes the linear systems can solved by hand, but the dimension of the system rapidly increases for higher points. Therefore a good way to approach these computations is by the means of computer algebra, specifically using finite fields to solve linear systems of equations over the rationals.
+%
+%
+%
+%
+%The goal of bootstrapping the S-matrix is to avoid computing scattering amplitudes in the conventional way, starting from a Lagrangian and derive Feynman rules to compute Feynman diagrams etc. Instead we would like to start by considering the fundamental building blocks of the amplitudes and look for ways in which they have to be put together in order to obtain a physical amplitude. In general any amplitude at tree-level are the momenta and polarisation vectors of the scattering particles and the metric. An amplitude ansatz can be written as
+%\begin{equation}
+%	\label{eq:sec4:ansatz}
+%	A = \sum_{i}\alpha_{i}T_{i} \,,
+%\end{equation}
+%where ${\vec{\alpha}}$ is a coefficient vector with elements possibly dependent on Mandelstam variables and $\vec{T}$ is a vector of products between momenta and polarisation vectors of the form ${p\cdot\epsilon}$ and ${\epsilon\cdot\epsilon}$. The latter we will refer to as \textit{tensor structures}. These tensor structures are proportional to each of the polarisation vectors\footnote{Consequence of the multi-linearity of scattering amplitudes in the polarisation vectors \cite{Boels:2016xhc}.} Any amplitude must obey the on-shell mass constraint
+%Any tree-level scattering amplitude consists of momentum- and polarisation vectors. They are combined using the metric. With these three ingredients we can construct three types of Lorentz invariant scalars, ${p\cdot{p}}$, ${p\cdot{\epsilon}}$ and ${\epsilon\cdot{\epsilon}}$. 
+%The material needed to build a scattering amplitude for massless particles are the four-momenta $p^{\mu}$, the polarisation vector $\epsilon^{\mu}$ and the metric tensor $\eta^{\mu\nu}$. The latter is used to contract the two mentioned four-vectors in all ways permitted. This leads to Lorentz-invariant scalars of the form ${p\cdot{p}}$, ${p\cdot\epsilon}$ and ${\epsilon\cdot\epsilon}$. A contraction between two four-momenta $p_{i}^{\mu}$ and $p_{j}^{\nu}$ is non-zero as long as ${i\neq{j}}$, and constitute a class of kinematic scalars known as the Mandelstam variables \cite{Mandelstam:1958xc}, given by
+%\begin{equation} \label{eq:ch4-mandelstam_variables}
+%	s_{ij} = (p_{i}+p_{j})^2 = 2{p_{i}}\cdot{p_{j}} \,.
+%\end{equation}
+%Letting ${i=j}$ leads to the on-shell condition for massless particles,
+%\begin{equation}
+%	\label{eq:sec4:on-mass-shell-condition}
+%	p_{i}^{2} = 0 \,.
+%\end{equation}
+%
+%We assume in the following that we are dealing with $n$-point scattering processes of massless spin 1 particles, which we refer to as \emph{gluons}. Each described by its four-momenta $p^{\mu}$ and a polarisation vector $\epsilon^{\mu}$.
+%
+%Massless particles obeys transversality, which is the statement that the momentum and polarisation vectors of a single particle are orthogonal:
+%\begin{equation}
+%	p_{i}\cdot\epsilon_{i} = 0
+%\end{equation}
+%
+%For an amplitude $A_{n}$ with $n$ external legs to be gauge-invariant, it must obey certain Ward identities \cite{Ward:1950xp,Takahashi:1957xn,tHooft:1971akt,Taylor:1971ff,Slavnov:1972fg}
+%% TODO fix consecutive citations [1,2,3,5]-->[1-3,5]
+%known as on-shell gauge invariance. These can be written as
+%\begin{equation}
+%	A_{n}(\epsilon_{i}\rightarrow{p_{i}}) = 0 \,, \quad i\in[i,n] \,.
+%\end{equation}
+
+
+
+%%%%%%%%%% will check
+%%%%%%%%%% will check
+%%%%%%%%%% will check
+%%%%%%%%%% will check
+
+
+
+
+
+\subsection{Building blocks}
+
+Following the introduction of the bootstrap method in the previous section, we now delve deeper into the essential ingredients needed to apply it effectively. Understanding the fundamental building blocks of scattering amplitudes, particularly for massless particles, is crucial for constructing the appropriate ansatz and ultimately deriving meaningful constraints on the underlying theory.
+
+\subsubsection{Kinematics}
+
+For the contractions between two different four-momenta we have the set of Mandelstam variables 
+\begin{equation} \label{eq:ch4-mandelstam_variables}
+	s_{ij} = (p_{i}+p_{j})^2 = 2{p_{i}}\cdot{p_{j}} \,.
+\end{equation}
+which, by momentum conservation, is overcomplete. We can expand these in terms of $\frac{1}{2}n(n-3)$\footnote{This can be derived from the on-shell condition and momentum conservation.} cyclically ordered kinematic variables \cite{Arkani-Hamed:2017mur}:
+\begin{equation}\label{s-to-X}
+	s_{ij} = X_{i,j+1} + X_{i+1,j} - X_{i,j} - X_{i+1,j+1}
+\end{equation}
+The planar variables $X_{i,j}$ are defined by
+\begin{equation}
+	X_{i,j} := s_{i,i+1,\dots,j-1} \,, \quad 1\leq{i}<j\leq{n} \,,
+\end{equation}
+where
+\begin{equation}
+	s_{i,\ldots,j} := (p_{i} + \cdots + p_{j})^2 = \sum_{i<j} s_{ij}
+\end{equation}
+$X_{i,i+1}$ vanish by the on-shell condition and $X_{1,n}$ vanish by momentum conservation. All non-vanishing planar variables form a basis. It is straightforward to verify that the dimension of this basis is exactly
+\begin{equation}
+{n(n-1) \over 2} - (n-1) -1 = {n(n-3) \over 2} \,.
+\end{equation}
+For a case with $n=4$ particles, the basis includes the well-known Mandelstam variables $s$ and $t$:
+\begin{equation}
+s = X_{1,3} = s_{12}, \quad
+t = X_{2,4} = s_{23}.
+\end{equation}
+The basis of kinematics for $n=5$ particles is:
+\begin{align}\label{eq:5pt-kinematics}
+\begin{aligned}
+ X_{1,3} &= s_{12} = s_1, \qquad\qquad
+ X_{1,4} = s_{123} = s_{45} = s_4, \quad
+ X_{2,4} = s_{23} = s_2,
+ \\
+ X_{2,5} &= s_{234} = s_{51} = s_5, \quad
+ X_{3,5} = s_{34} = s_3
+\end{aligned}
+\end{align}
+For $n=6$ particles it is:
+\begin{align}\label{eq:6pt-kinematics}
+\begin{aligned}
+X_{1,3} &= s_{12} = s_1, \quad
+X_{1,4} = s_{123} = t_1, \quad
+X_{1,5} = s_{1234} = s_{56} = s_5,
+\\
+X_{2,4} &= s_{23} = s_2, \quad
+X_{2,5} = s_{234} = t_2, \quad
+X_{2,6} = s_{2345} = s_{61} = s_6
+\\
+X_{3,5} &= s_{34} = s_3, \quad
+X_{3,6} = s_{345} = t_3, \quad
+X_{4,6} = s_{45} = s_4.
+\end{aligned}
+\end{align}
+
+In \eqref{eq:5pt-kinematics} and \eqref{eq:6pt-kinematics}, for the simplicity of notations, we have introduced the following short notation
+\begin{align}
+s_i &:= s_{i,i+1}
+\\[0.2 em]
+t_i &:= s_{i,i+1,i+2},
+\\[0.2 em]
+u_i &:= s_{i,i+1,i+2,i+3},
+\\[0.2 em]
+v_i &:= s_{i,i+1,i+2,i+3,i+4}.
+\end{align}
+Using these short notations, we find the kinematic basis up to $n=10$:
+\begin{alignat}{2}
+    n = 5:&~ s_i && i=1,\ldots,5\,. \\[0.3 em]
+    n = 6:&~ s_i,t_j && i=1,\ldots,6 \comma j=1,2,3 \\[0.3 em]
+    n = 7:&~ s_i,t_j && i,j=1,\ldots,7 \\[0.3 em]
+    n = 8:&~ s_i,t_j,u_k && i,j=1,\ldots,8 \comma k=1,\ldots,4 \\[0.3 em]
+    n = 9:&~ s_i,t_j,u_k && i,j,k=1,\ldots,9 \\[0.3 em]
+    n = 10:&~ s_i,t_j,u_k,v_l \qquad && i,j,k=1,\ldots,10 \comma l=1,\ldots,5
+\end{alignat}
+Other kinematic variabels can can be written as a linear combination in terms of this basis using the relation \eqref{s-to-X}. For example, in $n=6$ case, $s_{14}$ is given by
+\begin{equation}\label{eq:6pt-kinematics-2}
+	\begin{aligned}
+		s_{14} &= X_{1,5} + X_{2,4} - X_{1,4} - X_{2,5} \\
+		&= s_{1234} + s_{23} - s_{123} - s_{234} \\
+		&= s_{23} + s_{56} - s_{123} - s_{234} \\
+		&= s_{2} + s_{5} - t_{1} - t_{2} \,.
+	\end{aligned}
+\end{equation}
+More generally, one can construct such relations between kinematics in a systematic way. To precceed, we list some seeding results up to $n=10$:
+
+\begin{center}
+    \begin{tabular}[t]{cl|cl}
+        \multirow{2}{*}{$n=5:$} & $s_{13} = s_4 - s_1 - s_2$ & \multirow{6}{*}{$n=9:$} & $s_{13} = t_1 - s_1 - s_2$ \\
+        & $s_{14} = s_2 - s_4 - s_5$ & & $s_{14} = s_2 + u_1 - t_1 - t_2$ \\
+        \cline{1-2}
+        \multirow{3}{*}{$n=6:$} & $s_{13} = t_1 - s_1 - s_2$ & & $s_{15} = t_2 + u_6 - u_1 - u_2$ \\
+        & $s_{14} = s_2 + s_5 - t_1 - t_2$ & & $s_{16} = t_7 + u_2 - u_6 - u_7$ \\
+        & $s_{15} = t_2 - s_5 - s_6$ & & $s_{17} = s_8 + u_7 - t_7 - t_8$ \\
+        \cline{1-2}
+        \multirow{4}{*}{$n=7:$} & $s_{13} = t_1 - s_1 - s_2$ & & $s_{18} = t_8 - s_8 - s_9$ \\
+        \cline{3-4}
+        & $s_{14} = s_2 + t_5 - t_1 - t_2$ & \multirow{7}{*}{$n=10:$} & $s_{13} = t_1 - s_1 - s_2$ \\
+        & $s_{15} = s_6 + t_2 - t_5 - t_6$ & & $s_{14} = s_2 + u_1 - t_1 - t_2$ \\
+        & $s_{16} = t_6 - s_6 - s_7$ & & $s_{15} = t_2 + v_1 - u_1 - u_2$ \\
+        \cline{1-2}
+        \multirow{5}{*}{$n=8:$} & $s_{13} = t_1 - s_1 - s_2$ & & $s_{16} = u_2 + u_7 - v_1 - v_2$ \\
+        & $s_{14} = s_2 + u_1 - t_1 - t_2$ & & $s_{17} = t_8 + v_2 - u_7 - u_8$ \\
+        & $s_{15} = t_2 + t_6 - u_1 - u_2$ & & $s_{18} = s_9 + u_8 - t_8 - t_9$ \\
+        & $s_{16} = s_7 + u_2 - t_6 - t_7$ & & $s_{19} = t_9 - s_9 - s_{10}$ \\
+        & $s_{17} = t_7 - s_7 - s_8$
+    \end{tabular}
+\end{center}
+
+Then we find that all remaining invariants are obtained by cyclic permutation. For instance, in the $n=5$ case, $s_{24}$ is equal to $s_{13}$ where we impose the substitutions $(1\rightarrow2,2\rightarrow3,3\rightarrow4,4\rightarrow5,5\rightarrow1)$, i.e.,
+\begin{equation}
+    s_{24} = s_5 - s_2 - s_3 \,.
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+%\begin{center}
+%    \begin{tabular}[t]{cl|cl}
+%        \multirow{2}{*}{$n=5:$} & $s_{13} = s_{45} - s_{12} - s_{23}$ &
+%        \multirow{6}{*}{$n=9:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ \\
+%        & $s_{14} = s_{23} - s_{45} - s_{51}$ & & $s_{14} = s_{23} + t_{1234} - t_{123} - t_{234}$ \\
+%        \cline{1-2}
+%        \multirow{3}{*}{$n=6:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ & & $s_{15} = t_{234} + t_{6789} - t_{1234} - t_{2345}$ \\
+%        & $s_{14} = s_{23} + s_{56} - t_{123} - t_{234}$ & & $s_{16} = s_{789} + t_{2345} - t_{6789} - t_{7891}$ \\
+%        & $s_{15} = t_{234} - s_{56} - s_{61}$ & & $s_{17} = s_{89} + t_{7891} - t_{789} - t_{891}$ \\
+%        \cline{1-2}
+%        \multirow{4}{*}{$n=7:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ & & $s_{18} = t_{891} - s_{89} - s_{91}$ \\
+%        \cline{3-4}
+%        & $s_{14} = s_{23} + t_{567} - t_{123} - t_{234}$ &
+%        \multirow{7}{*}{$n=10:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ \\
+%        & $s_{15} = s_{67} + t_{234} - t_{567} - t_{671}$ & & $s_{14} = s_{23} + t_{1234} - t_{123} - t_{234}$ \\
+%        & $s_{16} = t_{671} - s_{67} - s_{71}$ & & $s_{15} = t_{234} + t_{12345} - t_{1234} - t_{2345}$ \\
+%        \cline{1-2}
+%        \multirow{5}{*}{$n=8:$} & $s_{13} = t_{123} - s_{12} - s_{23}$ & & $s_{16} = t_{2345} + t_{789\,10} - t_{12345} - t_{23456}$ \\
+%        & $s_{14} = s_{23} + t_{1234} - t_{123} - t_{234}$ & & $s_{17} = t_{89(10)} + t_{23456} - t_{789(10)} - t_{89(10)1}$ \\
+%        & $s_{15} = t_{234} + t_{678} - t_{1234} - t_{2345}$ & & $s_{18} = s_{9(10)} + t_{89(10)1} - t_{89(10)} - t_{9(10)1}$ \\
+%        & $s_{16} = s_{78} + t_{2345} - t_{678} - t_{781}$ & & $s_{19} = t_{9(10)1} - s_{9(10)} - s_{(10)1}$ \\
+%        & $s_{17} = t_{781} - s_{78} - s_{81}$
+%    \end{tabular}
+%\end{center}
+
+
+
+
+%\zl{This arrangement looks very good. But maybe it would be slightly better to do it in a more intuitive and illustrative way. More precisely, here give explicit 4-particle and 5-particle examples, then put details for higher points in Appendix.}
+
+
+\subsubsection{Ansatz}\label{sec-ansatz}
+
+Let us turn to constructing Lorentz invariants between polarisation vectors and momenta. These terms must take the form described in \eqref{chap4-multilinearity}. Each polarisation vector in the ansatz is either contracted with one of the other polarisation vectors or one of the momenta. They are basic building blocks for amplitudes involving gluons and gravitons since the rank-2 graviton tensor can be written in terms of polarisation vectors, as outlined in section \ref{subsec:ch2-particles}. For the scalar products between a polarisation vector and a momentum, they must satisfy the transversality
+\begin{equation}
+	p_{i}\cdot\epsilon_{i}  = 0
+\end{equation}
+and the momentum conservation
+\begin{equation}
+	\label{eq:sec4:}
+	p_{n}\cdot\epsilon_{i} = -\sum_{j\neq{i}}^{n-1}p_{j}\cdot\epsilon_{i}\,.
+\end{equation}
+There are no further constraints for the scalar products between polarisation vectors
+\begin{equation}
+	\epsilon_{i}\cdot\epsilon_{j} \,, \quad i\neq{j}\,. 
+\end{equation}
+
+
+%For $\epsilon_i$ with $i\ne n$, there are $n(n-2)$ possible contractions of momenta and polarisations,
+%\begin{equation}
+%	p_{i}\cdot\epsilon_{j} \,, \quad i\neq{j,n} \,.
+%\end{equation}
+%
+%To obtain an ansatz for an $n$-point amplitude we start with considering all combinations of the momenta and polarisations of the $n$ particles, while imposing momentum conservation and transversality. In essence every term in the ansatz includes $n$ polarisation vectors, one for each external gluon-leg (two polarisation vectors per graviton-leg). Every polarisation vector in the ansatz is either contracted with one of the other $n-1$ polarisation vectors or, because of momentum conservation and transversality, one of $n-2$ momenta. The ansatz is complete when all the possibilities have been exhausted.
+%
+%When considering contractions between momenta and polarisation vectors we utilise momentum conservation to express the momentum in the $n$-th leg in terms of the momenta in the remaining $n-1$ legs:
+%\begin{equation}
+%	\label{eq:sec4:}
+%	p_{n}\cdot\epsilon_{i} = -\sum_{j\neq{i}}^{n-1}p_{j}\cdot\epsilon_{i}
+%\end{equation}
+%This leads to the $n(n-2)$ possible contractions of momenta and polarisations,
+%\begin{equation}
+%	p_{i}\cdot\epsilon_{j} \,, \quad i\neq{j,n} \,.
+%\end{equation}
+%
+%All possible contractions between polarisation vectors are given by the $\frac{1}{2}n(n-1)$\footnote{Number of unique dot products in an $n$-point ansatz: ${n(n-2)+\frac{1}{2}n(n-1)=\frac{1}{2}n(3n-5)}$}
+%\begin{equation}
+%	\epsilon_{i}\cdot\epsilon_{j} \,, \quad i\neq{j}\,. 
+%\end{equation}
+
+
+
+\vskip 5pt
+\textbf{Gluon amplitudes}.~Let us first focus on the scattering of $n$ gluons. The ansatz can be classified according to the number of polarisation vectors that are contracted with other polarisation vectors. We use \(({\epsilon}\cdot{\epsilon})^{m}({p}\cdot{\epsilon})^{n-2m}\) to denote the type where $2m$ of $n$ polarisation vectors are contracted with themselves and the remaining $n-2m$ are contracted with momenta. The total number of terms of the type \(({\epsilon}\cdot{\epsilon})^{m}({p}\cdot{\epsilon})^{n-2m}\) is given by the function
+\begin{equation}
+\label{eq:sec4:number-of-gluon-terms}
+	F(n,m) = f(m)\binom{n}{n-2m}(n-2)^{n-2m} \,.
+\end{equation}
+Here $f(k)$ is the product of the $k$ first odd, positive integers,
+\begin{equation}
+\label{eq:sec4:product-odd-integers}
+f(k) := \prod_{i=1}^{k}(2i-1) = \frac{\prod_{i=1}^{k}(2i-1)\prod_{i=1}^{k}(2i)}{\prod_{i=1}^{k}(2i)} = \frac{\prod_{i=1}^{2k}i}{2^{k}\prod_{i=1}^{k}i} = \frac{(2k)!}{2^{k}k!} \,
+\end{equation}
+Remembering that $0! \equiv 1$, we notice $f(0)$ gives unity. The next factor is the binomial coefficient:
+\begin{equation}
+\label{eq:sec4:binomial-coeff}
+	\binom{k}{l} = \frac{k!}{l!(k-l)!}
+\end{equation}
+Inserting \eqref{eq:sec4:product-odd-integers} and \eqref{eq:sec4:binomial-coeff} into \eqref{eq:sec4:number-of-gluon-terms} gives the somewhat compact form
+\begin{equation}
+	F(n,m) = \frac{(n-2)^{n-2m}n!}{2^{m}m!(n-2m)!} \,.
+\end{equation}
+
+We enumerate the size of $n$-gluon ansatz for cases with a minimum of zero and one metric contraction up to $n=10$ in Table \ref{tab:gluon-terms}. We have also generated these terms up to $n=9$. It is important to highlight that this task is far from trivial due to the significant increase in complexity as $n$ grows larger. For instance, generating 76\,792\,996 terms for $n=9$ gluons required 3.5 CPU hours and 300 GB of memory on a computing cluster, with the results occupying 4.9 GB of disk space.
+\begin{table}[h]
+    \centering
+    \begin{tabular}[t]{ccr}
+        \hline
+        $n$ & $(\epsilon\cdot\epsilon)_{\text{min}}$ & $\text{dim}(\Vec{T})$ \\
+        \hline
+        \multirow{2}{*}{3} & 1 & 3 \\
+          & 0 & 4 \\
+        \hline
+        \multirow{2}{*}{4} & 1 & 27 \\
+          & 0 & 43 \\
+        \hline
+        \multirow{2}{*}{5} & 1 & 315 \\
+          & 0 & 558 \\
+        \hline
+        \multirow{2}{*}{6} & 1 & 4575\\
+          & 0 & 8671 \\
+        \hline
+        \multirow{2}{*}{7} & 1 & 79 275 \\
+          & 0 & 157 400 \\
+        \hline
+        \multirow{2}{*}{8} & 1 & 1 593 753 \\
+          & 0 & 3 273 369 \\
+        \hline
+        \multirow{2}{*}{9} & 1 & 36 439 389 \\
+          & 0 & 76 792 996 \\
+        \hline
+        \multirow{2}{*}{10} & 1 & 933 331 185 \\
+          & 0 & 2 007 073 009\\
+          \hline
+    \end{tabular}
+    \caption{Number of terms in gluon ansatze.}
+    \label{tab:gluon-terms}
+\end{table}
+
+
+\vskip 5pt
+\textbf{Graviton amplitudes}.~The total number of terms of the form $(\epsilon\cdot\epsilon)^m(\epsilon{\cdot}p)^{2(n-m)}$ is given by
+\begin{equation}
+\label{eq:sec4:graviton-terms-count}
+    G(n,m) = \sum_{i}2^{3i-m}F_{i}(n,m)(n-2)^{2(n-m)} \,,
+\end{equation}
+where $F$ is a sum over polynomials given by
+\begin{equation}
+    F_i(n,m) = \sum_{1{\leq}k_1<{\dots}<k_i<n}\sum_{j}f_{k_1{\dots}k_i}^{(j)}(m) \,.
+\end{equation}
+The polynomials, $f$, are given in Appendix \ref{sec:graviton-terms} and follows a distinct pattern. We have the listed them up to $m=6$.
+\eqref{eq:sec4:graviton-terms-count} gives the exact same numbers for gravitons as in Table \ref{tab:graviton-terms} under the column $\operatorname{dim}(\vec{T})$.
+\begin{table}[h]
+    \centering
+    \begin{tabular}[t]{ccrr}
+        \hline
+        $n$ & $(\epsilon\cdot\epsilon)_{\text{min}}$ & $\text{dim}(\Vec{T})$ & $\text{dim}(\Vec{T}_{L \leftrightarrow R})$ \\
+        \hline
+        \multirow{3}{*}{3} & 2 & 38 & 7 \\
+        & 1 & 50 & 10 \\
+        & 0 & 51 & 11 \\
+        \hline
+        \multirow{3}{*}{4} & 2 & 3644 & 336 \\
+        & 1 & 5180 & 552 \\
+        & 0 & 5436 & 633 \\
+        \hline
+        \multirow{3}{*}{5} & 2 & 573 664 & 27 922 \\
+        & 1 & 836 104 & 47 362 \\
+        & 0 & 895 153 & 55 138 \\
+        \hline 
+        \multirow{3}{*}{6} & 2 & 133 374 104 & 3 434 370 \\
+        & 1 & 196 288 664 & 5 834 370 \\
+        & 0 & 213 065 880 & 6 834 370\\
+        \hline
+    \end{tabular}
+    \caption{Numbers of terms in graviton ansatze.}
+    \label{tab:graviton-terms}
+\end{table}
+Further, the graviton terms needs to be left-right symmetrised\footnote{Or Bose symmetrised.} in each leg. This procedure reduces the length of the ansatz, as seen in the rightmost column of Table \ref{tab:graviton-terms}, but the overall size stays roughly the same. As an example, we can consider an element of $\vec{T}$ for three gravitons:
+\begin{equation}
+    \EE{1}{L}{2}{L}\EE{1}{R}{3}{L}\EE{2}{R}{3}{R}
+\end{equation}
+Now, symmetrising in each leg leads to a sum of 8 terms:
+\begin{equation}
+\label{eq:sec4:3-graviton-element-symmetrised}
+    \begin{split}
+        % t_{hhh}^{L{\leftrightarrow}R} ={}&
+        {}&\EE{1}{L}{2}{L}\EE{1}{R}{3}{L}\EE{2}{R}{3}{R}
+        +\EE{1}{L}{2}{L}\EE{1}{R}{3}{R}\EE{2}{R}{3}{L}
+        +\EE{1}{L}{2}{R}\EE{1}{R}{3}{L}\EE{2}{L}{3}{R} \\
+        {}&+\EE{1}{L}{2}{R}\EE{1}{R}{3}{R}\EE{2}{L}{3}{L}
+        +\EE{1}{L}{3}{L}\EE{1}{R}{2}{L}\EE{2}{R}{3}{R}
+        +\EE{1}{L}{3}{L}\EE{1}{R}{2}{R}\EE{2}{L}{3}{R} \\
+        {}&+\EE{1}{L}{3}{R}\EE{1}{R}{2}{L}\EE{2}{R}{3}{L}
+        +\EE{1}{L}{3}{R}\EE{1}{R}{2}{R}\EE{2}{L}{3}{L}
+    \end{split}
+\end{equation}
+In this case \eqref{eq:sec4:3-graviton-element-symmetrised} consists of the sum of all possible 3-graviton terms of the form $(\epsilon\cdot\epsilon)^3$ and is therefore the only element of that form appearing in the symmetrised ansatz. The number of such terms is readily computed using \eqref{eq:sec4:graviton-terms-count}:
+\begin{equation}
+    \begin{split}
+        G(3,3) &= 2^{6-3} F_2(3,3) \\
+        &= 8\sum_{1{\leq}k_1<k_2<3}\sum_{j=1}^{2}f_{k_1k_2}^{(j)}(3) \\
+        &= 8\bigl(f_{12}^{(1)}(3)+f_{12}^{(2)}(3)\bigr) \\
+        &= 8(1 + 0) \\
+        &= 8
+    \end{split}
+\end{equation}
+Essentially, symmetrising the graviton ansatze excludes the dilaton and 2-form from appearing as solutions to the linear systems we generate, as can be seen from \eqref{eq:sec2:polarisation-tensor-decomposition} in Section \ref{subsec:ch2-particles}.
+
+\subsection{Examples}
+
+Now, we will illustrate the bootstrap method described earlier through a detailed examination of specific examples. In the following, we focus on the three-particle and four-particle cases, where we can solve constraints with relative ease. Subsequently, we will present more involved examples involving more external particles, employing more advanced techniques.
+
+
+\subsubsection{3 gluons}
+
+Let us start with three gluons. Initially, we can construct all non-zero combinations of $\epsilon$ and $p$:
+\begin{equation}
+\label{eq:sec4:3-gluon-tensor-structures}
+    \begin{split}
+        \bigl\{{}&(\epsilon _1\epsilon _2) (\epsilon _3p_1),(\epsilon _1\epsilon _2) (\epsilon _3p_2),(\epsilon _1\epsilon _3) (\epsilon _2p_1),(\epsilon _1\epsilon _3) (\epsilon _2p_3),(\epsilon _2\epsilon _3)(\epsilon _1p_2) ,(\epsilon _2\epsilon _3)(\epsilon _1p_3) ,\\
+        {}&(\epsilon _1p_2) (\epsilon _2p_1) (\epsilon _3p_1),(\epsilon _1p_2) (\epsilon _2p_1) (\epsilon _3p_2),(\epsilon _1p_2) (\epsilon _2p_3) (\epsilon _3p_1),(\epsilon _1p_2) (\epsilon _2p_3) (\epsilon _3p_2), \\
+        {}&(\epsilon _1p_3) (\epsilon _2p_1) (\epsilon _3p_1),(\epsilon _1p_3) (\epsilon _2p_1) (\epsilon _3p_2),(\epsilon _1p_3) (\epsilon _2p_3) (\epsilon _3p_1),(\epsilon _1p_3) (\epsilon _2p_3) (\epsilon _3p_2)\bigr\}
+    \end{split}
+\end{equation}
+% \begin{multline}
+% 	\label{eq:sec4:3-gluon-tensor-structures}
+% 	\bigl\{\pe{2}{1}\ee{2}{3},\pe{3}{1}\ee{2}{3},\pe{1}{2}\ee{1}{3},\pe{3}{2}\ee{1}{3},\pe{1}{3}\ee{1}{2},\pe{2}{3}\ee{1}{2},\dots \\
+% 	\dots,\pe{2}{1}\pe{1}{2}\pe{1}{3},\pe{2}{1}\pe{1}{2}\pe{2}{3},\pe{2}{1}\pe{3}{2}\pe{1}{3},\pe{2}{1}\pe{3}{2}\pe{2}{3},\dots \\
+% 	\dots,\pe{3}{1}\pe{1}{2}\pe{1}{3},\pe{3}{1}\pe{1}{2}\pe{2}{3},\pe{3}{1}\pe{3}{2}\pe{1}{3},\pe{3}{1}\pe{3}{2}\pe{2}{3}\bigr\}.
+% \end{multline}
+
+%\footnote{We use the notation $a_{\mu}b^{\mu} \equiv a{\cdot}b \equiv ab$ interchangeably throughout this section.}
+As we described previously, many of the terms in \eqref{eq:sec4:3-gluon-tensor-structures} are clearly redundant because of momentum conservation. Thus we are given a choice of eliminating one of the momentum vectors by expressing it in terms of the remaining two. A natural choice is
+\begin{equation}
+	\label{eq:sec4:p_3=-p_1-p_2}
+	p_3 = -p_1 - p_2 \,.
+\end{equation}
+In addition, based on the previous choice of momentum, to further minimise the number of elements in \eqref{eq:sec4:3-gluon-tensor-structures}, we can express the product between $\epsilon_3$ and a momentum vector of our choosing in terms of the remaining two momentum vectors. Choosing e.g. $p_1$ means we will write
+\begin{equation}
+	\label{eq:sec4:e_3.p_1=-e_3.p_2}
+	\epsilon_3 \cdot p_1 = -\epsilon_3 \cdot p_2 \,,	
+\end{equation}
+where $p_3 \cdot \epsilon_3$ vanish from transversality. Imposing \eqref{eq:sec4:p_3=-p_1-p_2} and \eqref{eq:sec4:e_3.p_1=-e_3.p_2} in \eqref{eq:sec4:3-gluon-tensor-structures} reduces the number of inequivalent elements (up to a sign) to only four:
+\begin{equation}
+	\label{eq:sec4:3-gluon-tensor-structures-final}
+	\vec{T} =\bigl\{(\epsilon _1\epsilon _2) (\epsilon _3p_2),(\epsilon_1\epsilon _3) (\epsilon _2p_1),(\epsilon _2\epsilon _3)(\epsilon_1p_2),(\epsilon _1p_2) (\epsilon _2p_1) (\epsilon _3p_2)\bigr\}
+\end{equation}
+These tensor structures constitutes a basis for all three-point gluon amplitudes with which we can express the ansatz \eqref{eq:sec4:ansatz}:
+\begin{equation}
+	\label{eq:sec4:3-gluon-ansatz}
+	A = \sum_{i=1}^{4}\a{i}T_i = \a{1}(\epsilon _1\epsilon _2) (\epsilon _3p_2) + \a{2}(\epsilon_1\epsilon _3) (\epsilon _2p_1) + \a{3}(\epsilon _2\epsilon _3)(\epsilon_1p_2) + \a{4}(\epsilon _1p_2) (\epsilon _2p_1) (\epsilon _3p_2)
+\end{equation}
+One more constraint on the ansatz is needed to obtain the sought-after set of linear equations, namely the gauge invariance of on-shell amplitudes.
+
+The on-shell gauge invariance is ensured by requiring the ansatz to satisfy the Ward identity for each gluon separately.
+Following the discussion in section \ref{subsec:ch4-general_idea_and_procedure}, we can derive a system of homogeneous linear equations that constrain the four coefficients $\alpha_i$ in the ansatz \eqref{eq:sec4:3-gluon-ansatz}. For example, in leg 1, we obtain
+\begin{equation}
+\label{eq:sec4:3-gluon-gauge-invariance-1}
+	\begin{split}
+	0= 	A|_{\epsilon_1 \rightarrow p_1} &= \a{1}(p _1\epsilon _2) (\epsilon _3p_2) + \a{2}(p_1\epsilon _3) (\epsilon _2p_1) + \a{3}(\epsilon _2\epsilon _3)(p_1p_2) + \a{4}(p_1p_2) (\epsilon _2p_1) (\epsilon _3p_2) \\
+		&= \a{1}(\epsilon _2p _1) (\epsilon _3p_2) - \a{2}(p_2\epsilon _3) (\epsilon _2p_1) \\
+		&= (\a{1} - \a{2})(\epsilon _2p _1) (\epsilon _3p_2)\,,
+	\end{split}
+\end{equation}
+where we have used \eqref{eq:sec4:e_3.p_1=-e_3.p_2} as well as the on-mass-shell condition\footnote{All contractions between momenta vanish in the massless case at three points. This is dictated by momentum conservation and the on-shell condition for massless particles. Consider e.g. ${(p_1 + p_2)^2 = 2 p_1 \cdot p_2} = (-p_3)^2 = 0$.} in the second line. For \eqref{eq:sec4:3-gluon-gauge-invariance-1} to be true we must have $\a{1} - \a{2} = 0$. Repeating for the remaining legs gives
+\begin{equation}
+\label{eq:sec4:3-gluon-gauge-invariance-2}
+	\begin{split}
+	0= 	A|_{\epsilon_2 \rightarrow p_2} &= \a{1}(\epsilon_1 p_2) (\epsilon_3p_2) + \a{3}(p_2\epsilon _3)(\epsilon_1p_2) \\
+		&= (\a{1} + \a{3})(\epsilon _1p _2) (\epsilon _3p_2)\,,
+	\end{split}
+\end{equation}
+and
+\begin{equation}
+\label{eq:sec4:3-gluon-gauge-invariance-3}
+	\begin{split}
+	0= 	A|_{\epsilon_3 \rightarrow p_3} &= \a{2}(\epsilon_1 p_3) (\epsilon _2p_1) + \a{3}(\epsilon _2 p_3)(\epsilon_1p_2) \\
+		&= -(\a{2} + \a{3})(\epsilon _1p _2) (\epsilon _2p_1)\,,
+	\end{split}
+\end{equation}
+
+We note that none of the equations involve the coefficient $\a{4}$. Eqs. \eqref{eq:sec4:3-gluon-gauge-invariance-1}-\eqref{eq:sec4:3-gluon-gauge-invariance-3} constitutes a linear system of equations that can be solved using standard linear algebra methods. For the sake of future calculations we gather them in a single matrix equation
+
+\begin{equation}
+\label{eq:sec4:3-gluons-matrix-eq}
+    M\Vec{\alpha} =
+    \begin{pmatrix}
+        1 & -1 & 0 & 0 \\
+        1 & 0 & 1 & 0 \\
+        0 & 1 & 1 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+    	\a{1} \\
+    	\a{2} \\
+    	\a{3} \\
+    	\a{4}
+    \end{pmatrix} = 0 \,.
+\end{equation}
+
+We see that for \eqref{eq:sec4:3-gluons-matrix-eq} to be true we need to find the appropriate vectors $\{\vec{\alpha}_i\}$ that solves the equation. These vectors spans the \emph{nullspace}\footnote{The nullspace of a matrix is probably better known as the \emph{kernel} in the mathematical litterature.} of the matrix $M$. In this case one can easily find the nullspace by hand using e.g. the Gaussian elimination method. Alternatively, we can make our life a little easier by utilising the \texttt{Nullspace} command in \emph{Mathematica}.
+
+We identify two possible solutions:
+\begin{align}
+    \vec{\alpha}_1 = \{−1, −1, 1, 0\} \\
+\intertext{and}
+    \vec{\alpha}_2 = \{0, 0, 0, 1\}
+\end{align}
+These lead to two amplitude candidates (up to an overall factor),
+\begin{align}
+\begin{split}
+    A_1 &= \vec{\alpha}_1\cdot\vec{T} \\
+    &= -(\epsilon _1\epsilon _2) (\epsilon _3p_2)-(\epsilon_1\epsilon _3) (\epsilon _2p_1)+(\epsilon _2\epsilon _3)(\epsilon_1p_2)
+\end{split} \\
+\intertext{and}
+A_2 &= \vec{\alpha}_2\cdot\vec{T} \\
+&= (\epsilon _1p_2) (\epsilon _2p_1) (\epsilon _3p_2) \,.
+\end{align}
+It is important to note that, in Yang-Mills theory, tree-level gluon amplitudes require at least a single metric contraction. Hence, $A_1$ describes Yang-Mills $F^2$ interactions, while $A_2$ may correspond to higher-dimensional $F^3$ interactions, as defined in Chapter 3.
+
+
+%\subsubsection{1 photon and 2 scalars}
+
+\subsubsection{2 gluons and 2 scalars}
+
+The second example we consider is the scattering of two gluons with two scalars. The tensor structure ansatz is given by
+% \begin{equation}
+%     \Vec{T} =
+%     \left\{
+%         \epsilon_1\epsilon_2,\pe{1}{2}\pe{2}{1},\pe{2}{1}\pe{3}{2},\pe{1}{2}\pe{3}{1},\pe{3}{1}\pe{3}{2}
+%     \right\} \,.
+% \end{equation}
+% \begin{equation}
+%     \Vec{T} =
+%     \bigl\{
+%         (\epsilon _3\epsilon _4),(\epsilon _3p_1) (\epsilon _4p_2),(\epsilon _3p_1) (\epsilon _4p_3),(\epsilon _3p_2) (\epsilon _4p_2),(\epsilon _3p_2) (\epsilon _4p_3)
+%     \bigr\} \,.
+% \end{equation}
+\begin{equation}
+    \Vec{T} =
+    \bigl\{
+        (\epsilon _1\epsilon _2),(\epsilon _1p_2) (\epsilon _2p_1),(\epsilon _1p_2) (\epsilon _2p_3),(\epsilon _1p_3) (\epsilon _2p_1),(\epsilon _1p_3) (\epsilon _2p_3)
+    \bigr\} \,.
+\end{equation}
+The corresponding amplitude ansatz is thus
+% \begin{equation}
+%     A = \alpha_1(\epsilon _3\epsilon _4) + \alpha_2(\epsilon _3p_1) (\epsilon _4p_2) + \alpha_3(\epsilon _3p_1) (\epsilon _4p_3) + \alpha_4(\epsilon _3p_2) (\epsilon _4p_2) + \alpha_5(\epsilon _3p_2) (\epsilon _4p_3) \,.
+% \end{equation}
+\begin{equation}
+    A = \alpha_1(\epsilon_1\epsilon_2) + \alpha_2(\epsilon_1 p_2) (\epsilon_2 p_1) + \alpha_3(\epsilon_1 p_2) (\epsilon_2 p_3) + \alpha_4(\epsilon_1 p_2) (\epsilon_2 p_1) + \alpha_5(\epsilon_1 p_2) (\epsilon_2 p_3) \,.
+\end{equation}
+Imposing the Ward identity in the two gluon legs gives
+% \begin{align}
+%     0 = A|_{\epsilon_3{\rightarrow}p_3} &= \frac{1}{2}(-(s+u)\alpha_2 + u\alpha_4)(\epsilon _4p_2) + \frac{1}{2}(2\alpha_1 - (s+u)\alpha _3 + u\alpha_5)(\epsilon _4p_3) 
+% \intertext{and}
+%     0 = A|_{\epsilon_4{\rightarrow}p_4} &= \frac{1}{2}(-2\alpha_1 - (s+u)\alpha_2 + s\alpha_3)(\epsilon_3p_1) + \frac{1}{2}(-2\alpha_1 - (s+u)\alpha_4 + s\alpha_5)(\epsilon_3p_2) \,.
+% \end{align}
+\begin{align}
+\label{eq:sec4:2-gluons-2-scalars-ward-identity-1}
+    0 = A|_{\epsilon_1{\rightarrow}p_1} &= \frac{1}{2}(2\alpha_1 + s\alpha_2 - (s+u)\alpha_4)(\epsilon_2 p_1) + \frac{1}{2}(s\alpha_3 - (s+u)\alpha_5)(\epsilon_2 p_3) 
+\intertext{and}
+    0 = A|_{\epsilon_2{\rightarrow}p_2} &= \frac{1}{2}(2\alpha_1 + s\alpha_2 + u\alpha_3)(\epsilon_1p_2) + \frac{1}{2}(s\alpha_4 + u\alpha_5)(\epsilon_1p_3) \,.
+\end{align}
+We see that we get four equations that, after making the substitution $t = -s-u$ in \eqref{eq:sec4:2-gluons-2-scalars-ward-identity-1}, looks like
+\begin{equation}
+    \begin{split}
+        2\alpha_1 + s\alpha_2 + t\alpha_4 &= 0 \\
+        s\alpha_3 + t\alpha_5 &= 0 \\
+        2\alpha_1 + s\alpha_2 + u\alpha_3 &= 0 \\
+        s\alpha_4 + u\alpha_5 &= 0
+    \end{split}
+\end{equation}
+We gather these in a $4\times5$ matrix to obtain the following solvable linear system:
+\begin{equation}
+    M\Vec{\alpha} =
+    \begin{pmatrix}
+        2 & s & 0 & t & 0 \\
+        0 & 0 & s & 0 & t \\
+        2 & s & u & 0 & 0 \\
+        0 & 0 & 0 & s & u
+    \end{pmatrix}
+    \begin{pmatrix}
+        \a{1} \\
+        \a{2} \\
+        \a{3} \\
+        \a{4} \\
+        \a{5}
+    \end{pmatrix} = 0
+\end{equation}
+We obtain two solutions,
+\begin{align}
+    \vec{\alpha}_1 &= \frac{1}{2s}\bigl\{tu,0,-2t,-2u,2s\bigr\} \\
+\intertext{and}
+    \vec{\alpha}_2 &= -\frac{1}{2}\bigl\{s,-2,0,0,0\bigr\} \,,
+\end{align}
+which yield the two amplitude candidates,
+\begin{align}
+    \begin{split}
+        A_1 &= \vec{\alpha}_1\cdot\vec{T} \\
+        &= \frac{1}{2s}\bigl[tu\ee{1}{2} - 2t(\epsilon _1p_2) (\epsilon _2p_3) - 2u(\epsilon _1p_3) (\epsilon _2p_1) + 2s(\epsilon _1p_3) (\epsilon _2p_3)\bigr]
+    \end{split}
+\intertext{and}
+    \begin{split}
+        A_2 &= \vec{\alpha}_2\cdot\vec{T} \\
+        &= -\frac{1}{2}\bigl[s\ee{1}{2} - 2(\epsilon _1p_2) (\epsilon _2p_1)\bigr] \,.
+    \end{split}
+\end{align}
+
+
+%\zl{Which theoreis?}
+
+
+\subsubsection{4 gluons with minimum 1 metric contraction}
+
+We consider the scattering of 4 gluons. For simplicity, here we study the case with a minimum of one metric contraction. In this case, the ansatz takes 
+\begin{equation}
+	\label{eq:sec4:4-gluon-ansatz}
+	A = \sum_{i=1}^{27}\a{i}T_i\,,
+\end{equation}
+with
+\begin{equation} \label{eq:gl41-ansatz}
+    \begin{split}
+        \Vec{T} = \Bigl\{
+            &\ee{1}{2}\ee{3}{4},\ee{1}{3}\ee{2}{4},\ee{1}{4}\ee{2}{3},\\
+            &\pe{1}{3}\pe{1}{4}\ee{1}{2},\pe{1}{3}\pe{2}{4}\ee{1}{2},\pe{1}{4}\pe{2}{3}\ee{1}{2},\\
+            &\pe{2}{3}\pe{2}{4}\ee{1}{2},\pe{1}{2}\pe{1}{4}\ee{1}{3},\pe{1}{2}\pe{2}{4}\ee{1}{3},\\
+            &\pe{1}{4}\pe{3}{2}\ee{1}{3},\pe{2}{4}\pe{3}{2}\ee{1}{3},\pe{1}{2}\pe{1}{3}\ee{1}{4},\\
+            &\pe{1}{2}\pe{2}{3}\ee{1}{4},\pe{1}{3}\pe{3}{2}\ee{1}{4},\pe{2}{3}\pe{3}{2}\ee{1}{4},\\
+            &\pe{1}{4}\pe{2}{1}\ee{2}{3},\pe{1}{4}\pe{3}{1}\ee{2}{3},\pe{2}{1}\pe{2}{4}\ee{2}{3},\\
+            &\pe{2}{4}\pe{3}{1}\ee{2}{3},\pe{1}{3}\pe{2}{1}\ee{2}{4},\pe{2}{1}\pe{2}{3}\ee{2}{4},\\
+            &\pe{1}{3}\pe{3}{1}\ee{2}{4},\pe{2}{3}\pe{3}{1}\ee{2}{4},\pe{1}{2}\pe{2}{1}\ee{3}{4},\\
+            &\pe{2}{1}\pe{3}{2}\ee{3}{4},\pe{1}{2}\pe{3}{1}\ee{3}{4},\pe{3}{1}\pe{3}{2}\ee{3}{4}\Bigr\}
+    \end{split}
+\end{equation}
+
+Following the procedure described in Section \ref{subsec:ch4-general_idea_and_procedure}, the next step involves generating a set of linear equations that constrain the ansatz \eqref{eq:sec4:4-gluon-ansatz} using the on-shell gauge invariance or the Ward identity. To proceed, it is useful to identify a set of independent Lorentz invariants obtained by replacing one of the four polarisation vectors by its corresponding momentum for every terms in $\vec{T}$, $\vec{T}\big|_{\epsilon_i\to p_i}$ with $i\in\{1,2,3,4\}$. This yields the following set
+\begin{align}
+\vec{X} = 
+\big\{
+&
+\pe{1}{3}\ee{1}{2},~~ 
+\pe{1}{4}\ee{1}{2},~~ 
+\pe{2}{3}\ee{1}{2},~~ 
+\pe{2}{4}\ee{1}{2},~~  
+\pe{1}{2}\ee{1}{3},
+\nonumber\\
+&
+\pe{1}{4}\ee{1}{3},~~  
+\pe{2}{4}\ee{1}{3},~~ 
+\pe{3}{2}\ee{1}{3},~~ 
+\pe{1}{2}\ee{1}{4},~~  
+\pe{1}{3}\ee{1}{4},
+\nonumber\\
+&
+\pe{2}{3}\ee{1}{4},~~  
+\pe{3}{2}\ee{1}{4},~~  
+\pe{1}{4}\ee{2}{3},~~  
+\pe{2}{1}\ee{2}{3},~~  
+\pe{2}{4}\ee{2}{3},
+\nonumber\\
+&
+\pe{3}{1}\ee{2}{3},~~  
+\pe{1}{3}\ee{2}{4},~~  
+\pe{2}{1}\ee{2}{4},~~  
+\pe{2}{3}\ee{2}{4},~~  
+\pe{3}{1}\ee{2}{4},
+\\
+%%%
+&
+\pe{1}{2}\ee{3}{4},~~  
+\pe{2}{1}\ee{3}{4},~~  
+\pe{3}{1}\ee{3}{4},~~  
+\pe{3}{2}\ee{3}{4},~~  
+\pe{1}{2}\pe{1}{3}\pe{1}{4},
+\nonumber\\
+& 
+\pe{1}{2}\pe{1}{3}\pe{2}{1},~~  
+\pe{1}{2}\pe{1}{4}\pe{2}{1},~~  
+\pe{1}{3}\pe{1}{4}\pe{2}{1},~~  
+\pe{1}{2}\pe{1}{4}\pe{2}{3}, 
+\nonumber\\
+& 
+\pe{1}{2}\pe{2}{1}\pe{2}{3},~~ 
+\pe{1}{4}\pe{2}{1}\pe{2}{3},~~  
+\pe{1}{2}\pe{1}{3}\pe{2}{4},~~  
+\pe{1}{2}\pe{2}{1}\pe{2}{4}, 
+\nonumber\\
+& 
+\pe{1}{3}\pe{2}{1}\pe{2}{4},~~  
+\pe{1}{2}\pe{2}{3}\pe{2}{4},~~ 
+\pe{2}{1}\pe{2}{3}\pe{2}{4},~~  
+\pe{1}{2}\pe{1}{3}\pe{3}{1},
+\nonumber\\
+&
+\pe{1}{2}\pe{1}{4}\pe{3}{1},~~  
+\pe{1}{2}\pe{2}{3}\pe{3}{1},~~  
+\pe{1}{4}\pe{2}{3}\pe{3}{1},~~  
+\pe{1}{2}\pe{2}{4}\pe{3}{1},
+\nonumber\\
+& 
+\pe{1}{3}\pe{2}{4}\pe{3}{1},~~  
+\pe{2}{3}\pe{2}{4}\pe{3}{1},~~  
+\pe{1}{3}\pe{1}{4}\pe{3}{2},~~  
+\pe{1}{3}\pe{2}{1}\pe{3}{2},
+\nonumber\\
+&
+\pe{1}{4}\pe{2}{1}\pe{3}{2},~~  
+\pe{2}{1}\pe{2}{3}\pe{3}{2},~~ 
+\pe{1}{3}\pe{2}{4}\pe{3}{2},~~
+\pe{2}{1}\pe{2}{4}\pe{3}{2}, 
+\nonumber\\
+&
+\pe{1}{3}\pe{3}{1}\pe{3}{2},~~
+\pe{1}{4}\pe{3}{1}\pe{3}{2},~~  
+\pe{2}{3}\pe{3}{1}\pe{3}{2},~~  
+\pe{2}{4}\pe{3}{1}\pe{3}{2}
+\big\}.
+\nonumber
+\end{align}
+Then the four Ward identities are
+\begin{align}
+    \begin{split}
+        0 ={}& A|_{\epsilon_1 \rightarrow p_1} \\
+        ={}& \frac{1}{2}(2\alpha_3+s\alpha_{16}-(s+t)\alpha_{18})x_{13} + \frac{1}{2}(s\alpha_{17}-(s+t)\alpha_{19})x_{15} \\
+        {}& + \frac{1}{2}(2\alpha_2+s\alpha_{20}-(s+t)\alpha_{22})x_{17} + \frac{1}{2}(s\alpha_{21}-(s+t)\alpha_{23})x_{19} \\
+        {}& + \frac{1}{2}(2\alpha_1+s\alpha_{24}-(s+t)\alpha_{26})x_{21} + \frac{1}{2}(s\alpha_{25}-(s+t)\alpha_{27})x_{24} \\
+        {}& + (\alpha_4+\alpha_8+\alpha_{12})x_{25} + (\alpha_6+\alpha_{13})x_{29} + (\alpha_5+\alpha_9)x_{32} + \\
+        {}& + \alpha_{7}x_{35} + (\alpha_{10}+\alpha_{14})x_{44} + \alpha_{15}x_{47} + \alpha_{11}x_{49} \,,
+    \end{split} \\[2ex]
+    \begin{split}
+        0 ={}& A|_{\epsilon_2 \rightarrow p_2} \\
+        ={}& \frac{1}{2}(s\alpha_8+t\alpha_{10})x_6 + \frac{1}{2}(2\alpha_2+s\alpha_9+t\alpha_{11})x_7 + \frac{1}{2}(s\alpha_{12}+t\alpha_{14})x_{10} \\
+        {}& + \frac{1}{2}(2\alpha_3+s\alpha_{13}+t\alpha_{15})x_{11} + \frac{1}{2}(2\alpha_1+s\alpha_{24}+t\alpha_{25})x_{22} \\
+        {}& + \frac{1}{2}(s\alpha_{26}+t\alpha_{27})x_{23} + \alpha_{4}x_{28} + (\alpha_6+\alpha_{16})x_{31} + (\alpha_5+\alpha_{20})x_{34} \\
+        {}& + (\alpha_7+\alpha_{17}+\alpha_{21})x_{36} + \alpha_{18}x_{40} + \alpha_{22}x_{42} + (\alpha_{19}+\alpha_{23})x_{43} \,,
+    \end{split} \\[2ex]
+    \begin{split}
+        0 ={}& A|_{\epsilon_3 \rightarrow p_3} \\
+        ={}& - \frac{1}{2}(2\alpha_1+(s+t)\alpha_4-t\alpha_6)x_2 - \frac{1}{2}(2\alpha_1+(s+t)\alpha_5-t\alpha_7)x_4 \\
+        {}& - \frac{1}{2}((s+t)\alpha_{12}-t\alpha_{13})x_9 + \frac{1}{2}(2\alpha_3-(s+t)\alpha_{14}+t\alpha_{15})x_{12} \\
+        {}& - \frac{1}{2}((s+t)\alpha_{20}-t\alpha_{21})x_{18} + \frac{1}{2}(2\alpha_2-(s+t)\alpha_{22}+t\alpha_{23})x_{20} \\
+        {}& - \alpha_{24}(x_{27}+x_{33}) + (\alpha_8-\alpha_{26})x_{38} + (\alpha_9-\alpha_{26})x_{41} + (\alpha_{16}-\alpha_{25})x_{46} \\
+        {}& + (\alpha_{17}-\alpha_{25})x_{50} + (\alpha_{10}+\alpha_{18}-\alpha_{27})x_{52} + (\alpha_{11}+\alpha_{19}-\alpha_{27})x_{54}
+    \end{split}
+\intertext{and}
+    \begin{split}
+        0 ={}& A|_{\epsilon_4 \rightarrow p_4} \\
+        ={}& - \frac{1}{2}(2\alpha_1-t\alpha_4+(s+t)\alpha_5)x_1 - \frac{1}{2}(2\alpha_1-t\alpha_6+(s+t)\alpha_7)x_3 \\
+        {}& - \frac{1}{2}(2\alpha_2-t\alpha_8+(s+t)\alpha_9)x_5 - \frac{1}{2}(2\alpha_2-t\alpha_{10}+(s+t)\alpha_{11})x_8 \\
+        {}& - \frac{1}{2}(2\alpha_3-t\alpha_{16}+(s+t)\alpha_{17})x_{14} - \frac{1}{2}(2\alpha_3-t\alpha_{18}+(s+t)\alpha_{19})x_{16} \\
+        {}& - (\alpha_{12}+\alpha_{20}+\alpha_{24})x_{26} - (\alpha_{13}+\alpha_{21}+\alpha_{24})x_{30} - (\alpha_{12}+\alpha_{22}+\alpha_{26})x_{37} \\
+        {}& - (\alpha_{13}+\alpha_{23}+\alpha_{26})x_{39} - (\alpha_{14}+\alpha_{20}+\alpha_{25})x_{45} - (\alpha_{15}+\alpha_{21}+\alpha_{25})x_{48} \\
+        {}& - (\alpha_{14}+\alpha_{22}+\alpha_{27})x_{51} - (\alpha_{15}+\alpha_{23}+\alpha_{27})x_{53} \,.
+    \end{split}
+\end{align}
+From them, we extract 53 linear equations,
+\begingroup
+\allowdisplaybreaks
+\begin{equation}
+\begin{split}
+    &\alpha_4=\alpha_7=\alpha_{11}=\alpha_{15}=\alpha_{18}=\alpha_{22}=\alpha_{24}=0\,,
+            \\[0.35 em]
+            %%
+            &
+            2\alpha_1+(s+t)\alpha_5=0 \comma
+            2\alpha_1-t\alpha_6=0 \comma
+            2\alpha_{1}+t\alpha_{25}=0 \comma
+            2\alpha_{1}-(s+t)\alpha_{26}=0 \,, 
+            \\
+            &
+            2\alpha_{2}-t\alpha_{8}+(s+t)\alpha_{9}=0 \comma
+            2\alpha_{2}+s\alpha_{9}=0 \comma
+            2\alpha_{2}-t\alpha_{10}=0 \comma
+            2\alpha_{2}+s\alpha_{20}=0 \,, 
+            \\
+            &
+            2\alpha_{2}+t\alpha_{23}=0 \comma
+            2\alpha_{3}+s\alpha_{13}=0 \comma
+            2\alpha_{3}-(s+t)\alpha_{14}=0 \comma
+            2\alpha_{3}+s\alpha_{16}=0 \,, 
+            \\
+            &
+            2\alpha_{3}-t\alpha_{16}+(s+t)\alpha_{17}=0 \comma
+            2\alpha_{3}+(s+t)\alpha_{19}=0 \,,
+            \\[0.35 em]
+            %%
+            &
+            \alpha_{5}+\alpha_{9}=0 \comma
+            \alpha_{5}+\alpha_{20}=0 \comma
+            \alpha_{6}+\alpha_{13}=0 \comma
+            \alpha_{6}+\alpha_{16}=0 \comma
+            \alpha_{8}+\alpha_{12}=0 \,, 
+            \\
+            &
+            \alpha_{8}-\alpha_{26}=0 \comma
+            \alpha_{9}-\alpha_{26}=0 \comma
+            \alpha_{10}+\alpha_{14}=0 \comma
+            \alpha_{10}-\alpha_{27}=0 \comma
+            \alpha_{12}+\alpha_{20}=0 \,, 
+            \\
+            &
+            \alpha_{12}+\alpha_{26}=0 \comma
+            \alpha_{13}+\alpha_{21}=0 \comma
+            \alpha_{13}+\alpha_{23}+\alpha_{26}=0 \comma
+            \alpha_{14}+\alpha_{20}+\alpha_{25}=0 \,, 
+            \\
+            &
+            \alpha_{14}+\alpha_{27}=0 \comma
+            \alpha_{16}-\alpha_{25}=0 \comma
+            \alpha_{17}+\alpha_{21}=0 \comma
+            \alpha_{17}-\alpha_{25}=0 \comma
+            \alpha_{19}+\alpha_{23}=0 \,, 
+            \\
+            &
+            \alpha_{19}-\alpha_{27}=0 \comma
+            \alpha_{21}+\alpha_{25}=0 \comma
+            \alpha_{23}+\alpha_{27}=0 \,, 
+            \\[0.35 em]
+            %%
+            &
+            s\alpha_{8} + t\alpha_{10}=0 \comma
+            u\alpha_{12} + t\alpha_{13}=0 \comma
+            s\alpha_{12} + t\alpha_{14}=0 \comma
+            s\alpha_{17} + u\alpha_{19}=0 \,, 
+            %s\alpha_{8}+t\alpha_{10}=0 \comma
+            %(s+t)\alpha_{12}-t\alpha_{13}=0 \comma
+            %s\alpha_{12}+t\alpha_{14}=0 \comma
+            %s\alpha_{17}-(s+t)\alpha_{19}=0 \,, 
+            \\
+            &
+            u\alpha_{20} + t\alpha_{21}=0 \comma
+            s\alpha_{21} + u\alpha_{23}=0 \comma
+            s\alpha_{25} + u\alpha_{27}=0 \comma
+            s\alpha_{26} + t\alpha_{27}=0\,.
+            %(s+t)\alpha_{20}-t\alpha_{21}=0 \comma
+            %s\alpha_{21}-(s+t)\alpha_{23}=0 \comma
+            %s\alpha_{25}-(s+t)\alpha_{27}=0 \comma
+            %s\alpha_{26}+t\alpha_{27}=0
+\end{split}
+\end{equation}
+\endgroup
+
+Very interestingly, these equations uniquely determine all $\alpha$-coefficients in the ansatz \eqref{eq:sec4:4-gluon-ansatz} up to an overall factor. We find
+\begin{equation}
+    \begin{multlined}
+        \vec{\alpha} = \Bigl\{\frac{t u}{2 s},\frac{t}{2},\frac{u}{2},0,\frac{t}{s}, \frac{u}{s},0,-\frac{t}{s},-\frac{t}{s},1,0,\frac{t}{s},
+        %
+        -\frac{u}{s},-1,0, -\frac{u}{s}, -\frac{u}{s},0,1,-\frac{t}{s},\frac{u}{s},0,-1,0, -\frac{u}{s},-\frac{t}{s},1\Bigr\}\,.
+    \end{multlined}
+\end{equation}
+This gives the amplitude,
+\begin{equation}
+    \begin{split}
+        A = \, &tu\ee{1}{2}\ee{3}{4}
+        +st\ee{1}{3}\ee{2}{4}
+        +su\ee{1}{4}\ee{2}{3} \\
+        &+2t[\pe{1}{2}\pe{3}{4}\ee{1}{3}
+        +\pe{1}{3}\pe{2}{4}\ee{1}{2}
+        +\pe{2}{1}\pe{4}{3}\ee{2}{4} \\
+        &+\pe{3}{1}\pe{4}{2}\ee{3}{4}]
+        +2u[\pe{1}{2}\pe{4}{3}\ee{1}{4}
+        +\pe{1}{4}\pe{2}{3}\ee{1}{2} \\
+        &+\pe{2}{1}\pe{3}{4}\ee{2}{3}
+        +\pe{3}{2}\pe{4}{1}\ee{3}{4}]
+        +2s[\pe{1}{3}\pe{4}{2}\ee{1}{4} \\
+        &+\pe{1}{4}\pe{3}{2}\ee{1}{3}
+        +\pe{2}{3}\pe{4}{1}\ee{2}{4}
+        +\pe{2}{4}\pe{3}{1}\ee{2}{3}] \,,
+    \end{split}
+\end{equation}
+which can be checked to be proportional to the amplitude computed in \eqref{eq:sec3:4pt-ym-amplitude} in Section \ref{subsec:gauge-fields}.
+
+
+
+
+
+
+%\begin{equation}
+%    \begin{multlined}
+%        \Bigl\{t u,s t,s u,0,2 t,2 u,0,-2 t,-2 t,2 s, \\
+%        0,2 t,-2 u,-2 s,0,-2 u,-2 u,0,2 s,-2 t,2 u,0,-2s,0,-2 u,-2 t,2 s\Bigr\}
+%    \end{multlined}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        &tu\ee{1}{2}\ee{3}{4}
+%        +st\ee{1}{3}\ee{2}{4}
+%        +su\ee{1}{4}\ee{2}{3} \\
+%        &+2u\pe{1}{4}\pe{2}{3}\ee{1}{2}
+%        +2t\pe{1}{3}\pe{2}{4}\ee{1}{2}
+%        -2t\pe{1}{2}\pe{1}{4}\ee{1}{3} \\
+%        &-2t\pe{1}{2}\pe{2}{4}\ee{1}{3}
+%        +2s\pe{1}{4}\pe{3}{2}\ee{1}{3}
+%        +2t\pe{1}{2}\pe{1}{3}\ee{1}{4} \\
+%        &-2u\pe{1}{2}\pe{2}{3}\ee{1}{4}
+%        -2s\pe{1}{3}\pe{3}{2}\ee{1}{4}
+%        -2u\pe{1}{4}\pe{2}{1}\ee{2}{3} \\
+%        &-2u\pe{2}{1}\pe{2}{4}\ee{2}{3}
+%        +2s\pe{2}{4}\pe{3}{1}\ee{2}{3}
+%        -2t\pe{1}{3}\pe{2}{1}\ee{2}{4} \\
+%        &+2u\pe{2}{1}\pe{2}{3}\ee{2}{4}
+%        -2s\pe{2}{3}\pe{3}{1}\ee{2}{4}
+%        -2t\pe{1}{2}\pe{3}{1}\ee{3}{4} \\
+%        &-2u\pe{2}{1}\pe{3}{2}\ee{3}{4}
+%        +2s\pe{3}{1}\pe{3}{2}\ee{3}{4}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        &2s\pe{1}{2}\pe{1}{3}\ee{1}{4}
+%        +2t\pe{1}{2}\pe{1}{3}\ee{1}{4}
+%        +2u\pe{1}{2}\pe{1}{3}\ee{1}{4} \\
+%        &+2s\pe{2}{1}\pe{2}{3}\ee{2}{4}
+%        +2t\pe{2}{1}\pe{2}{3}\ee{2}{4}
+%        +2u\pe{2}{1}\pe{2}{3}\ee{2}{4} \\
+%        &+2s\pe{3}{1}\pe{3}{2}\ee{3}{4}
+%        +2t\pe{3}{1}\pe{3}{2}\ee{3}{4}
+%        +2u\pe{3}{1}\pe{3}{2}\ee{3}{4}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    2(s+t+u)\left[\pe{1}{2}\pe{1}{3}\ee{1}{4}+\pe{2}{1}\pe{2}{3}\ee{2}{4}+\pe{3}{1}\pe{3}{2}\ee{3}{4}\right]
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        &tu\ee{1}{2}\ee{3}{4}
+%        +st\ee{1}{3}\ee{2}{4}
+%        +su\ee{1}{4}\ee{2}{3} \\
+%        &+2u\pe{1}{4}\pe{2}{3}\ee{1}{2}
+%        +2t\pe{1}{3}\pe{2}{4}\ee{1}{2}
+%        +2s\pe{1}{4}\pe{3}{2}\ee{1}{3} \\
+%        &+2t\pe{1}{2}\pe{3}{4}\ee{1}{3}
+%        +2s\pe{1}{3}\pe{4}{2}\ee{1}{4}
+%        +2u\pe{1}{2}\pe{4}{3}\ee{1}{4} \\
+%        &+2s\pe{2}{4}\pe{3}{1}\ee{2}{3}
+%        +2u\pe{2}{1}\pe{3}{4}\ee{2}{3}
+%        +2s\pe{2}{3}\pe{4}{1}\ee{2}{4} \\
+%        &+2t\pe{2}{1}\pe{4}{3}\ee{2}{4}
+%        +2u\pe{3}{2}\pe{4}{1}\ee{3}{4}
+%        +2t\pe{3}{1}\pe{4}{2}\ee{3}{4}
+%    \end{split}
+%\end{equation}
+
+
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_1 = \Bigl\{
+%            &\pe{1}{4}\ee{2}{3},\pe{2}{4}\ee{2}{3},\pe{1}{3}\ee{2}{4},\\
+%            &\pe{2}{3}\ee{2}{4},\pe{1}{2}\ee{3}{4},\pe{3}{2}\ee{3}{4},\\
+%            &\pe{1}{2}\pe{1}{3}\pe{1}{4},\pe{1}{2}\pe{1}{4}\pe{2}{3},\\
+%            &\pe{1}{2}\pe{1}{3}\pe{2}{4},\pe{1}{2}\pe{2}{3}\pe{2}{4},\\
+%            &\pe{1}{3}\pe{1}{4}\pe{3}{2},\pe{1}{4}\pe{2}{3}\pe{3}{2},\\
+%            &\pe{1}{3}\pe{2}{3}\pe{2}{4}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_2 = \Bigl\{
+%            &\pe{1}{4}\ee{1}{3},\pe{2}{4}\ee{1}{3},\pe{1}{3}\ee{1}{4},\\
+%            &\pe{2}{3}\ee{1}{4},\pe{2}{1}\ee{3}{4},\pe{3}{1}\ee{3}{4},\\
+%            &\pe{1}{3}\pe{1}{4}\pe{2}{1},\pe{1}{4}\pe{2}{1}\pe{2}{3},\\
+%            &\pe{1}{3}\pe{2}{1}\pe{2}{4},\pe{2}{1}\pe{2}{3}\pe{2}{4},\\
+%            &\pe{1}{4}\pe{2}{3}\pe{3}{1},\pe{1}{3}\pe{2}{4}\pe{3}{1},\\
+%            &\pe{2}{3}\pe{2}{4}\pe{3}{1}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_3 = \Bigl\{
+%            &\pe{1}{4}\ee{1}{2},\pe{2}{4}\ee{1}{2},\pe{1}{2}\ee{1}{4},\\
+%            &\pe{3}{2}\ee{1}{4},\pe{2}{1}\ee{2}{4},\pe{3}{1}\ee{2}{4},\\
+%            &\pe{1}{2}\pe{1}{4}\pe{2}{1},\pe{1}{2}\pe{2}{1}\pe{2}{4},\\
+%            &\pe{1}{2}\pe{1}{4}\pe{3}{1},\pe{1}{2}\pe{2}{4}\pe{3}{1},\\
+%            &\pe{1}{4}\pe{2}{1}\pe{3}{2},\pe{2}{1}\pe{2}{4}\pe{3}{2},\\
+%            &\pe{1}{4}\pe{3}{1}\pe{3}{2},\pe{2}{4}\pe{3}{1}\pe{3}{2}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_4 = \Bigl\{
+%            &\pe{1}{3}\ee{1}{2},\pe{2}{3}\ee{1}{2},\pe{1}{2}\ee{1}{3},\\
+%            &\pe{3}{2}\ee{1}{3},\pe{2}{1}\ee{2}{3},\pe{3}{1}\ee{2}{3},\\
+%            &\pe{1}{2}\pe{1}{3}\pe{2}{1},\pe{1}{2}\pe{2}{1}\pe{2}{3},\\
+%            &\pe{1}{2}\pe{1}{3}\pe{3}{1},\pe{1}{2}\pe{2}{3}\pe{3}{1},\\
+%            &\pe{1}{3}\pe{2}{1}\pe{3}{2},\pe{2}{1}\pe{2}{3}\pe{3}{2},\\
+%            &\pe{1}{3}\pe{3}{1}\pe{3}{2},\pe{2}{3}\pe{3}{1}\pe{3}{2}\Bigr\}
+%    \end{split}
+%\end{equation}
+
+
+
+%\begin{equation}
+%    \begin{split}
+%        \Vec{T}\lfloor_{\epsilon_1 \rightarrow p_1} \, = \Bigl\{
+%            &x_5, x_3, x_1, x_7, x_9, x_8, x_{10}, x_7, x_9, x_{11}, x_{13}, x_7, x_8, x_{11}, x_{12},\\
+%            &\frac{s}{2}x_1, \frac{s}{2}x_2, -\frac{s+t}{2}x_1, -\frac{s+t}{2}x_2, \frac{s}{2}x_3, \frac{s}{2}x_4, -\frac{s+t}{2}x_3,\\
+%            &-\frac{s+t}{2}x_4, \frac{s}{2}x_5, \frac{s}{2}x_6, -\frac{s+t}{2}x_5, -\frac{s+t}{2}x_6\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{T}\lfloor_{\epsilon_2 \rightarrow p_2} \, = \Bigl\{
+%            &x_{18}, x_{15}, x_{17}, x_{20}, x_{22}, x_{21}, x_{23},\\
+%            &\frac{s}{2}x_{14}, \frac{s}{2}x_{15}, \frac{t}{2}x_{14}, \frac{t}{2}x_{15}, \frac{s}{2}x_{16}, \frac{s}{2}x_{17}, \frac{t}{2}x_{16}, \frac{t}{2}x_{17},\\
+%            &x_{21}, x_{23}, x_{24}, x_{26}, x_{22}, x_{23}, x_{25}, x_{26},\\
+%            &\frac{s}{2}x_{18}, \frac{t}{2}x_{18}, \frac{s}{2}x_{19}, \frac{t}{2}x_{19}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{T}\lfloor_{\epsilon_3 \rightarrow p_3} \, = \Bigl\{
+%            &-x_{27}-x_{28}, x_{32}, x_{30}, -\frac{s+t}{2}x_{27}, -\frac{s+t}{2}x_{28}, \frac{t}{2}x_{27}, \frac{t}{2}x_{28},\\
+%            &x_{35}, x_{36}, x_{39}, x_{40}, -\frac{s+t}{2}x_{29}, \frac{t}{2}x_{29}, -\frac{s+t}{2}x_{30}, \frac{t}{2}x_{30},\\
+%            &x_{37}, x_{38}, x_{39}, x_{40}, -\frac{s+t}{2}x_{31}, \frac{t}{2}x_{31}, -\frac{s+t}{2}x_{32}, \frac{t}{2}x_{32},\\
+%            &-x_{33}-x_{34}, -x_{37}-x_{38}, -x_{35}-x_{36}, -x_{39}-x_{40}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{T}\lfloor_{\epsilon_4 \rightarrow p_4} \, = \Bigl\{
+%            &-x_{41}-x_{42}, -x_{43}-x_{44}, -x_{45}-x_{46}, \frac{t}{2}x_{41}, -\frac{s+t}{2}x_{41}, \frac{t}{2}x_{42},\\
+%            &-\frac{s+t}{2}x_{42}, \frac{t}{2}x_{43}, -\frac{s+t}{2}x_{43}, \frac{t}{2}x_{44}, -\frac{s+t}{2}x_{44}, -x_{47}-x_{49},\\
+%            &-x_{48}-x_{50}, -x_{51}-x_{53}, -x_{52}-x_{54}, \frac{t}{2}x_{45}, -\frac{s+t}{2}x_{45}, \frac{t}{2}x_{46},\\
+%            &-\frac{s+t}{2}x_{46}, -x_{47}-x_{51}, -x_{48}-x_{52}, -x_{49}-x_{53}, -x_{50}-x_{54},\\
+%            &-x_{47}-x_{48}, -x_{51}-x_{52}, -x_{49}-x_{50}, -x_{53}-x_{54}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \sum_{i=1}^4 \Vec{\alpha} \cdot \Vec{T}\lfloor_{\epsilon_i \rightarrow p_i} = 0
+%\end{equation}
+
+
+
+
+\subsubsection{3 gravitons}
+
+From the QFT description in Chapter 3, we see that in general gravitational amplitudes are much more complicated than gluon amplitudes. Here we also study in detail several examples involving gravitons. The first example we consider is three-graviton amplitude. Following the analysis in section \ref{sec-ansatz}, the ansatz includes 11 independent terms as follows:
+\begin{align}
+\Vec{T} = \Big\{
+&
+\EE{1}{L}{3}{R} \EE{1}{R}{2}{R} \EE{2}{L}{3}{L},~
+\EE{1}{L}{2}{R} \EE{1}{R}{2}{L} \pE{1}{3}{L} \pE{1}{3}{R},
+\nonumber\\
+&
+\EE{1}{L}{3}{R} \EE{1}{R}{2}{R} \pE{1}{2}{L} \pE{1}{3}{L},~
+\EE{1}{R}{2}{R} \EE{2}{L}{3}{R} \pE{1}{3}{L} \pE{2}{1}{L},
+\nonumber\\
+&
+\EE{1}{L}{3}{R} \EE{1}{R}{3}{L} \pE{1}{2}{L} \pE{1}{2}{R},~
+\EE{1}{R}{3}{R} \EE{2}{R}{3}{L} \pE{1}{2}{L} \pE{2}{1}{L},
+\nonumber\\
+&
+\EE{2}{L}{3}{R} \EE{2}{R}{3}{L} \pE{2}{1}{L} \pE{2}{1}{R},~
+\EE{1}{R}{2}{R} \pE{1}{2}{L} \pE{1}{3}{L} \pE{1}{3}{R} \pE{2}{1}{L},
+\nonumber\\
+&
+\EE{1}{R}{3}{R} \pE{1}{2}{L} \pE{1}{2}{R} \pE{1}{3}{L} \pE{2}{1}{L},~
+\EE{2}{R}{3}{R} \pE{1}{2}{L} \pE{1}{3}{L} \pE{2}{1}{L} \pE{2}{1}{R},
+\nonumber\\
+&
+\pE{1}{2}{L} \pE{1}{2}{R} \pE{1}{3}{L} \pE{1}{3}{R} \pE{2}{1}{L} \pE{2}{1}{R}
+\Big\}
++ \text{Bose symmetrisation}
+\end{align}
+To take a Bose symmetric form, for each term we perform a Bose symmetrisation as shown in \eqref{eq:sec4:3-graviton-element-symmetrised}.
+% For instance, for the first term in $\vec{T}$ we get
+% \begin{align}
+% \EE{1}{L}{3}{R} & \EE{1}{R}{2}{R} \EE{2}{L}{3}{L}\Big|_\text{Bose symmetrisation}
+% \nonumber\\
+% =&
+% \EE{1}{L}{3}{R} \EE{1}{R}{2}{R} \EE{2}{L}{3}{L} + 
+% \EE{1}{L}{2}{R} \EE{1}{R}{3}{R} \EE{2}{L}{3}{L} + 
+% \EE{1}{L}{3}{L} \EE{1}{R}{2}{R} \EE{2}{L}{3}{R}
+% \nonumber\\
+% &
+% +
+% \EE{1}{L}{2}{R} \EE{1}{R}{3}{L} \EE{2}{L}{3}{R} + 
+% \EE{1}{L}{3}{R} \EE{1}{R}{2}{L} \EE{2}{R}{3}{L} + 
+% \EE{1}{L}{2}{L} \EE{1}{R}{3}{R} \EE{2}{R}{3}{L}
+% \nonumber\\
+% &
+% +
+% \EE{1}{L}{3}{L} \EE{1}{R}{2}{L} \EE{2}{R}{3}{R} + 
+% \EE{1}{L}{2}{L} \EE{1}{R}{3}{L} \EE{2}{R}{3}{R} \,.
+% \end{align}
+
+Then the on-shell gauge invariance will lead to a system of linear equations that constraints the ansatz of the three-graviton amplitude,
+\begin{equation}
+	\label{eq:sec4:3-gr-ansatz}
+	A = \sum_{i=1}^{11}\a{i}T_i \,.
+\end{equation}
+We will omit details for this example and write down the final linear system,
+\begin{equation}
+M\cdot\vec{\alpha} = 0 \,,
+\end{equation}
+with
+\begin{equation}
+M = 
+\left(
+\begin{array}{ccccccccccc}
+ 0 & 1 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & -2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & -1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 2 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & -1 & -2 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 1 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 2 & 0 & 0 & -1 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & -2 & -1 & 0 & 0 & 0 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 0 & -2 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -2 & -2 & 0 \\
+ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 2 & 0 & 0 \\
+\end{array}
+\right) \,.
+\end{equation}
+It is then easy to find the following independent solutions:
+\begin{align}
+\vec{\alpha}_1 &= \{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1\} \,, 
+\\
+\vec{\alpha}_2 &= \{0, 0, 0, 0, 0, 0, 0, -1, 1, -1, 0\} \,, 
+\\
+\vec{\alpha}_3 &= \{0, -2, 1, -1, -2, 1, -2, 0, 0, 0, 0\} \,, 
+\\
+\intertext{and}
+\vec{\alpha}_4 &= \{-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0\}
+\end{align}
+
+
+
+
+
+
+
+
+%\subsubsection{2 gravitons and 2 scalars}
+%
+%We also consider a 4-point example involving two scalars and two gravitons. In this case, the amplitude ansatz takes
+%\begin{equation}
+%	\label{eq:sec4:3-gr-ansatz}
+%	A = \sum_{i=1}^{14}\a{i}T_i\,.
+%\end{equation}
+%with
+%\begin{align}
+%        \Vec{T} = \Bigl\{
+%        &\EE{1}{L}{2}{R}\EE{1}{R}{2}{L},~ 
+%        \pE{1}{2}{L}\pE{2}{1}{L}\EE{1}{R}{2}{R},~ 
+%        \\
+%        &
+%        \pE{2}{1}{L}\pE{3}{2}{L}\EE{1}{R}{2}{R}, 
+%        \pE{1}{2}{L}\pE{3}{1}{L}\EE{1}{R}{2}{R}, 
+%        \nonumber\\
+%        &
+%        \pE{3}{1}{L}\pE{3}{2}{L}\EE{1}{R}{2}{R}, 
+%        \pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{L}\pE{2}{1}{R}, 
+%        \nonumber\\
+%        &
+%        \pE{1}{2}{R}\pE{2}{1}{L}\pE{2}{1}{R}\pE{3}{2}{L}, 
+%        \pE{2}{1}{L}\pE{2}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R}, 
+%        \nonumber\\
+%        &
+%        \pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{R}\pE{3}{1}{L}, 
+%        \pE{1}{2}{R}\pE{2}{1}{R}\pE{3}{1}{L}\pE{3}{2}{L}, 
+%        \nonumber\\
+%        &
+%        \pE{2}{1}{R}\pE{3}{1}{L}\pE{3}{2}{L}\pE{3}{2}{R}, 
+%        \pE{1}{2}{L}\pE{1}{2}{R}\pE{3}{1}{L}\pE{3}{1}{R}, 
+%        \nonumber\\
+%        &
+%        \pE{1}{2}{R}\pE{3}{1}{L}\pE{3}{1}{R}\pE{3}{2}{L}, 
+%        \pE{3}{1}{L}\pE{3}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R}\Bigr\}
+%        + \text{Bose sym}.
+%        \nonumber
+%\end{align}
+
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%    \begin{split}
+%        \Vec{T} = \Bigl\{
+%        &\EE{1}{L}{2}{R}\EE{1}{R}{2}{L}+ 
+%        \EE{1}{L}{2}{L}\EE{1}{R}{2}{R}, \\
+%        &\pE{1}{2}{L}\pE{2}{1}{L}\EE{1}{R}{2}{R}+ 
+%        \pE{1}{2}{R}\pE{2}{1}{L}\EE{1}{R}{2}{L}+ 
+%        \pE{1}{2}{L}\pE{2}{1}{R}\EE{1}{L}{2}{R}+ \\
+%        &\pE{1}{2}{R}\pE{2}{1}{R}\EE{1}{L}{2}{L}, 
+%        \pE{2}{1}{L}\pE{3}{2}{L}\EE{1}{R}{2}{R}+ 
+%        \pE{2}{1}{R}\pE{3}{2}{L}\EE{1}{L}{2}{R}+ \\
+%        &\pE{2}{1}{L}\pE{3}{2}{R}\EE{1}{R}{2}{L}+ 
+%        \pE{2}{1}{R}\pE{3}{2}{R}\EE{1}{L}{2}{L}, 
+%        \pE{1}{2}{L}\pE{3}{1}{L}\EE{1}{R}{2}{R}+ \\
+%        &\pE{1}{2}{R}\pE{3}{1}{L}\EE{1}{R}{2}{L}+ 
+%        \pE{1}{2}{L}\pE{3}{1}{R}\EE{1}{L}{2}{R}+ 
+%        \pE{1}{2}{R}\pE{3}{1}{R}\EE{1}{L}{2}{L}, \\
+%        &\pE{3}{1}{L}\pE{3}{2}{L}\EE{1}{R}{2}{R}+ 
+%        \pE{3}{1}{R}\pE{3}{2}{L}\EE{1}{L}{2}{R}+ 
+%        \pE{3}{1}{L}\pE{3}{2}{R}\EE{1}{R}{2}{L}+ \\
+%        &\pE{3}{1}{R}\pE{3}{2}{R}\EE{1}{L}{2}{L}, \\
+%        &\pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{L}\pE{2}{1}{R}, 
+%        \pE{1}{2}{R}\pE{2}{1}{L}\pE{2}{1}{R}\pE{3}{2}{L}+ \\
+%        &\pE{1}{2}{L}\pE{2}{1}{L}\pE{2}{1}{R}\pE{3}{2}{R}, 
+%        \pE{2}{1}{L}\pE{2}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R}, \\
+%        &\pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{R}\pE{3}{1}{L}+ 
+%        \pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{L}\pE{3}{1}{R}, \\
+%        &\pE{1}{2}{R}\pE{2}{1}{R}\pE{3}{1}{L}\pE{3}{2}{L}+ 
+%        \pE{1}{2}{R}\pE{2}{1}{L}\pE{3}{1}{R}\pE{3}{2}{L}+ \\
+%        &\pE{1}{2}{L}\pE{2}{1}{R}\pE{3}{1}{L}\pE{3}{2}{R}+ 
+%        \pE{1}{2}{L}\pE{2}{1}{L}\pE{3}{1}{R}\pE{3}{2}{R}, \\
+%        &\pE{2}{1}{R}\pE{3}{1}{L}\pE{3}{2}{L}\pE{3}{2}{R}+ 
+%        \pE{2}{1}{L}\pE{3}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R}, \\
+%        &\pE{1}{2}{L}\pE{1}{2}{R}\pE{3}{1}{L}\pE{3}{1}{R}, 
+%        \pE{1}{2}{R}\pE{3}{1}{L}\pE{3}{1}{R}\pE{3}{2}{L}+ \\
+%        &\pE{1}{2}{L}\pE{3}{1}{L}\pE{3}{1}{R}\pE{3}{2}{R}, 
+%        \pE{3}{1}{L}\pE{3}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R}\Bigr\}
+%    \end{split}
+%\end{equation}
+
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_1 = \Bigl\{
+%        &\pE{1}{2}{R}\EE{1}{R}{2}{L},
+%        \pE{1}{2}{L}\EE{1}{R}{2}{R},
+%        \pE{3}{2}{L}\EE{1}{R}{2}{R},
+%        \pE{3}{2}{R}\EE{1}{R}{2}{L}, \\
+%        &\pE{1}{2}{L}\pE{1}{2}{R}\pE{2}{1}{R},
+%        \pE{1}{2}{L}\pE{1}{2}{R}\pE{3}{1}{R},
+%        \pE{1}{2}{R}\pE{2}{1}{R}\pE{3}{2}{L}, \\
+%        &\pE{1}{2}{R}\pE{3}{1}{R}\pE{3}{2}{L},
+%        \pE{1}{2}{L}\pE{2}{1}{R}\pE{3}{2}{R},
+%        \pE{1}{2}{L}\pE{3}{1}{R}\pE{3}{2}{R}, \\
+%        &\pE{2}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R},
+%        \pE{3}{1}{R}\pE{3}{2}{L}\pE{3}{2}{R}\Bigr\}
+%    \end{split}
+%\end{equation}
+%
+%\begin{equation}
+%    \begin{split}
+%        \Vec{I}_2 = \Bigl\{
+%        &\pE{2}{1}{R}\EE{1}{L}{2}{R},
+%        \pE{2}{1}{L}\EE{1}{R}{2}{R},
+%        \pE{3}{1}{L}\EE{1}{R}{2}{R},
+%        \pE{3}{1}{R}\EE{1}{L}{2}{R}, \\
+%        &\pE{1}{2}{R}\pE{2}{1}{L}\pE{2}{1}{R},
+%        \pE{1}{2}{R}\pE{2}{1}{R}\pE{3}{1}{L},
+%        \pE{1}{2}{R}\pE{2}{1}{L}\pE{3}{1}{R}, \\
+%        &\pE{2}{1}{L}\pE{2}{1}{R}\pE{3}{2}{R},
+%        \pE{2}{1}{R}\pE{3}{1}{L}\pE{3}{2}{R},
+%        \pE{2}{1}{L}\pE{3}{1}{R}\pE{3}{2}{R}, \\
+%        &\pE{1}{2}{R}\pE{3}{1}{L}\pE{3}{1}{R},
+%        \pE{3}{1}{L}\pE{3}{1}{R}\pE{3}{2}{R}\Bigr\}
+%    \end{split}
+%\end{equation}
+
+
+
+
+
+
+
+\subsection{Bootstrapping tree amplitudes using loop tools}
+
+Previously, we presented the bootstrap methodology for scattering amplitudes and studied in detail a substantial number of three-particle and four-particle examples. Given the manageable sizes of the constraining equations or the ansatz, we were able to explicitly solve these equations with relative ease. Moreover, we analysed the resulting amplitudes and identified the corresponding theories based on their properties. Despite their simplicity, these examples effectively showcase the bootstrap methodology, demonstrating its elegance and powerful capabilities.
+
+As we move to more advanced cases, it becomes increasingly challenging to solve the corresponding systems of linear equations with straightforward methods, like \texttt{NullSpace}, \texttt{Solve}, or \texttt{Reduce} functions in \textsc{Mathematica}. Our previous analyses have shown that as the number of external particles increases, the scale of the ansatz and the complexity of the associated kinematic invariants grow significantly. To illustrate this, we list the statistics for the number of equations up to $n=9$ gluons in Table \ref{tab:equations-stats}.
+% \begin{table}[h]
+%     \centering
+%     \begin{tabular}[h]{ccrrrc}
+%         \hline
+%         \hline
+%         %
+%         ~$n$~ & ~~~$(\epsilon\cdot\epsilon)_{\text{min}}$~~~ & $\operatorname{dim}(\Vec{T})$ & dim\,(eqs.) & $\operatorname{dim}(\cal{K})$  \\
+%         \hline
+%         %
+%         \multirow{2}{*}{3} & 1 & 3 & 3 & \multirow{2}{*}{0}\\
+%           & 0 & 4 & 3 & \\
+%         \hline
+%         %
+%         \multirow{2}{*}{4} & 1 & 27 & 53 & \multirow{2}{*}{2} \\
+%           & 0 & 43 & 56 \\
+%         \hline
+%         %
+%         \multirow{2}{*}{5} & 1 & 315 & 623 & \multirow{2}{*}{5}\\
+%           & 0 & 558 & 690 \\
+%         \hline
+%         %%
+%         \multirow{2}{*}{6} & 1 & 4 575 & 9 033 & \multirow{2}{*}{9}\\
+%           & 0 & 8 671 & 10 344 \\
+%         \hline
+%         %
+%         \multirow{2}{*}{7} & 1 & 79 275 & 155 974 & \multirow{2}{*}{14} \\
+%           & 0 & 157 400 & 182 980  \\
+%         \hline
+%         %
+%         \multirow{2}{*}{8} & 1 & 1 593 753 & 3 124 021 & \multirow{2}{*}{20} \\
+%           & 0 & 3 273 369 & 3 732 336 \\
+%         \hline
+%         %
+%         9 & 1 & ~~36 439 389 & ~~71 177 259 & {27}\\
+%         \hline
+%         \hline
+%     \end{tabular}
+%     \caption{Number of equations and independent kinematic invariants ($\mathcal{K}$) for $n$ gluons.}
+%     \label{tab:equations-stats}
+% \end{table}
+\begin{table}[h]
+    \centering
+    \begin{tabular}[h]{ccrrrc}
+        \hline
+        \hline
+        %
+        ~$n$~ & ~~~$(\epsilon\cdot\epsilon)_{\text{min}}$~~~ & dim\,(eqs.) & $\operatorname{dim}(\cal{K})$  \\
+        \hline
+        %
+        \multirow{2}{*}{3} & 1 & 3 & \multirow{2}{*}{0}\\
+          & 0 & 3 & \\
+        \hline
+        %
+        \multirow{2}{*}{4} & 1 & 53 & \multirow{2}{*}{2} \\
+          & 0 & 56 \\
+        \hline
+        %
+        \multirow{2}{*}{5} & 1 & 623 & \multirow{2}{*}{5}\\
+          & 0 & 690 \\
+        \hline
+        %%
+        \multirow{2}{*}{6} & 1 & 9 033 & \multirow{2}{*}{9}\\
+          & 0 & 10 344 \\
+        \hline
+        %
+        \multirow{2}{*}{7} & 1 & 155 974 & \multirow{2}{*}{14} \\
+          & 0 & 182 980  \\
+        \hline
+        %
+        \multirow{2}{*}{8} & 1 & 3 124 021 & \multirow{2}{*}{20} \\
+          & 0 & 3 732 336 \\
+        \hline
+        %
+        9 & 1 & ~~71 177 259 & {27}\\
+        \hline
+        \hline
+    \end{tabular}
+    \caption{Number of equations and independent kinematic invariants ($\mathcal{K}$) for $n$ gluons.}
+    \label{tab:equations-stats}
+\end{table}
+
+For instance, for $n=6$ gluons, we need to solve linear systems of approximately 10 000 equations with 9 kinematical invariants. While both \texttt{NullSpace} and \texttt{Solve} functions in \textsc{Mathematica} can solve the equations for the case of minimal metric contraction, this is already far from trivial. As we extend our studies beyond 6 particles, the complexity of solving linear systems with merely \textsc{Mathematica}'s functions escalates dramatically, highlighting the need for more advanced or specialised computational strategies.
+
+It is particularly fascinating that efficiently solving the systems of homogeneous linear equations plays a crucial role in computing loop-level scattering amplitudes. To elucidate this, a brief overview of loop amplitudes is beneficial. Derived from Feynman diagrams, loop-level scattering amplitudes are calculated as the sum of all possible Feynman diagrams that include closed loops. These diagrams are subsequently translated into algebraic expressions, whereby a loop diagram equates to a Feynman loop integral. A typical $L$-loop integral is of the form \cite{Weinzierl:2022eaz}
+\begin{align}\label{L-loop-int-general}
+I_{\vec{\nu}} = \Bigg(\int\prod_{i=1}^{L} d^D\!\ell_i\Bigg)
+{1 \over D_1^{\nu_1} D_2^{\nu_2} \cdot D_N^{\nu_N}} \,,
+\end{align}
+where $D$ represents the dimensions of spacetime, $\vec{\nu} = (\nu_1,\ldots, \nu_N)$ with $\nu_i\in\mathbb{Z}$ indicating the powers of the propagators, $\ell_i^\mu$ denotes $L$ internal loop momentum vectors, and $D_j$ ($j=1,\ldots, N$) are scalar propagators that depend on both loop and external momenta. In computations, it is often necessary to evaluate a vast array of integrals with varied sets of indices, $\vec{\nu}$. Fortunately, due to linear integration-by-parts (IBP) identities, these loop integrals are generally not independent. Specifically, applying a total derivative to the integrand results in a vanishing integral in the dimensional regularization scheme, i.e.
+\begin{align}
+0 = \Bigg(\int\prod_{i=1}^{L} d^D\!\ell_i\Bigg){\partial \over \partial \ell_j^\mu}v^\mu\,
+{1 \over D_1^{\nu_1} D_2^{\nu_2} \cdot D_N^{\nu_N}} \,,
+\end{align}
+where $v^\mu$ is a linear combination of loop and external momenta. By expanding the right-hand side, each term can be expressed as an integral akin to the form of $I_{\vec{\nu}}$ in \eqref{L-loop-int-general}, but with varying propagator indices. As a result, different loop integrals in \eqref{L-loop-int-general} adhere to a system of homogeneous linear equations, referred to as IBP systems in the literature. Solving these equations allows for expressing any loop integral as a linear combination of a finite set of basis integrals, termed master integrals. Given their significant relevance in both particle physics and mathematics, substantial progress has been made in reducing loop integrals through techniques like the Laporta algorithm, finite fields, and module intersection techniques. Many of these methods have been implemented into publicly available computer programs, such as \textsc{FIRE6} \cite{Smirnov:2019qkx} and \textsc{Kira} \cite{Klappert:2020nbg,Maierhofer:2017gsa}.
+
+Consequently, these techniques can be seamlessly adapted to the bootstrap of tree-level scattering amplitudes. Notably, tools such as the mentioned \texttt{Kira2} provide a user-friendly interface that accommodates user-defined systems of equations, significantly enhancing efficiency in reducing linear equation systems for tree-level amplitude bootstrapping in this work.
+
+
+Taking gluons as representative examples, we studied linear equations up to $n=9$. The challenge increases significantly for systems with more than six particles, due to the substantial rise in the number of independent kinematic variables. To address this, we approached the solution of these equations by treating the kinematic variables as random prime numbers. This approach is insightful as it not only provides the number of possible amplitudes (on-shell gauge invariants) but also helps in identifying an independent basis for $\alpha_i$'s. Furthermore, these prime-numeric results may also provide data to reconstruct rational coefficients in generic kinematical variables and thus final analytic solutions, see \cite{Peraro:2016wsq} for the finite-field reconstruction method. We will not delve deeply into this topic. We present our results in Table \ref{tab-result}.
+\begin{table}[h]
+    \centering
+    \begin{tabular}[h]{ccrrrr}
+        \hline
+        \hline
+        %
+        $n$ & $(\epsilon\cdot\epsilon)_{\text{min}}$ & $\operatorname{dim}(\Vec{T})$ & dim\,(eqs.) & $\sharp$(null vectors) & time (s)  \\
+        \hline
+        %
+        %
+        \multirow{2}{*}{4} & 1 & 27 & 53 & 1 & 8 \\
+          & 0 & 43 & 56 & 10 & 8 \\
+        \hline
+        %
+        \multirow{2}{*}{5} & 1 & 315 & 623 & 2 & 9\\
+          & 0 & 558 & 690 & 142 & 10 \\
+        \hline
+        %%
+        \multirow{2}{*}{6} & 1 & 4 575 & 9 033 & 6 & 29\\
+          & 0 & 8 671 & 10 344 & 2 364 & 75 \\
+        \hline
+        %
+        \multirow{2}{*}{7} & 1 & 79 275 & 155 974 & 24 & $5\times 10^3$\\
+        %4841 \\
+          & 0 & 157 400 & 182 980 & 45 028 & $2\times 10^3$\\
+          %1865  \\
+        \hline
+        %
+        \multirow{2}{*}{8} & 1 & 1 593 753 & 3 124 021 & 120 & ~~~$2.5\times 10^5$\\
+        %251585 \\
+          & 0 & 3 273 369 & 3 732 336 & 969 980 & $1.1 \times 10^5$ \\
+          %110976 \\
+        \hline
+        %
+        9 & 1 & 36 439 389 & ~~~71 177 259 & 720 & $10^6$\\
+        \hline
+        \hline
+    \end{tabular}
+    \caption{Results of gluon computations.}
+    \label{tab:results}
+\end{table}
+
+To summarize, we have demonstrated the efficiency of loop-integral tools for bootstrapping tree amplitudes. In particular, we obtained a few new solutions, including the numbers of solutions for $n=8$ with a minimal of zero contractions between polarisation vectors and $n=9$ with a minimal of one contraction. We note that the number of solutions for ansatze with minimum one metric contraction reflects the $(n-3)!$ basis partial amplitudes of \eqref{eq:sec3:tree-amplitude-colour-decomposition} in Section \ref{subsec:gauge-fields}, as was also indicated up to $n=8$ in \cite{Boels:2016xhc}.
+
+
+
+
+
+
+
+
+%To demonstrate, consider the aforementioned 6-gluon example. Utilizing the \texttt{NullSpace} and \texttt{Solve} functions in \textsc{Mathematica}, the solution time for equations for the case of minimal metric contraction is 450 s and 930 s, respectively. In contrast, \texttt{Kira} reportedly solves the same equations in approximately 10 seconds.
+
+
+
+
+
+
+%\newpage
+%\begin{table}[h]
+%\begin{center}
+%\begin{tabular}{c r c c}
+%  \hline\hline
+%  ~~$n$~~ & $\sharp(n)$~~ & $~~~~~t_n$~~~~~  &  $~~\bar{t}_n$\,(ms)~~ \\
+%  \hline
+%  5   & 2~~                   & $1.3\,\mathrm{ms}$\,~      & 0.7  \\ \hline
+%  6   & 6~~                   & $5.0\,\mathrm{ms}$\,~     & 0.8 \\ \hline
+%  7   & 24~~                 & $35\,\mathrm{ms}$~      & 1.5 \\ \hline
+%  8   & 120~~               & $0.22\,\mathrm{s}$\,~~~~~    & 1.8 \\ \hline
+%  9   & 720~~               & $1.3\,\mathrm{s}$~~~~  & 1.8 \\ \hline
+%  10 & 5040~~             & $13\,\mathrm{s}$~~~ & 2.5 \\ \hline
+%  11 & 40\,320~~         & $2.3\,\mathrm{min}$ & 3.2 \\ \hline
+%  12 & 362\,880~~       & $\,30\,\mathrm{min}$ & 4.9 \\ \hline
+%  13 & 3\,628\,800~~   & $5.6\,\mathrm{h}$\,~~~ & 5.5 \\ \hline
+%  \hline
+%\end{tabular}
+%\end{center}
+%\caption{The total time costs $t_n$ of solving $n$-point scattering equations are shown. The number of solutions as well as the averaged time per solution $\bar t_n\equiv t_n/(n-3)!$ are also shown.\label{tab-result}}
+%\end{table}
+
+
+
+
+
+
+
+
+
+
+%\zl{For this part, one strategy would be following e.g section 2 in \cite{Peraro:2019svx} (focus on only basic aspects), to give a brief introduction to finite-field reconstruction method for reducing linear systems. Then simply mention this technique has been implemented into many loop-integral tools. So bootstrapping the tree S-matrix benefits directly from the development of loop tools.}
+
+%Literature:
+%\begin{itemize}
+%    \item \href{http://arxiv.org/abs/1904.00009}{Reconstructing Rational Functions with $\texttt{FireFly}$}
+%    \item \href{http://arxiv.org/abs/2008.06494}{Integral Reduction with Kira 2.0 and Finite Field Methods}
+%    \item \href{http://arxiv.org/abs/1705.05610}{Kira - A Feynman Integral Reduction Program}
+%    \item \href{http://arxiv.org/abs/1812.01491}{Kira 1.2 Release Notes}
+%    \item \href{http://arxiv.org/abs/1905.08019}{FiniteFlow: multivariate functional reconstruction using finite fields and dataflow graphs}
+%\end{itemize}
+
+
+
+
+
+
+
+
