@@ -1,10 +1,9 @@
 use clap::{Parser, Subcommand};
-use treeamps_core::{GenConfig, PolarizationPattern, generate_tensor_structures};
+use treeamps_core::{GenConfig, generate_tensor_structures};
 
 fn main() {
     let cli = Cli::parse();
     match cli.cmd {
-        Command::Demo => run_demo(),
         Command::GenTs { n, deg, ee } => run_gen_ts(n, deg, ee),
         // All solver/symbolic functionality has been removed for now; `solve`
         // is intentionally omitted to keep this CLI focused on tensor-structure
@@ -24,9 +23,6 @@ struct Cli {
 
 #[derive(Subcommand, Debug)]
 enum Command {
-    /// Small demo basis for n=3
-    Demo,
-
     /// Generate tensor structures for fixed degree and EE count
     GenTs {
         /// Number of external legs
@@ -41,16 +37,6 @@ enum Command {
         #[arg(long, default_value_t = 0)]
         ee: u32,
     },
-}
-
-fn run_demo() {
-    let mut cfg = GenConfig::default();
-    cfg.n_legs = 3;
-    let ts = generate_tensor_structures(&cfg, 2, 1);
-    println!("Basis (size={})", ts.len());
-    for (i, t) in ts.iter().enumerate() {
-        println!("  {}) {}", i + 1, t.to_string());
-    }
 }
 
 fn run_gen_ts(n: u8, mut deg: u32, mut ee: u32) {
@@ -93,7 +79,6 @@ fn run_gen_ts(n: u8, mut deg: u32, mut ee: u32) {
 
     let mut cfg = GenConfig::default();
     cfg.n_legs = n;
-    cfg.pol_pattern = PolarizationPattern::OnePerLeg;
 
     let ts = generate_tensor_structures(&cfg, deg, ee);
     println!(

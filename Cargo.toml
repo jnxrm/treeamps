@@ -1,3 +1,6 @@
 [workspace]
 members = ["treeamps-core", "treeamps-cli"]
 resolver = "3"
+
+[profile.release]
+debug = true

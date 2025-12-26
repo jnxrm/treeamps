@@ -19,7 +19,7 @@ impl Default for GenConfig {
         Self {
             n_legs: 3,
             transversality: Transversality::ForbidPiDotEi,
-            pol_pattern: PolarizationPattern::Unrestricted,
+            pol_pattern: PolarizationPattern::OnePerLeg,
         }
     }
 }
@@ -99,7 +99,7 @@ struct DfsState<'a> {
     cur: TensorStructure,
     pe_so_far: u32,
     pol_count: Vec<u32>,
-    out: BTreeSet<TensorStructure>,
+    // out: BTreeSet<TensorStructure>,
 }
 
 fn add_polarizations(pc: &mut [u32], f: &ScalarFactor) {
@@ -128,20 +128,21 @@ fn remove_polarizations(pc: &mut [u32], f: &ScalarFactor) {
     }
 }
 
-fn dfs_emit(mut s: DfsState, idx_start: usize) -> BTreeSet<TensorStructure> {
+fn dfs_emit(s: &mut DfsState, idx_start: usize, out: &mut BTreeSet<TensorStructure>) {
     let deg_so_far = s.cur.factors.len() as u32;
     let ee_so_far = s.cur.ee_contractions;
 
     if deg_so_far > s.target_deg || ee_so_far > s.ee_needed {
-        return s.out;
+        return;
     }
 
     if s.enforce_one_pol {
         for r in 1..=s.nlegs as usize {
             if s.pol_count[r] > 1 {
-                return s.out;
+                return;
             }
         }
+
         let remain = s.target_deg - deg_so_far;
         let mut missing = 0;
         for r in 1..=s.nlegs as usize {
@@ -149,14 +150,15 @@ fn dfs_emit(mut s: DfsState, idx_start: usize) -> BTreeSet<TensorStructure> {
                 missing += 1;
             }
         }
+
         let max_addable = remain * 2;
         if max_addable < missing {
-            return s.out;
+            return;
         }
 
         let pol_so_far = 2 * ee_so_far + s.pe_so_far;
         if pol_so_far > s.nlegs as u32 {
-            return s.out;
+            return;
         }
     }
 
@@ -165,7 +167,7 @@ fn dfs_emit(mut s: DfsState, idx_start: usize) -> BTreeSet<TensorStructure> {
             if !s.enforce_one_pol {
                 let mut t = s.cur.clone();
                 t.canonicalize();
-                s.out.insert(t);
+                out.insert(t);
             } else {
                 let pol_total = 2 * ee_so_far + s.pe_so_far;
                 if pol_total == s.nlegs as u32 {
@@ -173,20 +175,22 @@ fn dfs_emit(mut s: DfsState, idx_start: usize) -> BTreeSet<TensorStructure> {
                     if ok {
                         let mut t = s.cur.clone();
                         t.canonicalize();
-                        s.out.insert(t);
+                        out.insert(t);
                     }
                 }
             }
         }
-        return s.out;
+        return;
     }
 
     for i in idx_start..s.catalog.len() {
         let f = &s.catalog[i];
         s.cur.factors.push(f.clone());
+
         if matches!(f.kind, ScalarKind::EE) {
             s.cur.ee_contractions += 1;
         }
+
         if s.enforce_one_pol {
             if matches!(f.kind, ScalarKind::PE) {
                 s.pe_so_far += 1;
@@ -194,8 +198,10 @@ fn dfs_emit(mut s: DfsState, idx_start: usize) -> BTreeSet<TensorStructure> {
             add_polarizations(&mut s.pol_count, f);
         }
 
-        let out_after = dfs_emit(s.clone(), i);
-        s.out = out_after;
+        // let out_after = dfs_emit(s.clone(), i);
+        // s.out = out_after;
+
+        dfs_emit(s, i, out);
 
         if s.enforce_one_pol {
             remove_polarizations(&mut s.pol_count, f);
@@ -203,13 +209,13 @@ fn dfs_emit(mut s: DfsState, idx_start: usize) -> BTreeSet<TensorStructure> {
                 s.pe_so_far -= 1;
             }
         }
+
         if matches!(f.kind, ScalarKind::EE) {
             s.cur.ee_contractions -= 1;
         }
+
         s.cur.factors.pop();
     }
-
-    s.out
 }
 
 pub fn generate_tensor_structures(
@@ -231,7 +237,7 @@ pub fn generate_tensor_structures(
     catalog.extend(ee);
 
     let nlegs = cfg.n_legs;
-    let s = DfsState {
+    let mut s = DfsState {
         target_deg: target_degree,
         ee_needed: ee_contractions,
         nlegs,
@@ -240,9 +246,9 @@ pub fn generate_tensor_structures(
         cur: TensorStructure::new(),
         pe_so_far: 0,
         pol_count: vec![0; nlegs as usize + 1],
-        out: BTreeSet::new(),
     };
 
-    let out_set = dfs_emit(s, 0);
+    let mut out_set = BTreeSet::new();
+    dfs_emit(&mut s, 0, &mut out_set);
     out_set.into_iter().collect()
 }
